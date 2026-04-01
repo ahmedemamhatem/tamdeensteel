@@ -208,13 +208,15 @@ ul{list-style:none}
 
 /* --- Footer --- */
 .ts-footer{background:var(--bg-footer);border-top:1px solid var(--glass-border);padding:72px 0 0}
-.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px}
-.footer-brand .footer-logo{display:inline-block;margin-bottom:20px}
-.footer-brand .footer-logo img{height:60px;border-radius:12px;padding:8px 12px;background:#fff;box-shadow:0 0 18px var(--orange-glow)}
-.footer-brand p{color:var(--text-secondary);font-size:14px;line-height:1.8;max-width:300px}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:56px}
+.footer-brand{display:flex;flex-direction:column;gap:16px}
+.footer-brand .footer-logo{display:block;width:fit-content;margin-bottom:0}
+.footer-brand .footer-logo img{height:56px;border-radius:10px;padding:6px 10px;background:#fff;box-shadow:0 0 18px var(--orange-glow);display:block}
+.footer-brand p{color:var(--text-secondary);font-size:14px;line-height:1.8;max-width:300px;margin:0}
 .footer-col h4{font-size:16px;font-weight:700;margin-bottom:20px;position:relative;padding-bottom:10px}
 .footer-col h4::after{content:'';position:absolute;bottom:0;left:0;width:30px;height:2px;background:var(--orange)}
 [dir="rtl"] .footer-col h4::after{left:auto;right:0}
+.footer-col ul{list-style:none;padding:0;margin:0}
 .footer-col ul li{margin-bottom:10px}
 .footer-col ul li a{color:var(--text-secondary);font-size:14px;transition:var(--transition)}
 .footer-col ul li a:hover{color:var(--orange);padding-left:6px}
