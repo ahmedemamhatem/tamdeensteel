@@ -13,411 +13,871 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-/* ======= TAMDEEN STEEL - FULL WEBSITE CSS ======= */
+/* ============================================
+   TAMDEEN STEEL - Premium Industrial Website
+   ============================================ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
 :root{
---c:#2D3436;--dk:#1a1f20;--or:#E67E22;--dor:#D35400;--gr:#636E72;--lt:#DFE6E9;
---grd:linear-gradient(135deg,#E67E22,#D35400);
-}
-html{scroll-behavior:smooth}
-body{overflow-x:hidden}
-
-/* === NAV === */
-.t-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0;transition:all .4s ease;background:transparent}
-.t-nav.scrolled{background:rgba(26,31,32,.97);backdrop-filter:blur(12px);padding:10px 0;box-shadow:0 4px 30px rgba(0,0,0,.3)}
-.t-nav .nc{max-width:1240px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between}
-.t-nav .nl img{height:46px;border-radius:6px;background:rgba(255,255,255,.93);padding:4px 8px;box-shadow:0 2px 10px rgba(0,0,0,.15);transition:all .3s ease}
-.t-nav.scrolled .nl img{height:36px;padding:3px 6px}
-.t-nav .nk{display:flex;gap:22px;list-style:none;align-items:center;margin:0;padding:0}
-.t-nav .nk a{color:#fff;text-decoration:none;font-weight:500;font-size:13px;letter-spacing:.5px;text-transform:uppercase;position:relative;padding:6px 0;transition:color .3s;white-space:nowrap}
-.t-nav .nk a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--or);transition:width .3s}
-.t-nav .nk a:hover{color:var(--or)}
-.t-nav .nk a:hover::after{width:100%}
-.t-nav .lang-sw{display:inline-flex!important;align-items:center;gap:6px;padding:5px 14px!important;border:2px solid rgba(255,255,255,.25)!important;border-radius:20px!important;font-size:13px!important;text-transform:none!important;letter-spacing:0!important;transition:all .3s!important}
-.t-nav .lang-sw::after{display:none!important}
-.t-nav .lang-sw:hover{border-color:var(--or)!important;background:rgba(230,126,34,.1)!important}
-.flag-i{font-size:18px;line-height:1}
-.t-nav .cta-btn{background:var(--grd);color:#fff!important;padding:9px 20px!important;border-radius:6px;font-weight:600!important;display:inline-flex;align-items:center;gap:7px;font-size:12px!important;letter-spacing:.8px!important;transition:transform .3s,box-shadow .3s!important}
-.t-nav .cta-btn::after{display:none!important}
-.t-nav .cta-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(230,126,34,.4)}
-.mob-act{display:none;align-items:center;gap:14px}
-.mob-lang{color:#fff;text-decoration:none;font-size:22px;line-height:1}
-.ham{display:flex;flex-direction:column;gap:6px;cursor:pointer;width:30px;padding:4px 0}
-.ham span{width:100%;height:3px;background:#fff;border-radius:2px;transition:all .3s;display:block}
-.ham.active span:nth-child(1){transform:rotate(45deg) translate(6px,6px)}
-.ham.active span:nth-child(2){opacity:0}
-.ham.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
-
-/* === HERO === */
-.t-hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--dk)}
-.t-hero video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.3}
-.t-hero .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,31,32,.75) 0%,rgba(45,52,54,.45) 50%,rgba(26,31,32,.92) 100%)}
-.t-hero .hc{position:relative;z-index:2;text-align:center;max-width:880px;padding:0 28px}
-.t-hero .badge{display:inline-block;background:rgba(230,126,34,.12);border:1px solid rgba(230,126,34,.35);color:var(--or);padding:8px 24px;border-radius:50px;font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:24px;animation:fadeU .8s ease forwards}
-.t-hero h1{font-size:clamp(36px,6vw,64px);font-weight:900;color:#fff;line-height:1.08;margin-bottom:20px;animation:fadeU .8s ease .2s forwards;opacity:0}
-.t-hero h1 span{color:var(--or)}
-.t-hero .hc>p{font-size:clamp(16px,2vw,20px);color:rgba(255,255,255,.65);max-width:640px;margin:0 auto 38px;animation:fadeU .8s ease .4s forwards;opacity:0}
-.hbtns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;animation:fadeU .8s ease .6s forwards;opacity:0}
-.btn-p{display:inline-flex;align-items:center;gap:10px;background:var(--grd);color:#fff;padding:15px 32px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;transition:transform .3s,box-shadow .3s;border:none;cursor:pointer}
-.btn-p:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(230,126,34,.35);color:#fff;text-decoration:none}
-.btn-o{display:inline-flex;align-items:center;gap:10px;background:transparent;color:#fff;padding:15px 32px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;border:2px solid rgba(255,255,255,.25);transition:all .3s;cursor:pointer}
-.btn-o:hover{border-color:var(--or);color:var(--or);text-decoration:none}
-.scroll-ind{position:absolute;bottom:35px;left:50%;transform:translateX(-50%);z-index:2;animation:bounce 2s infinite}
-.scroll-ind .mouse{width:24px;height:38px;border:2px solid rgba(255,255,255,.35);border-radius:20px;position:relative}
-.scroll-ind .mouse::after{content:'';width:4px;height:8px;background:var(--or);border-radius:2px;position:absolute;top:7px;left:50%;transform:translateX(-50%);animation:scrl 1.5s infinite}
-
-/* === STATS === */
-.t-stats{background:var(--c);padding:48px 0;position:relative}
-.t-stats::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grd)}
-.st-grid{max-width:1240px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;text-align:center}
-.st-item h3{font-size:clamp(36px,5vw,50px);font-weight:800;color:var(--or);line-height:1;margin-bottom:6px}
-.st-item p{font-size:13px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1.5px;font-weight:500;margin:0}
-
-/* === SECTIONS === */
-.sec{padding:90px 0}
-.sec-c{max-width:1240px;margin:0 auto;padding:0 28px}
-.sec-h{text-align:center;margin-bottom:56px}
-.sec-h .tag{display:inline-block;color:var(--or);font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px}
-.sec-h h2{font-size:clamp(28px,4vw,42px);font-weight:800;color:var(--c);margin-bottom:14px;line-height:1.2}
-.sec-h p{font-size:17px;color:var(--gr);max-width:580px;margin:0 auto}
-
-/* === ABOUT === */
-.t-about{background:#FAFAFA}
-.ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.ab-img{position:relative;border-radius:12px;overflow:hidden}
-.ab-img img{width:100%;height:420px;object-fit:cover;border-radius:12px}
-.ab-img .accent{position:absolute;top:-12px;left:-12px;width:90px;height:90px;border:4px solid var(--or);border-radius:12px;z-index:-1}
-.ab-txt h3{font-size:26px;font-weight:700;color:var(--c);margin-bottom:18px}
-.ab-txt p{font-size:15px;color:var(--gr);margin-bottom:22px;line-height:1.8}
-.ab-feats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.ab-feat{display:flex;align-items:center;gap:10px;padding:11px 14px;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
-.ab-feat .fi{width:34px;height:34px;background:rgba(230,126,34,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--or);font-size:14px;flex-shrink:0}
-.ab-feat span{font-size:13px;font-weight:600;color:var(--c)}
-
-/* === PRODUCTS === */
-.t-prods{background:#fff}
-.pr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.pr-card{border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 4px 24px rgba(0,0,0,.07);transition:transform .4s,box-shadow .4s}
-.pr-card:hover{transform:translateY(-8px);box-shadow:0 16px 48px rgba(0,0,0,.13)}
-.pr-card .ci{height:240px;overflow:hidden;position:relative}
-.pr-card .ci img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.pr-card:hover .ci img{transform:scale(1.08)}
-.pr-card .ci .co{position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(transparent,rgba(0,0,0,.6))}
-.pr-card .cb{padding:22px}
-.pr-card .cb h4{font-size:19px;font-weight:700;color:var(--c);margin-bottom:8px}
-.pr-card .cb p{font-size:14px;color:var(--gr);margin-bottom:14px;line-height:1.7}
-.pr-card .cb .cl{color:var(--or);font-weight:600;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:gap .3s}
-.pr-card .cb .cl:hover{gap:12px}
-
-/* === GALLERY === */
-.t-gallery{background:var(--c)}
-.t-gallery .sec-h h2,.t-gallery .sec-h p{color:#fff}
-.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:240px 240px;gap:14px}
-.gal-item{border-radius:10px;overflow:hidden;position:relative;cursor:pointer}
-.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.gal-item:hover img{transform:scale(1.06)}
-.gal-item .go{position:absolute;inset:0;background:rgba(45,52,54,.55);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
-.gal-item:hover .go{opacity:1}
-.gal-item .go span{color:#fff;font-weight:600;font-size:15px;padding:7px 18px;border:2px solid var(--or);border-radius:5px}
-.gal-item:nth-child(1){grid-column:span 2}
-.gal-item:nth-child(5){grid-column:span 2}
-
-/* === VIDEO === */
-.t-vid{background:#FAFAFA;text-align:center}
-.vid-wrap{max-width:100%;margin:0 auto;border-radius:12px;overflow:hidden;box-shadow:0 16px 50px rgba(0,0,0,.18);position:relative;cursor:pointer}
-.vid-wrap video{width:100%;display:block;border-radius:12px;max-height:70vh;object-fit:cover}
-.vid-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;cursor:pointer;transition:transform .3s,opacity .3s}
-.vid-play:hover{transform:translate(-50%,-50%) scale(1.1)}
-.vid-play.hidden{opacity:0;pointer-events:none}
-
-/* === CTA === */
-.t-cta{padding:90px 0;background:var(--c);text-align:center;position:relative;overflow:hidden}
-.t-cta::before{content:'';position:absolute;top:-50%;left:-10%;width:380px;height:380px;background:radial-gradient(circle,rgba(230,126,34,.12),transparent 70%);border-radius:50%}
-.t-cta::after{content:'';position:absolute;bottom:-50%;right:-10%;width:380px;height:380px;background:radial-gradient(circle,rgba(230,126,34,.08),transparent 70%);border-radius:50%}
-.t-cta .cc{position:relative;z-index:1}
-.t-cta h2{font-size:clamp(28px,4vw,42px);font-weight:800;color:#fff;margin-bottom:14px}
-.t-cta p{font-size:17px;color:rgba(255,255,255,.55);margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
-
-/* === FOOTER === */
-.t-foot{background:var(--dk);padding:56px 0 28px}
-.ft-grid{max-width:1240px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px}
-.ft-brand img{height:48px;margin-bottom:14px;border-radius:6px;background:rgba(255,255,255,.93);padding:4px 8px}
-.ft-brand p{font-size:14px;color:rgba(255,255,255,.45);line-height:1.8;max-width:300px}
-.ft-col h4{color:#fff;font-size:15px;font-weight:700;margin-bottom:18px;position:relative;padding-bottom:10px}
-.ft-col h4::after{content:'';position:absolute;bottom:0;left:0;width:28px;height:2px;background:var(--or)}
-.ft-col ul{list-style:none;padding:0;margin:0}
-.ft-col ul li{margin-bottom:9px}
-.ft-col ul li a{color:rgba(255,255,255,.45);text-decoration:none;font-size:14px;transition:color .3s}
-.ft-col ul li a:hover{color:var(--or)}
-.ft-btm{max-width:1240px;margin:0 auto;padding:18px 28px 0;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center}
-.ft-btm p{color:rgba(255,255,255,.25);font-size:12px;margin:0}
-
-/* === ANIMATIONS === */
-@keyframes fadeU{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-@keyframes bounce{0%,20%,50%,80%,100%{transform:translateX(-50%) translateY(0)}40%{transform:translateX(-50%) translateY(-10px)}60%{transform:translateX(-50%) translateY(-5px)}}
-@keyframes scrl{0%{opacity:1;top:7px}100%{opacity:0;top:18px}}
-.fade-in{opacity:0;transform:translateY(28px);transition:opacity .6s,transform .6s}
-.fade-in.visible{opacity:1;transform:translateY(0)}
-.fade-in-left{opacity:0;transform:translateX(-36px);transition:opacity .6s,transform .6s}
-.fade-in-left.visible{opacity:1;transform:translateX(0)}
-.fade-in-right{opacity:0;transform:translateX(36px);transition:opacity .6s,transform .6s}
-.fade-in-right.visible{opacity:1;transform:translateX(0)}
-
-/* === DESKTOP: hide mobile actions === */
-@media(min-width:769px){
-	.mob-act{display:none!important}
-	.ham{display:none!important}
+  --primary:#E67E22;
+  --primary-dark:#D35400;
+  --primary-light:#F39C12;
+  --dark:#1a1d21;
+  --darker:#12151a;
+  --darkest:#0a0c0f;
+  --text:#2D3436;
+  --text-light:#636E72;
+  --light:#F8F9FA;
+  --lighter:#FFFFFF;
+  --border:#DFE6E9;
+  --gradient:linear-gradient(135deg,#E67E22,#D35400);
+  --gradient-wide:linear-gradient(90deg,#E67E22,#D35400,#E67E22);
+  --shadow-sm:0 2px 8px rgba(0,0,0,.08);
+  --shadow-md:0 8px 30px rgba(0,0,0,.12);
+  --shadow-lg:0 20px 60px rgba(0,0,0,.15);
+  --shadow-glow:0 0 40px rgba(230,126,34,.3);
+  --radius:12px;
+  --radius-lg:20px;
+  --transition:all .4s cubic-bezier(.25,.46,.45,.94);
+  --font-en:'Inter',sans-serif;
+  --font-ar:'Tajawal',sans-serif;
 }
 
-/* === RESPONSIVE === */
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:var(--font-en);overflow-x:hidden;color:var(--text);line-height:1.7;background:var(--lighter)}
+[dir="rtl"] body{font-family:var(--font-ar)}
+
+::selection{background:var(--primary);color:#fff}
+::-moz-selection{background:var(--primary);color:#fff}
+
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--darker)}
+::-webkit-scrollbar-thumb{background:var(--primary);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--primary-dark)}
+
+/* ---- Utility ---- */
+.container{max-width:1240px;margin:0 auto;padding:0 28px}
+.section-pad{padding:100px 0}
+
+/* ---- Animations ---- */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-60px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 20px rgba(230,126,34,.3)}50%{box-shadow:0 0 50px rgba(230,126,34,.6)}}
+@keyframes scrollDot{0%{opacity:0;transform:translateY(0)}40%{opacity:1}100%{opacity:0;transform:translateY(18px)}}
+@keyframes revealLine{from{width:0}to{width:60px}}
+@keyframes spinSlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.revealed{opacity:1;transform:translateY(0)}
+.reveal.revealed:nth-child(2){transition-delay:.1s}
+.reveal.revealed:nth-child(3){transition-delay:.2s}
+.reveal.revealed:nth-child(4){transition-delay:.3s}
+.reveal.revealed:nth-child(5){transition-delay:.4s}
+.reveal.revealed:nth-child(6){transition-delay:.5s}
+
+/* ============================================
+   1. NAVIGATION
+   ============================================ */
+.t-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:18px 0;transition:var(--transition);background:transparent}
+.t-nav.scrolled{background:rgba(18,21,26,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:10px 0;box-shadow:0 4px 30px rgba(0,0,0,.4)}
+.t-nav .nav-inner{max-width:1240px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between}
+.t-nav .nav-logo img{height:48px;border-radius:8px;background:rgba(255,255,255,.95);padding:4px 8px;box-shadow:0 2px 12px rgba(0,0,0,.15);transition:var(--transition)}
+.t-nav.scrolled .nav-logo img{height:38px;padding:3px 6px}
+
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:15px;font-weight:500;letter-spacing:.3px;transition:var(--transition);position:relative;padding:4px 0}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--gradient);transition:width .3s ease;border-radius:2px}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{width:100%}
+[dir="rtl"] .nav-links a::after{left:auto;right:0}
+
+.nav-actions{display:flex;align-items:center;gap:14px}
+.lang-btn{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;transition:var(--transition);font-family:inherit}
+.lang-btn:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.3)}
+.system-btn{display:flex;align-items:center;gap:8px;background:var(--gradient);color:#fff;padding:9px 20px;border-radius:8px;border:none;cursor:pointer;font-size:14px;font-weight:600;transition:var(--transition);font-family:inherit;letter-spacing:.3px}
+.system-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-glow)}
+.system-btn svg{width:16px;height:16px;fill:currentColor}
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;z-index:1001}
+.hamburger span{width:26px;height:2.5px;background:#fff;border-radius:2px;transition:var(--transition);display:block}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+.mobile-flag{display:none;cursor:pointer;font-size:18px;background:none;border:none;padding:4px}
+
+.mobile-menu{position:fixed;inset:0;background:rgba(10,12,15,.97);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;z-index:999;opacity:0;visibility:hidden;transition:var(--transition)}
+.mobile-menu.active{opacity:1;visibility:visible}
+.mobile-menu ul{list-style:none;text-align:center;display:flex;flex-direction:column;gap:28px}
+.mobile-menu ul a{color:#fff;text-decoration:none;font-size:clamp(22px,5vw,32px);font-weight:700;transition:var(--transition);letter-spacing:.5px}
+.mobile-menu ul a:hover{color:var(--primary)}
+.mobile-menu .mm-actions{margin-top:40px;display:flex;flex-direction:column;align-items:center;gap:16px}
+
+/* ============================================
+   2. HERO SECTION
+   ============================================ */
+.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;overflow:hidden}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,12,15,.7) 0%,rgba(10,12,15,.5) 40%,rgba(10,12,15,.8) 100%);z-index:1}
+.hero-content{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:0 28px;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(230,126,34,.15);border:1px solid rgba(230,126,34,.3);color:var(--primary-light);padding:8px 20px;border-radius:50px;font-size:14px;font-weight:600;letter-spacing:.5px;margin-bottom:24px;animation:fadeInDown .8s ease .2s both}
+.hero-badge span{width:8px;height:8px;background:var(--primary);border-radius:50%;animation:pulseGlow 2s infinite}
+.hero h1{font-size:clamp(36px,6vw,72px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:20px;letter-spacing:-.5px;animation:fadeInUp .8s ease .4s both}
+.hero h1 .highlight{color:var(--primary);position:relative;display:inline-block}
+.hero h1 .highlight::after{content:'';position:absolute;bottom:4px;left:0;width:100%;height:6px;background:rgba(230,126,34,.3);border-radius:3px}
+.hero-text{font-size:clamp(16px,2vw,20px);color:rgba(255,255,255,.75);max-width:600px;margin-bottom:36px;line-height:1.8;animation:fadeInUp .8s ease .6s both}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;animation:fadeInUp .8s ease .8s both}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;padding:15px 32px;background:var(--gradient);color:#fff;border:none;border-radius:var(--radius);font-size:16px;font-weight:700;cursor:pointer;transition:var(--transition);text-decoration:none;font-family:inherit;position:relative;overflow:hidden}
+.btn-primary::before{content:'';position:absolute;top:0;left:-100%;width:200%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);animation:shimmer 3s infinite}
+.btn-primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:var(--shadow-glow)}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;padding:15px 32px;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.3);border-radius:var(--radius);font-size:16px;font-weight:600;cursor:pointer;transition:var(--transition);text-decoration:none;font-family:inherit}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-3px);background:rgba(230,126,34,.05)}
+
+.scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scroll-indicator span{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:2px;text-transform:uppercase}
+.scroll-mouse{width:26px;height:42px;border:2px solid rgba(255,255,255,.4);border-radius:14px;position:relative}
+.scroll-mouse::before{content:'';position:absolute;top:8px;left:50%;width:4px;height:8px;margin-left:-2px;background:var(--primary);border-radius:2px;animation:scrollDot 2s infinite}
+
+/* ============================================
+   3. STATS BAR
+   ============================================ */
+.stats-bar{background:var(--dark);position:relative;padding:48px 0;overflow:hidden}
+.stats-bar::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient-wide);background-size:200% 100%;animation:shimmer 4s linear infinite}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+.stat-item{position:relative;padding:10px 0}
+.stat-item:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:rgba(255,255,255,.1)}
+[dir="rtl"] .stat-item:not(:last-child)::after{right:auto;left:0}
+.stat-number{font-size:clamp(32px,4vw,48px);font-weight:900;color:var(--primary);display:block;line-height:1.2;text-shadow:0 0 30px rgba(230,126,34,.2)}
+.stat-label{font-size:14px;color:rgba(255,255,255,.6);margin-top:8px;font-weight:500;letter-spacing:.5px}
+
+/* ============================================
+   4. ABOUT SECTION
+   ============================================ */
+.about{background:var(--light);overflow:hidden}
+.section-header{text-align:center;margin-bottom:60px}
+.section-tag{display:inline-flex;align-items:center;gap:8px;color:var(--primary);font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.section-tag::before,.section-tag::after{content:'';width:30px;height:2px;background:var(--gradient);border-radius:2px}
+.section-title{font-size:clamp(28px,4vw,44px);font-weight:900;color:var(--text);line-height:1.2;margin-bottom:16px}
+.section-desc{font-size:clamp(15px,1.5vw,18px);color:var(--text-light);max-width:640px;margin:0 auto;line-height:1.8}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-img-wrap{position:relative;border-radius:var(--radius-lg);overflow:hidden}
+.about-img-wrap img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius-lg);min-height:420px}
+.about-img-wrap::before{content:'';position:absolute;top:-10px;left:-10px;width:100px;height:100px;border-top:4px solid var(--primary);border-left:4px solid var(--primary);border-radius:var(--radius) 0 0 0;z-index:1}
+.about-img-wrap::after{content:'';position:absolute;bottom:-10px;right:-10px;width:100px;height:100px;border-bottom:4px solid var(--primary);border-right:4px solid var(--primary);border-radius:0 0 var(--radius) 0;z-index:1}
+[dir="rtl"] .about-img-wrap::before{left:auto;right:-10px;border-left:none;border-right:4px solid var(--primary);border-radius:0 var(--radius) 0 0}
+[dir="rtl"] .about-img-wrap::after{right:auto;left:-10px;border-right:none;border-left:4px solid var(--primary);border-radius:0 0 0 var(--radius)}
+
+.about-text h3{font-size:clamp(22px,3vw,32px);font-weight:800;margin-bottom:16px;color:var(--text)}
+.about-text p{color:var(--text-light);font-size:16px;line-height:1.9;margin-bottom:32px}
+
+.feature-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.feature-card{background:var(--lighter);border-radius:var(--radius);padding:22px;border:1px solid var(--border);transition:var(--transition);cursor:default}
+.feature-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--primary)}
+.feature-card .fc-icon{width:42px;height:42px;background:rgba(230,126,34,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:20px}
+.feature-card h4{font-size:15px;font-weight:700;margin-bottom:4px;color:var(--text)}
+.feature-card p{font-size:13px;color:var(--text-light);line-height:1.6}
+
+/* ============================================
+   5. PRODUCTS SECTION
+   ============================================ */
+.products{background:var(--lighter)}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.product-card{background:var(--lighter);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);transition:var(--transition);cursor:default}
+.product-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:transparent}
+.product-img{position:relative;height:220px;overflow:hidden}
+.product-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.product-card:hover .product-img img{transform:scale(1.1)}
+.product-img::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,12,15,.5) 0%,transparent 60%);opacity:0;transition:opacity .4s ease}
+.product-card:hover .product-img::after{opacity:1}
+.product-body{padding:24px}
+.product-body h3{font-size:18px;font-weight:800;margin-bottom:8px;color:var(--text)}
+.product-body p{font-size:14px;color:var(--text-light);line-height:1.7;margin-bottom:16px}
+.product-link{color:var(--primary);font-size:14px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:var(--transition)}
+.product-link:hover{gap:12px;color:var(--primary-dark)}
+
+/* ============================================
+   6. GALLERY SECTION
+   ============================================ */
+.gallery{background:var(--dark);overflow:hidden}
+.gallery .section-tag{color:var(--primary-light)}
+.gallery .section-title{color:#fff}
+.gallery .section-desc{color:rgba(255,255,255,.6)}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;grid-auto-rows:260px}
+.gallery-item{position:relative;border-radius:var(--radius);overflow:hidden;cursor:pointer}
+.gallery-item:nth-child(1),.gallery-item:nth-child(5){grid-column:span 2}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.gallery-item:hover img{transform:scale(1.12)}
+.gallery-item::after{content:attr(data-label);position:absolute;inset:0;background:rgba(230,126,34,.75);display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;letter-spacing:1px;opacity:0;transition:opacity .4s ease}
+.gallery-item:hover::after{opacity:1}
+
+/* ============================================
+   7. VIDEO SECTION
+   ============================================ */
+.video-section{background:var(--light)}
+.video-wrap{position:relative;max-width:900px;margin:0 auto;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);cursor:pointer;aspect-ratio:16/9}
+.video-wrap video{width:100%;height:100%;object-fit:cover;display:block}
+.play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:var(--transition);z-index:2;border:none;cursor:pointer;animation:pulseGlow 2.5s infinite}
+.play-btn::before{content:'';width:0;height:0;border-style:solid;border-width:14px 0 14px 24px;border-color:transparent transparent transparent #fff;margin-left:4px}
+.play-btn:hover{transform:translate(-50%,-50%) scale(1.1)}
+.video-wrap.playing .play-btn{opacity:0;pointer-events:none}
+.video-wrap::before{content:'';position:absolute;inset:0;background:rgba(10,12,15,.35);z-index:1;transition:opacity .4s ease;pointer-events:none}
+.video-wrap.playing::before{opacity:0}
+
+/* ============================================
+   8. CTA SECTION
+   ============================================ */
+.cta-section{background:var(--dark);position:relative;overflow:hidden;padding:100px 0}
+.cta-section::before{content:'';position:absolute;top:-150px;left:-150px;width:400px;height:400px;background:radial-gradient(circle,rgba(230,126,34,.15),transparent 70%);border-radius:50%;pointer-events:none}
+.cta-section::after{content:'';position:absolute;bottom:-150px;right:-150px;width:400px;height:400px;background:radial-gradient(circle,rgba(230,126,34,.1),transparent 70%);border-radius:50%;pointer-events:none}
+.cta-content{text-align:center;position:relative;z-index:1}
+.cta-content h2{font-size:clamp(30px,5vw,52px);font-weight:900;color:#fff;margin-bottom:16px}
+.cta-content h2 .highlight{color:var(--primary)}
+.cta-content p{font-size:clamp(15px,1.5vw,18px);color:rgba(255,255,255,.6);max-width:560px;margin:0 auto 40px;line-height:1.8}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.cta-btns .btn-primary svg,.cta-btns .btn-outline svg{width:18px;height:18px;fill:currentColor;flex-shrink:0}
+
+/* ============================================
+   9. FOOTER
+   ============================================ */
+.t-footer{background:var(--darkest);padding:80px 0 0;color:rgba(255,255,255,.6)}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:60px}
+.footer-brand img{height:48px;border-radius:8px;background:rgba(255,255,255,.95);padding:4px 8px;box-shadow:0 2px 12px rgba(0,0,0,.15);margin-bottom:16px}
+.footer-brand p{font-size:14px;line-height:1.8;color:rgba(255,255,255,.5)}
+.footer-col h4{font-size:16px;font-weight:700;color:#fff;margin-bottom:20px;position:relative;padding-bottom:12px}
+.footer-col h4::after{content:'';position:absolute;bottom:0;left:0;width:30px;height:2px;background:var(--gradient);border-radius:2px}
+[dir="rtl"] .footer-col h4::after{left:auto;right:0}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:10px}
+.footer-col ul a{color:rgba(255,255,255,.5);text-decoration:none;font-size:14px;transition:var(--transition)}
+.footer-col ul a:hover{color:var(--primary);padding-left:6px}
+[dir="rtl"] .footer-col ul a:hover{padding-left:0;padding-right:6px}
+.footer-contact li{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;font-size:14px}
+.footer-contact svg{width:16px;height:16px;fill:var(--primary);flex-shrink:0;margin-top:3px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:24px 0;text-align:center;font-size:13px;color:rgba(255,255,255,.35)}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 @media(max-width:1024px){
-	.st-grid{grid-template-columns:repeat(2,1fr)}
-	.ab-grid{grid-template-columns:1fr;gap:36px}
-	.pr-grid{grid-template-columns:repeat(2,1fr)}
-	.gal-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:auto}
-	.gal-item:nth-child(1),.gal-item:nth-child(5){grid-column:span 1}
-	.ft-grid{grid-template-columns:repeat(2,1fr)}
-	.t-nav .nk{gap:16px}
-	.t-nav .nk a{font-size:12px}
+  .about-grid{gap:40px}
+  .products-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:220px}
+  .gallery-item:nth-child(1),.gallery-item:nth-child(5){grid-column:span 1}
+  .footer-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
-	.mob-act{display:flex!important}
-	.t-nav .nk{display:none;position:fixed;inset:0;background:rgba(26,31,32,.98);backdrop-filter:blur(10px);flex-direction:column;align-items:center;justify-content:center;gap:20px;z-index:999;padding:80px 28px 40px}
-	.t-nav .nk.open{display:flex}
-	.t-nav .nk li{list-style:none;text-align:center}
-	.t-nav .nk a{font-size:18px;display:block;padding:10px 0;text-transform:none}
-	.t-nav .nk .cta-btn{margin-top:10px;padding:14px 30px!important;font-size:16px!important}
-	.t-nav .nk .lang-sw{margin-top:8px;border-color:rgba(255,255,255,.3)!important;font-size:16px!important;padding:8px 20px!important}
-	.ham{display:flex!important;z-index:1001}
-	.t-hero{min-height:90vh}
-	.t-hero h1{font-size:28px!important}
-	.t-hero .hc>p{font-size:15px!important}
-	.t-hero .badge{font-size:10px;padding:6px 16px}
-	.btn-p,.btn-o{padding:13px 24px;font-size:14px}
-	.hbtns{flex-direction:column;align-items:center;gap:12px}
-	.sec{padding:60px 0}
-	.sec-h h2{font-size:26px!important}
-	.sec-h p{font-size:15px}
-	.pr-grid{grid-template-columns:1fr}
-	.gal-grid{grid-template-columns:1fr;grid-template-rows:auto}
-	.gal-item{height:200px}
-	.st-grid{grid-template-columns:repeat(2,1fr);gap:16px}
-	.st-item h3{font-size:32px!important}
-	.st-item p{font-size:11px}
-	.t-stats{padding:32px 0}
-	.ab-img img{height:280px}
-	.ft-grid{grid-template-columns:1fr;gap:24px}
-	.ft-btm{flex-direction:column;text-align:center;gap:6px}
-	.t-cta h2{font-size:26px!important}
-	.vid-wrap video{max-height:50vh}
-	.vid-play svg{width:50px;height:50px}
+  .section-pad{padding:70px 0}
+  .nav-links{display:none}
+  .hamburger,.mobile-flag{display:flex}
+  .about-grid{grid-template-columns:1fr}
+  .about-img-wrap{max-height:360px}
+  .products-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:24px}
+  .stat-item:nth-child(2)::after{display:none}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-auto-rows:200px}
+  .footer-grid{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column;align-items:flex-start}
 }
 @media(max-width:480px){
-	.st-grid{grid-template-columns:1fr}
-	.ab-feats{grid-template-columns:1fr}
-	.t-hero h1{font-size:24px!important}
-	.t-hero .badge{font-size:9px;letter-spacing:1.5px}
-	.gal-item{height:180px}
-	.sec{padding:44px 0}
-}
-
-/* === RTL === */
-[dir="rtl"]{font-family:'Tajawal','Inter',sans-serif;text-align:right}
-[dir="rtl"] .t-nav .nc{flex-direction:row-reverse}
-[dir="rtl"] .t-nav .nk{flex-direction:row-reverse}
-[dir="rtl"] .ab-grid{direction:rtl}
-[dir="rtl"] .ab-txt{text-align:right}
-[dir="rtl"] .ab-img .accent{left:auto;right:-12px}
-[dir="rtl"] .ab-feat{flex-direction:row-reverse}
-[dir="rtl"] .pr-card .cb{text-align:right}
-[dir="rtl"] .pr-card .cb .cl{flex-direction:row-reverse}
-[dir="rtl"] .ft-grid{direction:rtl}
-[dir="rtl"] .ft-col{text-align:right}
-[dir="rtl"] .ft-col h4::after{left:auto;right:0}
-[dir="rtl"] .ft-btm{flex-direction:row-reverse}
-[dir="rtl"] .ft-brand{text-align:right}
-[dir="rtl"] .sec-h{text-align:center}
-[dir="rtl"] .t-cta{text-align:center}
-[dir="rtl"] .t-hero .hc{text-align:center}
-[dir="rtl"] .scroll-ind{left:50%;right:auto}
-[dir="rtl"] .fade-in-left{transform:translateX(36px)}
-[dir="rtl"] .fade-in-left.visible{transform:translateX(0)}
-[dir="rtl"] .fade-in-right{transform:translateX(-36px)}
-[dir="rtl"] .fade-in-right.visible{transform:translateX(0)}
-@media(max-width:768px){
-	[dir="rtl"] .t-nav .nk{flex-direction:column}
-	[dir="rtl"] .ft-btm{flex-direction:column;text-align:center}
+  .container{padding:0 18px}
+  .section-pad{padding:56px 0}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:16px}
+  .feature-cards{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr;grid-auto-rows:200px}
+  .cta-btns{flex-direction:column;align-items:center}
 }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="tamdeen-website" dir="{{ d }}">
+<div dir="{{ d }}">
 
-<!-- NAV -->
-<nav class="t-nav">
-	<div class="nc">
-		<a href="/" class="nl"><img src="/assets/tamdeensteel/img/logo.jpeg" alt="Tamdeen"></a>
-		<ul class="nk">
-			<li><a href="#home">{{ "الرئيسية" if is_ar else "Home" }}</a></li>
-			<li><a href="#about">{{ "من نحن" if is_ar else "About" }}</a></li>
-			<li><a href="#products">{{ "منتجاتنا" if is_ar else "Products" }}</a></li>
-			<li><a href="#gallery">{{ "معرض الصور" if is_ar else "Gallery" }}</a></li>
-			<li><a href="#video">{{ "المصنع" if is_ar else "Factory" }}</a></li>
-			<li><a href="#contact">{{ "تواصل معنا" if is_ar else "Contact" }}</a></li>
-			<li><a href="?_lang={{ sl }}" class="lang-sw" onclick="switchLang('{{ sl }}');return false;">{% if is_ar %}<span class="flag-i">🇬🇧</span> EN{% else %}<span class="flag-i">🇸🇦</span> عربي{% endif %}</a></li>
-			<li><a href="/login" class="cta-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg> {{ "النظام" if is_ar else "System" }}</a></li>
-		</ul>
-		<div class="mob-act">
-			<a href="?_lang={{ sl }}" class="mob-lang" onclick="switchLang('{{ sl }}');return false;">{% if is_ar %}🇬🇧{% else %}🇸🇦{% endif %}</a>
-			<div class="ham"><span></span><span></span><span></span></div>
-		</div>
-	</div>
-</nav>
+  <!-- ==================== NAV ==================== -->
+  <nav class="t-nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo"><img src="/assets/tamdeensteel/img/logo.jpeg" alt="Tamdeen Steel"></a>
+      <ul class="nav-links">
+        <li><a href="#about">{% if is_ar %}من نحن{% else %}About{% endif %}</a></li>
+        <li><a href="#products">{% if is_ar %}منتجاتنا{% else %}Products{% endif %}</a></li>
+        <li><a href="#gallery">{% if is_ar %}معرض الصور{% else %}Gallery{% endif %}</a></li>
+        <li><a href="#video">{% if is_ar %}فيديو{% else %}Video{% endif %}</a></li>
+        <li><a href="#contact">{% if is_ar %}تواصل معنا{% else %}Contact{% endif %}</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="lang-btn" onclick="switchLang('{{ sl }}')">
+          {% if is_ar %}🇬🇧 EN{% else %}🇸🇦 عربي{% endif %}
+        </button>
+        <a href="/login" class="system-btn">
+          <svg viewBox="0 0 24 24"><path d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5-5-5zm9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14z"/></svg>
+          {% if is_ar %}النظام{% else %}System{% endif %}
+        </a>
+        <button class="mobile-flag" onclick="switchLang('{{ sl }}')">
+          {% if is_ar %}🇬🇧{% else %}🇸🇦{% endif %}
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
 
-<!-- HERO -->
-<section id="home" class="t-hero">
-	<video autoplay muted loop playsinline><source src="/assets/tamdeensteel/img/factory-tour.mp4" type="video/mp4"></video>
-	<div class="ov"></div>
-	<div class="hc">
-		{% if is_ar %}
-		<div class="badge">الشركة الرائدة في صناعة الصلب</div>
-		<h1>نصنع <span>مستقبل</span> الحديد والصلب</h1>
-		<p>من المعدن المنصهر إلى منتجات الصلب عالية الدقة، تمدين تقدم التميز في كل قضيب وزاوية وبيليت نصنعه.</p>
-		<div class="hbtns"><a href="#products" class="btn-p">استكشف المنتجات &#8592;</a><a href="#video" class="btn-o">&#9654; شاهد جولة المصنع</a></div>
-		{% else %}
-		<div class="badge">Leading Steel Manufacturer</div>
-		<h1>Forging the <span>Future</span> of Steel</h1>
-		<p>From molten metal to precision-crafted steel products, Tamdeen delivers excellence in every bar, angle, and billet we manufacture.</p>
-		<div class="hbtns"><a href="#products" class="btn-p">Explore Products &#8594;</a><a href="#video" class="btn-o">&#9654; Watch Factory Tour</a></div>
-		{% endif %}
-	</div>
-	<div class="scroll-ind"><div class="mouse"></div></div>
-</section>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#about" onclick="closeMenu()">{% if is_ar %}من نحن{% else %}About{% endif %}</a></li>
+      <li><a href="#products" onclick="closeMenu()">{% if is_ar %}منتجاتنا{% else %}Products{% endif %}</a></li>
+      <li><a href="#gallery" onclick="closeMenu()">{% if is_ar %}معرض الصور{% else %}Gallery{% endif %}</a></li>
+      <li><a href="#video" onclick="closeMenu()">{% if is_ar %}فيديو{% else %}Video{% endif %}</a></li>
+      <li><a href="#contact" onclick="closeMenu()">{% if is_ar %}تواصل معنا{% else %}Contact{% endif %}</a></li>
+      <div class="mm-actions">
+        <a href="/login" class="system-btn">
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:#fff"><path d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5-5-5zm9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14z"/></svg>
+          {% if is_ar %}النظام{% else %}System{% endif %}
+        </a>
+      </div>
+    </ul>
+  </div>
 
-<!-- STATS -->
-<section class="t-stats">
-	<div class="st-grid">
-		<div class="st-item fade-in"><h3><span class="stat-number" data-target="15" data-suffix="+">0</span></h3><p>{{ "سنوات من التميز" if is_ar else "Years of Excellence" }}</p></div>
-		<div class="st-item fade-in"><h3><span class="stat-number" data-target="50000" data-suffix="T">0</span></h3><p>{{ "الإنتاج السنوي" if is_ar else "Annual Production" }}</p></div>
-		<div class="st-item fade-in"><h3><span class="stat-number" data-target="200" data-suffix="+">0</span></h3><p>{{ "عملاء موثوقون" if is_ar else "Trusted Clients" }}</p></div>
-		<div class="st-item fade-in"><h3><span class="stat-number" data-target="99" data-suffix="%">0</span></h3><p>{{ "ضمان الجودة" if is_ar else "Quality Assurance" }}</p></div>
-	</div>
-</section>
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" id="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="/assets/tamdeensteel/img/factory-tour.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span></span>
+        {% if is_ar %}رواد صناعة الحديد منذ 2009{% else %}Leading Steel Manufacturing Since 2009{% endif %}
+      </div>
+      <h1>
+        {% if is_ar %}
+          نبني <span class="highlight">مستقبل</span><br>الصناعة بالفولاذ
+        {% else %}
+          Building the <span class="highlight">Future</span><br>with Premium Steel
+        {% endif %}
+      </h1>
+      <p class="hero-text">
+        {% if is_ar %}
+          شركة تمدين للحديد والصلب - شريككم الموثوق في تقديم أجود أنواع الحديد والفولاذ لمشاريع البناء والبنية التحتية في المملكة العربية السعودية.
+        {% else %}
+          Tamdeen Steel is your trusted partner delivering the finest steel products for construction and infrastructure projects across Saudi Arabia and beyond.
+        {% endif %}
+      </p>
+      <div class="hero-btns">
+        <a href="#products" class="btn-primary">
+          {% if is_ar %}استكشف منتجاتنا{% else %}Explore Products{% endif %}
+        </a>
+        <a href="#about" class="btn-outline">
+          {% if is_ar %}تعرف علينا{% else %}Learn More{% endif %}
+        </a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-mouse"></div>
+      <span>{% if is_ar %}اسحب للأسفل{% else %}Scroll{% endif %}</span>
+    </div>
+  </section>
 
-<!-- ABOUT -->
-<section id="about" class="t-about sec">
-	<div class="sec-c">
-		<div class="sec-h"><div class="tag">{{ "من نحن" if is_ar else "Who We Are" }}</div><h2>{{ "شريكك الموثوق في صناعة الصلب" if is_ar else "Trusted Steel Manufacturing Partner" }}</h2><p>{{ "نقدم منتجات صلب عالية الجودة بهندسة دقيقة والتزام راسخ بالتميز." if is_ar else "Delivering high-quality steel products with precision engineering and unwavering commitment to excellence." }}</p></div>
-		<div class="ab-grid">
-			<div class="ab-img fade-in-left"><div class="accent"></div><img src="/assets/tamdeensteel/img/rolling-mill.jpeg" alt="Rolling Mill"></div>
-			<div class="ab-txt fade-in-right">
-				{% if is_ar %}<h3>مبنية على القوة. مدفوعة بالابتكار.</h3><p>تمدين للحديد والصلب شركة رائدة متخصصة في إنتاج منتجات الصلب الهيكلي عالية الجودة. تضمن منشآتنا المتطورة وعمليات مراقبة الجودة الصارمة أن كل منتج يلبي المعايير الدولية.</p><p>من مصانع الدرفلة المتقدمة إلى عمليات القطع الدقيقة، نجمع بين الخبرة المعدنية التقليدية وتكنولوجيا التصنيع الحديثة.</p>
-				{% else %}<h3>Built on Strength. Driven by Innovation.</h3><p>Tamdeen Steel is a premier steel manufacturer specializing in the production of high-grade structural steel products. Our state-of-the-art facilities and rigorous quality control processes ensure every product meets international standards.</p><p>From our advanced rolling mills to our precision cutting operations, we combine traditional metallurgical expertise with modern manufacturing technology.</p>{% endif %}
-				<div class="ab-feats">
-					<div class="ab-feat"><div class="fi">&#9670;</div><span>{{ "معتمد ISO" if is_ar else "ISO Certified" }}</span></div>
-					<div class="ab-feat"><div class="fi">&#9670;</div><span>{{ "جودة عالية" if is_ar else "Premium Quality" }}</span></div>
-					<div class="ab-feat"><div class="fi">&#9670;</div><span>{{ "توصيل سريع" if is_ar else "Fast Delivery" }}</span></div>
-					<div class="ab-feat"><div class="fi">&#9670;</div><span>{{ "طلبات مخصصة" if is_ar else "Custom Orders" }}</span></div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+  <!-- ==================== STATS ==================== -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="15" data-suffix="+">0</span>
+          <span class="stat-label">{% if is_ar %}سنوات خبرة{% else %}Years Experience{% endif %}</span>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="50000" data-suffix="T">0</span>
+          <span class="stat-label">{% if is_ar %}طن إنتاج سنوي{% else %}Annual Production{% endif %}</span>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="200" data-suffix="+">0</span>
+          <span class="stat-label">{% if is_ar %}عميل موثوق{% else %}Trusted Clients{% endif %}</span>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="99" data-suffix="%">0</span>
+          <span class="stat-label">{% if is_ar %}معدل الجودة{% else %}Quality Rate{% endif %}</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- PRODUCTS -->
-<section id="products" class="t-prods sec">
-	<div class="sec-c">
-		<div class="sec-h"><div class="tag">{{ "منتجاتنا" if is_ar else "Our Products" }}</div><h2>{{ "حلول الصلب لكل احتياج" if is_ar else "Steel Solutions for Every Need" }}</h2><p>{{ "مجموعة شاملة من منتجات الصلب المصنعة وفق أعلى معايير الصناعة." if is_ar else "Comprehensive range of steel products manufactured to the highest industry standards." }}</p></div>
-		<div class="pr-grid">
-			{% set products = [
-				{"img":"angle-iron-stock.jpeg","en":"Steel Angles","ar":"زوايا الصلب","d_en":"High-strength angle iron for structural framing and construction.","d_ar":"زوايا حديد عالية القوة للهياكل والبناء الصناعي."},
-				{"img":"flat-bars-stack.jpeg","en":"Flat Bars","ar":"المسطحات","d_en":"Precision-rolled flat bars for manufacturing and fabrication.","d_ar":"مسطحات مدرفلة بدقة للتصنيع والتشكيل."},
-				{"img":"square-bars.jpeg","en":"Square Bars","ar":"المربعات","d_en":"Hot-rolled square bars for forging and structural support.","d_ar":"مربعات مدرفلة على الساخن للتشكيل والدعم الهيكلي."},
-				{"img":"rebar-closeup.jpeg","en":"Steel Rebar","ar":"حديد التسليح","d_en":"Reinforcement bars for concrete and foundation work.","d_ar":"قضبان تسليح لتعزيز الخرسانة والأساسات."},
-				{"img":"steel-billets.jpeg","en":"Steel Billets","ar":"البيليت","d_en":"Semi-finished billets as raw material for rolling mills.","d_ar":"بيليت نصف مصنع كمواد خام لمصانع الدرفلة."},
-				{"img":"quality-measurement.jpeg","en":"Quality Assurance","ar":"ضمان الجودة","d_en":"Rigorous dimensional and chemical testing on every product.","d_ar":"اختبارات صارمة للأبعاد والتحليل الكيميائي."}
-			] %}
-			{% for p in products %}
-			<div class="pr-card fade-in"><div class="ci"><img src="/assets/tamdeensteel/img/{{ p.img }}" alt="{{ p.ar if is_ar else p.en }}"><div class="co"></div></div><div class="cb"><h4>{{ p.ar if is_ar else p.en }}</h4><p>{{ p.d_ar if is_ar else p.d_en }}</p><a href="#contact" class="cl">{{ "اعرف المزيد" if is_ar else "Learn More" }} {{ "&#8592;" if is_ar else "&#8594;" }}</a></div></div>
-			{% endfor %}
-		</div>
-	</div>
-</section>
+  <!-- ==================== ABOUT ==================== -->
+  <section class="about section-pad" id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">
+          {% if is_ar %}من نحن{% else %}About Us{% endif %}
+        </div>
+        <h2 class="section-title">
+          {% if is_ar %}تمدين للحديد والصلب{% else %}Tamdeen Steel Company{% endif %}
+        </h2>
+        <p class="section-desc">
+          {% if is_ar %}
+            ريادة في صناعة الحديد والصلب بأعلى معايير الجودة العالمية
+          {% else %}
+            Pioneering steel manufacturing with the highest international quality standards
+          {% endif %}
+        </p>
+      </div>
+      <div class="about-grid">
+        <div class="about-img-wrap reveal" style="animation-delay:.2s">
+          <img src="/assets/tamdeensteel/img/rolling-mill.jpeg" alt="{% if is_ar %}مصنع تمدين{% else %}Tamdeen Factory{% endif %}" loading="lazy">
+        </div>
+        <div class="about-text reveal" style="animation-delay:.4s">
+          <h3>
+            {% if is_ar %}
+              نقدم حلول فولاذية متكاملة بجودة لا تُضاهى
+            {% else %}
+              Complete Steel Solutions with Unmatched Quality
+            {% endif %}
+          </h3>
+          <p>
+            {% if is_ar %}
+              تأسست شركة تمدين للحديد والصلب بهدف تقديم منتجات فولاذية عالية الجودة تلبي احتياجات السوق المحلي والعالمي. نلتزم بأعلى معايير السلامة والجودة في جميع مراحل الإنتاج، مع استخدام أحدث التقنيات والمعدات المتطورة.
+            {% else %}
+              Tamdeen Steel was founded with the mission of delivering high-quality steel products that meet local and global market demands. We uphold the highest safety and quality standards across all production stages, utilizing cutting-edge technology and advanced equipment.
+            {% endif %}
+          </p>
+          <div class="feature-cards">
+            <div class="feature-card">
+              <div class="fc-icon">🏅</div>
+              <h4>{% if is_ar %}شهادة ISO{% else %}ISO Certified{% endif %}</h4>
+              <p>{% if is_ar %}معتمدون بشهادات الجودة الدولية{% else %}Internationally accredited quality certifications{% endif %}</p>
+            </div>
+            <div class="feature-card">
+              <div class="fc-icon">🔬</div>
+              <h4>{% if is_ar %}ضبط الجودة{% else %}Quality Control{% endif %}</h4>
+              <p>{% if is_ar %}فحوصات دقيقة في كل مرحلة إنتاج{% else %}Rigorous testing at every production stage{% endif %}</p>
+            </div>
+            <div class="feature-card">
+              <div class="fc-icon">🚚</div>
+              <h4>{% if is_ar %}توصيل سريع{% else %}Fast Delivery{% endif %}</h4>
+              <p>{% if is_ar %}شبكة توزيع واسعة وتوصيل فوري{% else %}Extensive distribution network and rapid delivery{% endif %}</p>
+            </div>
+            <div class="feature-card">
+              <div class="fc-icon">⚙️</div>
+              <h4>{% if is_ar %}حلول مخصصة{% else %}Custom Solutions{% endif %}</h4>
+              <p>{% if is_ar %}تصنيع حسب المواصفات المطلوبة{% else %}Manufacturing to your exact specifications{% endif %}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- GALLERY -->
-<section id="gallery" class="t-gallery sec">
-	<div class="sec-c">
-		<div class="sec-h"><div class="tag">{{ "منشآتنا" if is_ar else "Our Facility" }}</div><h2>{{ "داخل مصنع الإنتاج" if is_ar else "Inside Our Manufacturing Plant" }}</h2><p>{{ "نظرة على منشأة إنتاج الصلب العالمية." if is_ar else "A glimpse into our world-class production facility." }}</p></div>
-		<div class="gal-grid">
-			{% set gallery = [
-				{"img":"furnace-pouring.jpeg","en":"Furnace Operations","ar":"عمليات الأفران"},
-				{"img":"steel-angles-closeup.jpeg","en":"Finished Products","ar":"المنتجات النهائية"},
-				{"img":"furnace-interior.jpeg","en":"Melting Furnace","ar":"فرن الصهر"},
-				{"img":"flat-bars-warehouse.jpeg","en":"Steel Warehouse","ar":"مستودع الصلب"},
-				{"img":"rolling-mill.jpeg","en":"Rolling Mill","ar":"مصنع الدرفلة"},
-				{"img":"steel-angles-pattern.jpeg","en":"Angle Iron Stock","ar":"مخزون الزوايا"}
-			] %}
-			{% for g in gallery %}
-			<div class="gal-item fade-in"><img src="/assets/tamdeensteel/img/{{ g.img }}" alt="{{ g.ar if is_ar else g.en }}"><div class="go"><span>{{ g.ar if is_ar else g.en }}</span></div></div>
-			{% endfor %}
-		</div>
-	</div>
-</section>
+  <!-- ==================== PRODUCTS ==================== -->
+  <section class="products section-pad" id="products">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">
+          {% if is_ar %}منتجاتنا{% else %}Our Products{% endif %}
+        </div>
+        <h2 class="section-title">
+          {% if is_ar %}منتجات فولاذية متميزة{% else %}Premium Steel Products{% endif %}
+        </h2>
+        <p class="section-desc">
+          {% if is_ar %}
+            تشكيلة واسعة من المنتجات الفولاذية المصنعة بأعلى معايير الجودة
+          {% else %}
+            A wide range of steel products manufactured to the highest quality standards
+          {% endif %}
+        </p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card reveal">
+          <div class="product-img">
+            <img src="/assets/tamdeensteel/img/angle-iron-stock.jpeg" alt="{% if is_ar %}زوايا حديد{% else %}Steel Angles{% endif %}" loading="lazy">
+          </div>
+          <div class="product-body">
+            <h3>{% if is_ar %}زوايا حديد{% else %}Steel Angles{% endif %}</h3>
+            <p>{% if is_ar %}زوايا حديدية متينة بمقاسات متعددة لمشاريع البناء والهياكل المعدنية.{% else %}Durable steel angles in various sizes for construction and structural metalwork projects.{% endif %}</p>
+            <a href="#" class="product-link">{% if is_ar %}اعرف المزيد ←{% else %}Learn More →{% endif %}</a>
+          </div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-img">
+            <img src="/assets/tamdeensteel/img/flat-bars-stack.jpeg" alt="{% if is_ar %}مسطحات حديد{% else %}Flat Bars{% endif %}" loading="lazy">
+          </div>
+          <div class="product-body">
+            <h3>{% if is_ar %}مسطحات حديد{% else %}Flat Bars{% endif %}</h3>
+            <p>{% if is_ar %}مسطحات فولاذية عالية الدقة لتطبيقات التصنيع والبناء المتنوعة.{% else %}High-precision flat steel bars for diverse manufacturing and construction applications.{% endif %}</p>
+            <a href="#" class="product-link">{% if is_ar %}اعرف المزيد ←{% else %}Learn More →{% endif %}</a>
+          </div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-img">
+            <img src="/assets/tamdeensteel/img/square-bars.jpeg" alt="{% if is_ar %}مربعات حديد{% else %}Square Bars{% endif %}" loading="lazy">
+          </div>
+          <div class="product-body">
+            <h3>{% if is_ar %}مربعات حديد{% else %}Square Bars{% endif %}</h3>
+            <p>{% if is_ar %}قضبان مربعة متينة وعالية الجودة للاستخدامات الصناعية والإنشائية.{% else %}Robust, high-quality square bars for industrial and structural applications.{% endif %}</p>
+            <a href="#" class="product-link">{% if is_ar %}اعرف المزيد ←{% else %}Learn More →{% endif %}</a>
+          </div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-img">
+            <img src="/assets/tamdeensteel/img/rebar-closeup.jpeg" alt="{% if is_ar %}حديد تسليح{% else %}Steel Rebar{% endif %}" loading="lazy">
+          </div>
+          <div class="product-body">
+            <h3>{% if is_ar %}حديد تسليح{% else %}Steel Rebar{% endif %}</h3>
+            <p>{% if is_ar %}حديد تسليح عالي المقاومة يلبي أعلى معايير البناء والتشييد.{% else %}High-tensile reinforcement steel meeting the most demanding construction standards.{% endif %}</p>
+            <a href="#" class="product-link">{% if is_ar %}اعرف المزيد ←{% else %}Learn More →{% endif %}</a>
+          </div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-img">
+            <img src="/assets/tamdeensteel/img/steel-billets.jpeg" alt="{% if is_ar %}بيليت{% else %}Steel Billets{% endif %}" loading="lazy">
+          </div>
+          <div class="product-body">
+            <h3>{% if is_ar %}بيليت فولاذي{% else %}Steel Billets{% endif %}</h3>
+            <p>{% if is_ar %}بيليت فولاذي عالي الجودة كمادة خام أساسية لمنتجات الحديد المدرفلة.{% else %}Premium quality steel billets as essential raw material for rolled steel products.{% endif %}</p>
+            <a href="#" class="product-link">{% if is_ar %}اعرف المزيد ←{% else %}Learn More →{% endif %}</a>
+          </div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-img">
+            <img src="/assets/tamdeensteel/img/quality-measurement.jpeg" alt="{% if is_ar %}ضمان الجودة{% else %}Quality Assurance{% endif %}" loading="lazy">
+          </div>
+          <div class="product-body">
+            <h3>{% if is_ar %}ضمان الجودة{% else %}Quality Assurance{% endif %}</h3>
+            <p>{% if is_ar %}فحص ومراقبة جودة شاملة لضمان تفوق كل منتج من منتجاتنا.{% else %}Comprehensive quality inspection and control ensuring the excellence of every product.{% endif %}</p>
+            <a href="#" class="product-link">{% if is_ar %}اعرف المزيد ←{% else %}Learn More →{% endif %}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- VIDEO -->
-<section id="video" class="t-vid sec">
-	<div class="sec-c">
-		<div class="sec-h"><div class="tag">{{ "جولة في المصنع" if is_ar else "Factory Tour" }}</div><h2>{{ "شاهد صناعة الصلب من الداخل" if is_ar else "See Our Steel in the Making" }}</h2><p>{{ "اختبر قوة ودقة عملية التصنيع." if is_ar else "Experience the power and precision of our manufacturing." }}</p></div>
-		<div class="vid-wrap fade-in">
-			<video id="tamdeen-video" playsinline preload="metadata" poster="/assets/tamdeensteel/img/furnace-pouring.jpeg"><source src="/assets/tamdeensteel/img/factory-tour.mp4" type="video/mp4"></video>
-			<div class="vid-play" id="video-play-btn"><svg width="70" height="70" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="38" fill="rgba(230,126,34,.9)" stroke="white" stroke-width="3"/><polygon points="33,24 33,56 58,40" fill="white"/></svg></div>
-		</div>
-	</div>
-</section>
+  <!-- ==================== GALLERY ==================== -->
+  <section class="gallery section-pad" id="gallery">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">
+          {% if is_ar %}معرض الصور{% else %}Gallery{% endif %}
+        </div>
+        <h2 class="section-title">
+          {% if is_ar %}من داخل مصانعنا{% else %}Inside Our Facilities{% endif %}
+        </h2>
+        <p class="section-desc">
+          {% if is_ar %}
+            لمحة عن عمليات الإنتاج والتصنيع في مصانع تمدين المتطورة
+          {% else %}
+            A glimpse into the production and manufacturing operations at our advanced facilities
+          {% endif %}
+        </p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal" data-label="{% if is_ar %}صب الفولاذ{% else %}Steel Pouring{% endif %}">
+          <img src="/assets/tamdeensteel/img/furnace-pouring.jpeg" alt="Furnace Pouring" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-label="{% if is_ar %}زوايا حديد{% else %}Steel Angles{% endif %}">
+          <img src="/assets/tamdeensteel/img/steel-angles-closeup.jpeg" alt="Steel Angles" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-label="{% if is_ar %}داخل الفرن{% else %}Furnace Interior{% endif %}">
+          <img src="/assets/tamdeensteel/img/furnace-interior.jpeg" alt="Furnace Interior" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-label="{% if is_ar %}مستودع المسطحات{% else %}Flat Bars Warehouse{% endif %}">
+          <img src="/assets/tamdeensteel/img/flat-bars-warehouse.jpeg" alt="Flat Bars Warehouse" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-label="{% if is_ar %}مصنع الدرفلة{% else %}Rolling Mill{% endif %}">
+          <img src="/assets/tamdeensteel/img/rolling-mill.jpeg" alt="Rolling Mill" loading="lazy">
+        </div>
+        <div class="gallery-item reveal" data-label="{% if is_ar %}نمط الزوايا{% else %}Angles Pattern{% endif %}">
+          <img src="/assets/tamdeensteel/img/steel-angles-pattern.jpeg" alt="Steel Angles Pattern" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- CTA -->
-<section id="contact" class="t-cta">
-	<div class="sec-c"><div class="cc fade-in">
-		<h2>{{ "مستعد للبناء مع تمدين؟" if is_ar else "Ready to Build with Tamdeen?" }}</h2>
-		<p>{{ "تواصل مع فريق المبيعات للطلبات المخصصة وجداول التسليم." if is_ar else "Get in touch for custom orders and delivery schedules." }}</p>
-		<div class="hbtns" style="opacity:1">
-			<a href="mailto:ahmedemamhatem@gmail.com" class="btn-p"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> {{ "تواصل معنا" if is_ar else "Contact Us" }}</a>
-			<a href="/login" class="btn-o"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg> {{ "بوابة العملاء" if is_ar else "Client Portal" }}</a>
-		</div>
-	</div></div>
-</section>
+  <!-- ==================== VIDEO ==================== -->
+  <section class="video-section section-pad" id="video">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">
+          {% if is_ar %}شاهد الفيديو{% else %}Watch Video{% endif %}
+        </div>
+        <h2 class="section-title">
+          {% if is_ar %}جولة في مصانعنا{% else %}Factory Tour{% endif %}
+        </h2>
+        <p class="section-desc">
+          {% if is_ar %}
+            شاهد كيف يتم تصنيع أجود أنواع الحديد والفولاذ في مصانعنا المتطورة
+          {% else %}
+            Watch how the finest steel products are manufactured in our state-of-the-art facilities
+          {% endif %}
+        </p>
+      </div>
+      <div class="video-wrap reveal" id="videoWrap">
+        <video id="sectionVideo" preload="metadata" playsinline>
+          <source src="/assets/tamdeensteel/img/factory-tour.mp4" type="video/mp4">
+        </video>
+        <button class="play-btn" id="playBtn" aria-label="Play Video"></button>
+      </div>
+    </div>
+  </section>
 
-<!-- FOOTER -->
-<footer class="t-foot">
-	<div class="ft-grid">
-		<div class="ft-brand"><img src="/assets/tamdeensteel/img/logo.jpeg" alt="Tamdeen"><p>{{ "تمدين للحديد والصلب شركة رائدة في تصنيع منتجات الصلب الهيكلي عالية الجودة." if is_ar else "Tamdeen Steel is a leading manufacturer of high-quality structural steel products." }}</p></div>
-		<div class="ft-col"><h4>{{ "المنتجات" if is_ar else "Products" }}</h4><ul><li><a href="#products">{{ "زوايا الصلب" if is_ar else "Steel Angles" }}</a></li><li><a href="#products">{{ "المسطحات" if is_ar else "Flat Bars" }}</a></li><li><a href="#products">{{ "المربعات" if is_ar else "Square Bars" }}</a></li><li><a href="#products">{{ "حديد التسليح" if is_ar else "Steel Rebar" }}</a></li></ul></div>
-		<div class="ft-col"><h4>{{ "الشركة" if is_ar else "Company" }}</h4><ul><li><a href="#about">{{ "من نحن" if is_ar else "About Us" }}</a></li><li><a href="#gallery">{{ "منشآتنا" if is_ar else "Our Facility" }}</a></li><li><a href="#video">{{ "جولة المصنع" if is_ar else "Factory Tour" }}</a></li><li><a href="#contact">{{ "تواصل معنا" if is_ar else "Contact" }}</a></li></ul></div>
-		<div class="ft-col"><h4>{{ "تواصل معنا" if is_ar else "Contact" }}</h4><ul><li><a href="mailto:ahmedemamhatem@gmail.com">ahmedemamhatem@gmail.com</a></li><li><a href="/login">{{ "بوابة العملاء" if is_ar else "Client Portal" }}</a></li></ul></div>
-	</div>
-	<div class="ft-btm"><p>&copy; 2026 {{ "تمدين للحديد والصلب. جميع الحقوق محفوظة." if is_ar else "Tamdeen Steel. All rights reserved." }}</p><p>{{ "بدعم من تمدين" if is_ar else "Powered by Tamdeen" }}</p></div>
-</footer>
+  <!-- ==================== CTA ==================== -->
+  <section class="cta-section" id="contact">
+    <div class="container">
+      <div class="cta-content reveal">
+        <h2>
+          {% if is_ar %}
+            جاهزون <span class="highlight">للبناء</span> معكم؟
+          {% else %}
+            Ready to <span class="highlight">Build</span> Together?
+          {% endif %}
+        </h2>
+        <p>
+          {% if is_ar %}
+            تواصلوا معنا اليوم لمناقشة احتياجاتكم من الحديد والفولاذ والحصول على أفضل العروض.
+          {% else %}
+            Get in touch today to discuss your steel requirements and receive the best offers.
+          {% endif %}
+        </p>
+        <div class="cta-btns">
+          <a href="mailto:info@tamdeensteel.com" class="btn-primary">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            {% if is_ar %}تواصل معنا{% else %}Contact Us{% endif %}
+          </a>
+          <a href="/login" class="btn-outline">
+            <svg viewBox="0 0 24 24" style="fill:currentColor"><path d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5-5-5zm9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14z"/></svg>
+            {% if is_ar %}بوابة العملاء{% else %}Client Portal{% endif %}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="t-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="/assets/tamdeensteel/img/logo.jpeg" alt="Tamdeen Steel">
+          <p>
+            {% if is_ar %}
+              شركة تمدين للحديد والصلب - شريككم الموثوق في صناعة الحديد والفولاذ عالي الجودة. نسعى لتقديم أفضل المنتجات بأعلى المعايير.
+            {% else %}
+              Tamdeen Steel Company - Your trusted partner in high-quality steel manufacturing. We strive to deliver the finest products with the highest standards.
+            {% endif %}
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>{% if is_ar %}منتجاتنا{% else %}Products{% endif %}</h4>
+          <ul>
+            <li><a href="#products">{% if is_ar %}زوايا حديد{% else %}Steel Angles{% endif %}</a></li>
+            <li><a href="#products">{% if is_ar %}مسطحات حديد{% else %}Flat Bars{% endif %}</a></li>
+            <li><a href="#products">{% if is_ar %}مربعات حديد{% else %}Square Bars{% endif %}</a></li>
+            <li><a href="#products">{% if is_ar %}حديد تسليح{% else %}Steel Rebar{% endif %}</a></li>
+            <li><a href="#products">{% if is_ar %}بيليت فولاذي{% else %}Steel Billets{% endif %}</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>{% if is_ar %}الشركة{% else %}Company{% endif %}</h4>
+          <ul>
+            <li><a href="#about">{% if is_ar %}من نحن{% else %}About Us{% endif %}</a></li>
+            <li><a href="#gallery">{% if is_ar %}معرض الصور{% else %}Gallery{% endif %}</a></li>
+            <li><a href="#video">{% if is_ar %}جولة المصنع{% else %}Factory Tour{% endif %}</a></li>
+            <li><a href="#contact">{% if is_ar %}تواصل معنا{% else %}Contact Us{% endif %}</a></li>
+            <li><a href="/login">{% if is_ar %}بوابة العملاء{% else %}Client Portal{% endif %}</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>{% if is_ar %}تواصل معنا{% else %}Contact Info{% endif %}</h4>
+          <ul class="footer-contact">
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+              <span>{% if is_ar %}المملكة العربية السعودية، جدة{% else %}Jeddah, Saudi Arabia{% endif %}</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/></svg>
+              <span dir="ltr">+966 12 XXX XXXX</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>info@tamdeensteel.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        {% if is_ar %}
+          &copy; {{ frappe.utils.now_datetime().year if frappe else "2026" }} شركة تمدين للحديد والصلب. جميع الحقوق محفوظة.
+        {% else %}
+          &copy; {{ frappe.utils.now_datetime().year if frappe else "2026" }} Tamdeen Steel Company. All rights reserved.
+        {% endif %}
+      </div>
+    </div>
+  </footer>
 
 </div>
 {% endblock %}
 
 {% block script %}
 <script>
-function switchLang(l){document.cookie='preferred_language='+l+';path=/;max-age=31536000;SameSite=Lax';var u=new URL(window.location.href);u.searchParams.set('_lang',l);window.location.href=u.toString();}
-document.addEventListener('DOMContentLoaded',function(){
-	var nav=document.querySelector('.t-nav');
-	if(nav)window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>80);});
-	var ham=document.querySelector('.ham'),nk=document.querySelector('.nk');
-	if(ham&&nk){ham.addEventListener('click',function(){nk.classList.toggle('open');ham.classList.toggle('active');});nk.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nk.classList.remove('open');ham.classList.remove('active');});});nk.addEventListener('click',function(e){if(e.target===nk){nk.classList.remove('open');ham.classList.remove('active');}});}
-	var els=document.querySelectorAll('.fade-in,.fade-in-left,.fade-in-right');
-	if(els.length&&'IntersectionObserver' in window){var o=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');o.unobserve(en.target);}});},{threshold:.15});els.forEach(function(el){o.observe(el);});}else{els.forEach(function(el){el.classList.add('visible');});}
-	document.querySelectorAll('.stat-number').forEach(function(el){if('IntersectionObserver' in window){var so=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){animC(en.target);so.unobserve(en.target);}});},{threshold:.5});so.observe(el);}});
-	function animC(el){var t=parseInt(el.dataset.target),s=el.dataset.suffix||'',d=2e3,st=null;function step(ts){if(!st)st=ts;var p=Math.min((ts-st)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*t).toLocaleString()+s;if(p<1)requestAnimationFrame(step);else el.textContent=t.toLocaleString()+s;}requestAnimationFrame(step);}
-	var vid=document.getElementById('tamdeen-video'),pb=document.getElementById('video-play-btn');
-	if(vid&&pb){function tv(){if(vid.paused){vid.play();vid.setAttribute('controls','');pb.classList.add('hidden');}else{vid.pause();vid.removeAttribute('controls');pb.classList.remove('hidden');}}pb.addEventListener('click',function(e){e.stopPropagation();tv();});vid.addEventListener('click',tv);vid.addEventListener('ended',function(){vid.removeAttribute('controls');pb.classList.remove('hidden');});}
-	document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var id=this.getAttribute('href');if(id==='#')return;var t=document.querySelector(id);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}});});
-	var hv=document.querySelector('.t-hero video');if(hv)window.addEventListener('scroll',function(){if(window.scrollY<window.innerHeight)hv.style.transform='translateY('+(window.scrollY*.3)+'px)';});
-});
+(function(){
+  "use strict";
+
+  /* ---- Language Switch ---- */
+  function switchLang(lang){
+    document.cookie="preferred_language="+lang+";path=/;max-age=31536000;SameSite=Lax";
+    var url=new URL(window.location.href);
+    url.searchParams.set("_lang",lang);
+    window.location.href=url.toString();
+  }
+  window.switchLang=switchLang;
+
+  /* ---- Navbar Scroll ---- */
+  var nav=document.getElementById("mainNav");
+  var heroVideo=document.querySelector(".hero-video");
+  var lastScroll=0;
+
+  function onScroll(){
+    var y=window.pageYOffset||document.documentElement.scrollTop;
+    if(y>60){
+      nav.classList.add("scrolled");
+    }else{
+      nav.classList.remove("scrolled");
+    }
+    /* Parallax on hero video */
+    if(heroVideo&&y<window.innerHeight){
+      heroVideo.style.transform="translateY("+y*0.35+"px) scale(1.05)";
+    }
+    lastScroll=y;
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+
+  /* ---- Hamburger ---- */
+  var hamburger=document.getElementById("hamburger");
+  var mobileMenu=document.getElementById("mobileMenu");
+
+  function closeMenu(){
+    hamburger.classList.remove("active");
+    mobileMenu.classList.remove("active");
+    document.body.style.overflow="";
+  }
+  window.closeMenu=closeMenu;
+
+  if(hamburger){
+    hamburger.addEventListener("click",function(){
+      var isActive=hamburger.classList.toggle("active");
+      mobileMenu.classList.toggle("active");
+      document.body.style.overflow=isActive?"hidden":"";
+    });
+  }
+
+  /* ---- Smooth Scroll ---- */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener("click",function(e){
+      var target=document.querySelector(this.getAttribute("href"));
+      if(target){
+        e.preventDefault();
+        target.scrollIntoView({behavior:"smooth",block:"start"});
+      }
+    });
+  });
+
+  /* ---- Intersection Observer - Reveal ---- */
+  var revealEls=document.querySelectorAll(".reveal");
+  if("IntersectionObserver" in window){
+    var observer=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry,i){
+        if(entry.isIntersecting){
+          var el=entry.target;
+          var delay=0;
+          /* Stagger siblings */
+          var parent=el.parentElement;
+          if(parent){
+            var siblings=parent.querySelectorAll(":scope > .reveal");
+            siblings.forEach(function(sib,idx){
+              if(sib===el) delay=idx*100;
+            });
+          }
+          setTimeout(function(){
+            el.classList.add("revealed");
+          },delay);
+          observer.unobserve(el);
+        }
+      });
+    },{threshold:0.15,rootMargin:"0px 0px -40px 0px"});
+    revealEls.forEach(function(el){observer.observe(el);});
+  }else{
+    revealEls.forEach(function(el){el.classList.add("revealed");});
+  }
+
+  /* ---- Counter Animation ---- */
+  var counters=document.querySelectorAll(".stat-number");
+  var counterStarted=new Set();
+
+  function easeOutCubic(t){return 1-Math.pow(1-t,3);}
+
+  function animateCounter(el){
+    var target=parseInt(el.getAttribute("data-target"),10);
+    var suffix=el.getAttribute("data-suffix")||"";
+    var duration=2200;
+    var start=performance.now();
+
+    function tick(now){
+      var elapsed=now-start;
+      var progress=Math.min(elapsed/duration,1);
+      var value=Math.round(easeOutCubic(progress)*target);
+      el.textContent=value.toLocaleString()+suffix;
+      if(progress<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  if("IntersectionObserver" in window){
+    var counterObs=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting&&!counterStarted.has(entry.target)){
+          counterStarted.add(entry.target);
+          animateCounter(entry.target);
+          counterObs.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.5});
+    counters.forEach(function(c){counterObs.observe(c);});
+  }else{
+    counters.forEach(function(c){animateCounter(c);});
+  }
+
+  /* ---- Video Play/Pause ---- */
+  var videoWrap=document.getElementById("videoWrap");
+  var sectionVideo=document.getElementById("sectionVideo");
+  var playBtn=document.getElementById("playBtn");
+
+  if(videoWrap&&sectionVideo&&playBtn){
+    function toggleVideo(){
+      if(sectionVideo.paused){
+        sectionVideo.play();
+        sectionVideo.controls=true;
+        videoWrap.classList.add("playing");
+      }else{
+        sectionVideo.pause();
+        sectionVideo.controls=false;
+        videoWrap.classList.remove("playing");
+      }
+    }
+    playBtn.addEventListener("click",toggleVideo);
+    videoWrap.addEventListener("click",function(e){
+      if(e.target===sectionVideo&&!sectionVideo.paused){
+        toggleVideo();
+      }
+    });
+    sectionVideo.addEventListener("ended",function(){
+      sectionVideo.controls=false;
+      videoWrap.classList.remove("playing");
+    });
+  }
+
+})();
 </script>
 {% endblock %}
