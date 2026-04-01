@@ -51,9 +51,9 @@ html{scroll-behavior:smooth}
 .login-fc .sub{color:var(--gr);font-size:14px;margin-bottom:32px}
 .login-fld{margin-bottom:18px}
 .login-fld label{display:block;font-size:11px;font-weight:700;color:var(--c);margin-bottom:7px;text-transform:uppercase;letter-spacing:.8px}
-.login-inp{width:100%;padding:13px 15px;border:2px solid #E8ECF0;border-radius:10px;font-size:15px;outline:none;background:#F8FAFB;transition:all .3s;box-sizing:border-box}
+.login-inp{width:100%;padding:13px 50px 13px 15px;border:2px solid #E8ECF0;border-radius:10px;font-size:15px;outline:none;background:#F8FAFB;transition:all .3s;box-sizing:border-box}
 .login-inp:focus{border-color:var(--or);box-shadow:0 0 0 3px rgba(230,126,34,.1);background:#fff}
-.login-inp.rtl-i{text-align:right;direction:rtl;font-family:Tajawal,sans-serif}
+.login-inp.rtl-i{text-align:right;direction:rtl;font-family:Tajawal,sans-serif;padding:13px 15px 13px 50px}
 .login-tpwd{position:absolute;top:50%;transform:translateY(-50%);color:var(--or);font-size:12px;font-weight:600;cursor:pointer;user-select:none}
 .login-opts{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
 .login-rem{font-size:13px;color:var(--gr);display:flex;align-items:center;gap:6px;cursor:pointer}
@@ -78,15 +78,27 @@ html{scroll-behavior:smooth}
 }
 @media(max-width:768px){
 	.login-wrap{flex-direction:column}
-	.login-left{min-height:280px;flex:none}
-	.login-left .login-vis{padding:30px 20px}
-	.login-lh{font-size:24px!important}
+	.login-left{min-height:260px;flex:none}
+	.login-left .login-vis{padding:24px 20px}
+	.login-lh{font-size:22px!important}
 	.login-ld{font-size:13px!important}
-	.login-right{width:100%;min-width:auto;padding:30px 24px}
-	.login-lst{display:none}
-	.login-topbar{position:relative!important;top:auto!important;left:auto!important;right:auto!important;margin-bottom:20px;justify-content:space-between;width:100%;display:flex}
+	.login-right{
+		width:100%!important;min-width:auto!important;
+		padding:24px 20px!important;
+		display:flex;flex-direction:column;align-items:center;
+	}
+	.login-topbar{
+		position:relative!important;top:auto!important;left:auto!important;right:auto!important;
+		margin-bottom:16px;justify-content:space-between;
+		width:100%;max-width:400px;display:flex!important;
+	}
+	.login-fc{max-width:400px!important;width:100%!important}
 	.login-fc h3{font-size:22px}
-	.login-logo{height:60px;padding:6px 10px}
+	.login-logo{height:55px;padding:5px 10px}
+	.login-lst{display:none}
+	.login-inp{padding:12px 14px!important;font-size:14px!important}
+	.login-submit{padding:13px!important;font-size:14px!important}
+	.login-copy{margin-top:24px;padding-top:14px}
 }
 </style>
 {% endblock %}
@@ -170,36 +182,39 @@ document.addEventListener('DOMContentLoaded',function(){
 		var u=document.getElementById('l-email').value,p=document.getElementById('l-pwd').value;
 		if(!u||!p){showE(isAr?'يرجى ملء جميع الحقول.':'Please fill in all fields.');return;}
 		btn.textContent=isAr?'جارٍ تسجيل الدخول...':'Signing in...';btn.disabled=true;btn.style.opacity='.7';errBox.style.display='none';
-		frappe.call({
-			method:'login',
-			args:{usr:u,pwd:p},
-			callback:function(r){
-				if(r.message==='Logged In'){
+		$.ajax({
+			type:'POST',
+			url:'/',
+			data:JSON.stringify({cmd:'login',usr:u,pwd:p}),
+			dataType:'json',
+			contentType:'application/json',
+			headers:{'X-Frappe-CSRF-Token':frappe.csrf_token},
+			statusCode:{
+				200:function(r){
 					btn.textContent=isAr?'جارٍ التحويل...':'Redirecting...';
 					window.location.href='/app';
+				},
+				401:function(){
+					resetBtn();
+					showE(isAr?'بريد إلكتروني أو كلمة مرور غير صحيحة. يرجى المحاولة مرة أخرى.':'Invalid email or password. Please try again.');
+				},
+				404:function(){
+					resetBtn();
+					showE(isAr?'المستخدم غير موجود.':'User does not exist.');
+				},
+				429:function(){
+					resetBtn();
+					showE(isAr?'محاولات كثيرة. يرجى المحاولة لاحقاً.':'Too many attempts. Please try again later.');
 				}
 			},
-			error:function(r){
-				btn.textContent=isAr?'تسجيل الدخول':'Sign In';
-				btn.disabled=false;
-				btn.style.opacity='1';
-				var m=isAr?'بريد إلكتروني أو كلمة مرور غير صحيحة. يرجى المحاولة مرة أخرى.':'Invalid email or password. Please try again.';
-				try{
-					if(r&&r._server_messages){
-						var msgs=JSON.parse(r._server_messages);
-						if(msgs&&msgs.length){
-							var parsed=JSON.parse(msgs[0]);
-							if(parsed.message)m=parsed.message;
-						}
-					}else if(r&&r.message){
-						m=r.message;
-					}
-				}catch(x){}
-				showE(m);
+			error:function(){
+				resetBtn();
+				showE(isAr?'حدث خطأ. يرجى المحاولة مرة أخرى.':'Something went wrong. Please try again.');
 			}
 		});
 	});
 	function showE(m){errBox.textContent=m;errBox.style.display='block';}
+	function resetBtn(){btn.textContent=isAr?'تسجيل الدخول':'Sign In';btn.disabled=false;btn.style.opacity='1';}
 	var bg=document.getElementById('login-bg-slider');
 	if(bg){var imgs=['/assets/tamdeensteel/img/furnace-interior.jpeg','/assets/tamdeensteel/img/furnace-pouring.jpeg','/assets/tamdeensteel/img/rolling-mill.jpeg','/assets/tamdeensteel/img/steel-angles-closeup.jpeg','/assets/tamdeensteel/img/flat-bars-warehouse.jpeg'],ix=0;setInterval(function(){ix=(ix+1)%imgs.length;bg.style.opacity='0';setTimeout(function(){bg.style.backgroundImage='url('+imgs[ix]+')';bg.style.opacity='.3';},800);},5000);}
 });
