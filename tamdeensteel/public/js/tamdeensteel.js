@@ -176,6 +176,34 @@ document.addEventListener('DOMContentLoaded', function () {
 		requestAnimationFrame(step);
 	}
 
+	// ---- Video play/pause in-place ----
+	var videoEl = document.getElementById('tamdeen-video');
+	var playBtn = document.getElementById('video-play-btn');
+	if (videoEl && playBtn) {
+		function toggleVideo() {
+			if (videoEl.paused) {
+				videoEl.play();
+				videoEl.setAttribute('controls', 'controls');
+				playBtn.classList.add('hidden');
+			} else {
+				videoEl.pause();
+				videoEl.removeAttribute('controls');
+				playBtn.classList.remove('hidden');
+			}
+		}
+		playBtn.addEventListener('click', function(e) {
+			e.stopPropagation();
+			toggleVideo();
+		});
+		videoEl.addEventListener('click', function() {
+			toggleVideo();
+		});
+		videoEl.addEventListener('ended', function() {
+			videoEl.removeAttribute('controls');
+			playBtn.classList.remove('hidden');
+		});
+	}
+
 	// ---- Smooth scrolling for anchor links ----
 	document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
 		anchor.addEventListener('click', function (e) {

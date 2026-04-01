@@ -53,35 +53,39 @@
 }
 
 .tamdeen-nav .nav-logo img {
-	height: 50px;
-	transition: height 0.3s ease;
+	height: 48px;
+	transition: all 0.3s ease;
 	border-radius: 6px;
-	background: rgba(255, 255, 255, 0.95);
-	padding: 3px 8px;
+	background: rgba(255, 255, 255, 0.92);
+	padding: 4px 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .tamdeen-nav.scrolled .nav-logo img {
-	height: 40px;
+	height: 38px;
+	padding: 3px 6px;
 }
 
 .tamdeen-nav .nav-links {
 	display: flex;
-	gap: 35px;
+	gap: 24px;
 	list-style: none;
 	margin: 0;
 	padding: 0;
+	align-items: center;
 }
 
 .tamdeen-nav .nav-links a {
 	color: #fff;
 	text-decoration: none;
 	font-weight: 500;
-	font-size: 15px;
+	font-size: 13px;
 	letter-spacing: 0.5px;
 	text-transform: uppercase;
 	position: relative;
 	padding: 5px 0;
 	transition: color 0.3s ease;
+	white-space: nowrap;
 }
 
 .tamdeen-nav .nav-links a::after {
@@ -690,14 +694,34 @@
 	overflow: hidden;
 	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
 	position: relative;
+	cursor: pointer;
 }
 
 .video-wrapper video {
 	width: 100%;
 	display: block;
 	border-radius: 12px;
-	aspect-ratio: 16 / 9;
+	max-height: 70vh;
 	object-fit: cover;
+}
+
+.video-play-btn {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 5;
+	cursor: pointer;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.video-play-btn:hover {
+	transform: translate(-50%, -50%) scale(1.1);
+}
+
+.video-play-btn.hidden {
+	opacity: 0;
+	pointer-events: none;
 }
 
 /* ---- CONTACT / CTA SECTION ---- */
