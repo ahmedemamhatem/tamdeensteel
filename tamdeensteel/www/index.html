@@ -43,9 +43,12 @@
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:var(--font-en);background:var(--bg-primary);color:var(--text-primary);line-height:1.7;overflow-x:hidden}
 [dir="rtl"] body{font-family:var(--font-ar)}
+h1,h2,h3,h4,h5,h6{color:var(--text-primary) !important}
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 ul{list-style:none}
+.modal,.modal-dialog,.modal-content,.modal-body,.modal-header,.modal-title,.msgprint{color:#333 !important}
+.modal-content{background:#fff !important}
 
 /* --- Scrollbar --- */
 ::-webkit-scrollbar{width:8px}
@@ -76,8 +79,15 @@ ul{list-style:none}
 @keyframes slideInRight{0%{opacity:0;transform:translateX(60px)}100%{opacity:1;transform:translateX(0)}}
 
 /* --- Navbar --- */
-.ts-nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:18px 0;transition:var(--transition)}
-.ts-nav.scrolled{padding:10px 0;background:var(--glass);backdrop-filter:blur(18px) saturate(1.6);border-bottom:1px solid var(--glass-border)}
+.ts-nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:18px 0;transition:all .35s cubic-bezier(.4,0,.2,1);background:rgba(10,14,23,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.ts-nav.scrolled{padding:10px 0 !important;background:#ffffff !important;backdrop-filter:none !important;border-bottom:1px solid rgba(0,0,0,.08) !important;box-shadow:0 2px 20px rgba(0,0,0,.08) !important}
+.ts-nav.scrolled .nav-links a{color:#374151 !important}
+.ts-nav.scrolled .nav-links a:hover{color:var(--orange) !important}
+.ts-nav.scrolled .nav-links a::after{background:var(--orange)}
+.ts-nav.scrolled .lang-btn{border-color:rgba(0,0,0,.12) !important;color:#374151 !important;background:#fff !important}
+.ts-nav.scrolled .lang-btn:hover{border-color:var(--orange) !important;color:var(--orange) !important}
+.ts-nav.scrolled .hamburger span{background:#374151 !important}
+.ts-nav.scrolled .nav-logo img{box-shadow:0 0 12px rgba(0,0,0,.1)}
 .ts-nav .container{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .nav-logo{display:flex;align-items:center}
 .nav-logo img{height:52px;border-radius:12px;padding:6px 10px;background:#fff;box-shadow:0 0 18px var(--orange-glow)}
@@ -108,15 +118,18 @@ ul{list-style:none}
 .mobile-overlay .sys-btn{margin-top:20px;font-size:18px;padding:14px 36px}
 
 /* --- Hero --- */
-.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;overflow:hidden}
+.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;overflow:hidden;padding-top:90px}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,14,23,.7) 0%,rgba(10,14,23,.5) 40%,rgba(10,14,23,.85) 100%);z-index:1}
 .hero .container{position:relative;z-index:2}
 .hero-content{max-width:720px}
 [dir="rtl"] .hero-content{margin-left:auto;margin-right:0}
 .hero-badge{display:inline-block;padding:6px 18px;border-radius:99px;background:rgba(232,97,26,.12);border:1px solid rgba(232,97,26,.3);color:var(--orange);font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;animation:fadeInUp .8s ease both}
-.hero-title{font-size:clamp(40px,6vw,72px);font-weight:900;line-height:1.08;margin-bottom:24px;animation:fadeInUp .8s ease .2s both}
+.hero-title{font-size:clamp(40px,6vw,72px);font-weight:900;line-height:1.08;margin-bottom:24px;min-height:1.2em;color:#fff !important}
 .hero-title .accent{color:var(--orange);position:relative}
+.hero-title .type-cursor{display:inline-block;width:3px;height:.85em;background:var(--orange);margin-left:4px;vertical-align:text-bottom;animation:cursorBlink .7s step-end infinite}
+[dir="rtl"] .hero-title .type-cursor{margin-left:0;margin-right:4px}
+@keyframes cursorBlink{0%,100%{opacity:1}50%{opacity:0}}
 .hero-sub{font-size:clamp(16px,2vw,20px);color:var(--text-secondary);max-width:560px;margin-bottom:40px;line-height:1.8;animation:fadeInUp .8s ease .4s both}
 .hero-buttons{display:flex;flex-wrap:wrap;gap:16px;animation:fadeInUp .8s ease .6s both}
 .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:15px 34px;border-radius:99px;background:linear-gradient(135deg,var(--orange),var(--orange-light));color:#fff;font-size:16px;font-weight:700;border:none;cursor:pointer;transition:var(--transition);position:relative;overflow:hidden;font-family:inherit}
@@ -148,8 +161,8 @@ ul{list-style:none}
 .about-img-wrap img{width:100%;height:450px;object-fit:cover;border-radius:var(--radius);transition:var(--transition)}
 .about-img-wrap:hover img{transform:scale(1.03)}
 .section-tag{display:inline-block;padding:5px 16px;border-radius:99px;background:rgba(232,97,26,.1);border:1px solid rgba(232,97,26,.25);color:var(--orange);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
-.section-title{font-size:clamp(28px,4vw,44px);font-weight:900;line-height:1.15;margin-bottom:20px}
-.section-title .accent{color:var(--orange)}
+.section-title{font-size:clamp(28px,4vw,44px);font-weight:900;line-height:1.15;margin-bottom:20px;color:#fff !important}
+.section-title .accent{color:var(--orange) !important}
 .section-desc{color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:28px}
 .feature-pills{display:flex;flex-wrap:wrap;gap:10px}
 .feature-pill{padding:8px 20px;border-radius:99px;background:var(--bg-card);border:1px solid var(--glass-border);font-size:13px;font-weight:600;color:var(--text-secondary);transition:var(--transition)}
@@ -166,7 +179,7 @@ ul{list-style:none}
 .product-card:hover .card-img img{transform:scale(1.12)}
 .product-card .card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,14,23,.6) 100%)}
 .product-card .card-body{padding:24px}
-.product-card .card-body h3{font-size:20px;font-weight:800;margin-bottom:8px}
+.product-card .card-body h3{font-size:20px;font-weight:800;margin-bottom:8px;color:#fff !important}
 .product-card .card-body p{color:var(--text-secondary);font-size:14px;line-height:1.7;margin-bottom:16px}
 .card-link{display:inline-flex;align-items:center;gap:6px;color:var(--orange);font-size:14px;font-weight:700;transition:var(--transition)}
 .card-link:hover{gap:12px}
@@ -196,58 +209,138 @@ ul{list-style:none}
 .play-btn svg{width:28px;height:28px;fill:#fff;margin-left:4px}
 [dir="rtl"] .play-btn svg{margin-left:0;margin-right:4px}
 
-/* --- CTA --- */
-.cta{background:var(--bg-primary);position:relative;overflow:hidden;text-align:center}
+/* --- Contact / CTA --- */
+.cta{background:var(--bg-primary);position:relative;overflow:hidden}
 .cta::before{content:'';position:absolute;top:-200px;left:20%;width:500px;height:500px;background:radial-gradient(circle,rgba(232,97,26,.08) 0%,transparent 70%);pointer-events:none}
 .cta::after{content:'';position:absolute;bottom:-200px;right:10%;width:400px;height:400px;background:radial-gradient(circle,rgba(244,132,95,.06) 0%,transparent 70%);pointer-events:none}
 .cta .container{position:relative;z-index:1}
-.cta-title{font-size:clamp(28px,4vw,48px);font-weight:900;margin-bottom:16px}
-.cta-sub{color:var(--text-secondary);font-size:18px;margin-bottom:40px;max-width:560px;margin-left:auto;margin-right:auto}
-.cta-buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:16px}
-.cta-buttons .btn-primary svg,.cta-buttons .btn-outline svg{width:18px;height:18px;fill:currentColor}
+.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.cta-info{text-align:left}
+[dir="rtl"] .cta-info{text-align:right}
+.cta-title{font-size:clamp(28px,4vw,44px);font-weight:900;margin-bottom:16px;color:#fff !important}
+.cta-sub{color:var(--text-secondary);font-size:17px;margin-bottom:32px;line-height:1.8}
+.cta-details{display:flex;flex-direction:column;gap:16px}
+.cta-detail{display:flex;align-items:center;gap:14px;color:var(--text-secondary);font-size:15px}
+.cta-detail .cta-icon{width:44px;height:44px;border-radius:12px;background:rgba(232,97,26,.1);border:1px solid rgba(232,97,26,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cta-detail .cta-icon svg{width:20px;height:20px;fill:var(--orange)}
+.cta-detail span{color:var(--text-secondary)}
+.cta-detail a{color:var(--text-secondary);transition:var(--transition)}
+.cta-detail a:hover{color:var(--orange)}
+/* Contact Form */
+.contact-card{background:var(--bg-card);border:1px solid var(--glass-border);border-radius:var(--radius);padding:36px}
+.contact-card h3{font-size:22px;font-weight:800;color:#fff;margin-bottom:6px}
+.contact-card .form-sub{font-size:14px;color:var(--text-muted);margin-bottom:28px}
+.contact-form .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.contact-form .form-group{margin-bottom:14px}
+.contact-form .form-group.full{grid-column:span 2}
+.contact-form label{display:block;font-size:12px;font-weight:700;color:var(--text-secondary);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.contact-form input,.contact-form textarea,.contact-form select{width:100%;padding:12px 14px;border-radius:var(--radius-sm);border:1.5px solid var(--glass-border);background:rgba(255,255,255,.04);color:#fff;font-size:14px;font-family:inherit;outline:none;transition:var(--transition);resize:vertical}
+[dir="rtl"] .contact-form input,[dir="rtl"] .contact-form textarea,[dir="rtl"] .contact-form select{font-family:var(--font-ar)}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--text-muted)}
+.contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus{border-color:var(--orange);background:rgba(232,97,26,.04);box-shadow:0 0 0 3px rgba(232,97,26,.08)}
+.contact-form textarea{min-height:100px}
+.contact-form select option{background:var(--bg-card);color:#fff}
+.contact-submit{width:100%;padding:14px;border:none;border-radius:var(--radius-sm);background:linear-gradient(135deg,var(--orange),var(--orange-light));color:#fff;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;transition:var(--transition);margin-top:6px;position:relative;overflow:hidden}
+[dir="rtl"] .contact-submit{font-family:var(--font-ar)}
+.contact-submit:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--orange-glow)}
+.contact-submit:disabled{opacity:.7;cursor:not-allowed;transform:none;box-shadow:none}
+.contact-success{display:none;text-align:center;padding:40px 20px}
+.contact-success.show{display:block}
+.contact-success .check-circle{width:64px;height:64px;border-radius:50%;background:rgba(232,97,26,.12);border:2px solid var(--orange);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.contact-error{display:none;padding:10px 14px;border-radius:var(--radius-sm);background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#f87171;font-size:13px;font-weight:600;margin-bottom:14px}
+.contact-error.show{display:block}
+.contact-success .check-circle svg{width:28px;height:28px;fill:var(--orange)}
+.contact-success h4{font-size:20px;font-weight:800;color:#fff;margin-bottom:8px}
+.contact-success p{color:var(--text-secondary);font-size:14px}
 
 /* --- Footer --- */
-.ts-footer{background:var(--bg-footer);border-top:1px solid var(--glass-border);padding:72px 0 0}
-.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:56px}
-.footer-brand{display:flex;flex-direction:column;gap:16px}
-.footer-brand .footer-logo{display:block;width:fit-content;margin-bottom:0}
-.footer-brand .footer-logo img{height:56px;border-radius:10px;padding:6px 10px;background:#fff;box-shadow:0 0 18px var(--orange-glow);display:block}
-.footer-brand p{color:var(--text-secondary);font-size:14px;line-height:1.8;max-width:300px;margin:0}
-.footer-col h4{font-size:16px;font-weight:700;margin-bottom:20px;position:relative;padding-bottom:10px}
-.footer-col h4::after{content:'';position:absolute;bottom:0;left:0;width:30px;height:2px;background:var(--orange)}
+.ts-footer{background:var(--bg-footer);border-top:3px solid;border-image:linear-gradient(90deg,var(--orange),var(--orange-light),var(--orange)) 1;padding:56px 0 0}
+.footer-main{display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:40px;padding-bottom:44px;align-items:center}
+.footer-brand{display:flex;align-items:center;justify-content:center}
+.footer-brand .footer-logo{display:block}
+.footer-brand .footer-logo img{height:56px;border-radius:10px;padding:6px 10px;background:#fff;box-shadow:0 2px 16px var(--orange-glow)}
+.footer-col h4{font-size:13px;font-weight:800;color:#fff;margin-bottom:20px;text-transform:uppercase;letter-spacing:2px;position:relative;padding-bottom:12px}
+.footer-col h4::after{content:'';position:absolute;bottom:0;left:0;width:24px;height:2px;background:var(--orange)}
 [dir="rtl"] .footer-col h4::after{left:auto;right:0}
 .footer-col ul{list-style:none;padding:0;margin:0}
 .footer-col ul li{margin-bottom:10px}
-.footer-col ul li a{color:var(--text-secondary);font-size:14px;transition:var(--transition)}
-.footer-col ul li a:hover{color:var(--orange);padding-left:6px}
-[dir="rtl"] .footer-col ul li a:hover{padding-left:0;padding-right:6px}
-.footer-bottom{border-top:1px solid var(--glass-border);padding:24px 0;text-align:center;color:var(--text-muted);font-size:13px}
+.footer-col ul li a{color:var(--text-secondary);font-size:14px;transition:var(--transition);display:inline-block}
+.footer-col ul li a:hover{color:var(--orange);transform:translateX(4px)}
+[dir="rtl"] .footer-col ul li a:hover{transform:translateX(-4px)}
+.footer-contact-item{display:flex;align-items:center;gap:10px;color:var(--text-secondary);font-size:13px;line-height:1.6;margin-bottom:14px}
+.footer-contact-item svg{width:16px;height:16px;fill:var(--orange);flex-shrink:0}
+.footer-contact-item a{color:var(--text-secondary);transition:var(--transition)}
+.footer-contact-item a:hover{color:var(--orange)}
+.footer-bottom{border-top:1px solid var(--glass-border);padding:20px 0}
+.footer-bottom .container{display:flex;align-items:center;justify-content:space-between}
+.footer-copy{color:var(--text-muted);font-size:13px}
+.footer-bottom-links{display:flex;gap:24px}
+.footer-bottom-links a{color:var(--text-muted);font-size:13px;transition:var(--transition)}
+.footer-bottom-links a:hover{color:var(--orange)}
 
 /* --- RTL --- */
 [dir="rtl"]{text-align:right}
 [dir="rtl"] .hero-content{text-align:right}
 [dir="rtl"] .hero-buttons{justify-content:flex-start}
 [dir="rtl"] .about-grid{direction:rtl}
-[dir="rtl"] .footer-grid{direction:rtl}
+[dir="rtl"] .footer-main{direction:rtl}
 
 /* --- Responsive 1024 --- */
 @media(max-width:1024px){
   .nav-links{gap:20px}
   .about-grid{gap:40px}
   .products-grid{grid-template-columns:repeat(2,1fr)}
-  .footer-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-main{grid-template-columns:repeat(2,1fr);gap:32px}
+  .cta-grid{grid-template-columns:1fr;gap:40px}
 }
 /* --- Responsive 768 --- */
 @media(max-width:768px){
   .nav-links,.nav-actions .lang-btn,.nav-actions .sys-btn{display:none}
   .mobile-lang,.hamburger{display:flex}
-  .about-grid{grid-template-columns:1fr;gap:32px}
-  .products-grid{grid-template-columns:1fr}
+  /* Center all content on mobile */
+  .hero-content{text-align:center;margin:0 auto}
+  [dir="rtl"] .hero-content{text-align:center}
+  .hero-badge{margin-left:auto;margin-right:auto}
+  .hero-sub{margin-left:auto;margin-right:auto}
+  .hero-buttons{justify-content:center}
+  .about-grid{grid-template-columns:1fr;gap:32px;text-align:center}
+  .about-img-wrap{max-width:500px;margin:0 auto}
+  .feature-pills{justify-content:center}
+  .section-tag{margin-left:auto;margin-right:auto}
+  .section-title{text-align:center}
+  .section-desc{text-align:center;margin-left:auto;margin-right:auto}
+  .products-grid{grid-template-columns:1fr 1fr;gap:14px}
+  .product-card .card-img{height:140px}
+  .product-card .card-body{padding:14px}
+  .product-card .card-body h3{font-size:15px}
+  .product-card .card-body p{font-size:12px;margin-bottom:10px}
+  .card-link{font-size:12px}
+  .product-card .card-body{text-align:center}
+  .card-link{justify-content:center}
   .gallery-grid{grid-template-columns:1fr 1fr}
   .gallery-item.wide{grid-column:span 2}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
   .stat-item:nth-child(2)::after{display:none}
-  .footer-grid{grid-template-columns:1fr 1fr}
+  .cta-grid{grid-template-columns:1fr;gap:32px}
+  .cta-info{text-align:center}
+  [dir="rtl"] .cta-info{text-align:center}
+  .cta-title{text-align:center}
+  .cta-sub{text-align:center}
+  .cta-details{align-items:flex-start;max-width:320px;margin:0 auto}
+  .contact-form .form-row{grid-template-columns:1fr}
+  .contact-card{padding:28px 20px}
+  .cta-buttons{justify-content:center}
+  .footer-main{grid-template-columns:1fr 1fr;gap:20px 28px;align-items:start}
+  .footer-brand{grid-column:span 2;justify-content:center;margin-bottom:4px}
+  .footer-brand .footer-logo img{height:44px}
+  .footer-col h4{font-size:12px;letter-spacing:1.5px;margin-bottom:14px;padding-bottom:10px}
+  .footer-col ul li{margin-bottom:8px}
+  .footer-col ul li a{font-size:13px}
+  .footer-col ul li a:hover{transform:none}
+  .footer-contact-item{font-size:12px;margin-bottom:10px}
+  .footer-bottom .container{flex-direction:column;gap:10px;text-align:center}
+  .footer-bottom-links{justify-content:center}
+  .footer-bottom-links a{font-size:12px}
   .hero-title{font-size:clamp(32px,8vw,52px)}
 }
 /* --- Responsive 480 --- */
@@ -257,8 +350,13 @@ ul{list-style:none}
   .stats-grid{grid-template-columns:1fr 1fr}
   .gallery-grid{grid-template-columns:1fr}
   .gallery-item.wide{grid-column:span 1}
-  .hero-buttons{flex-direction:column}
-  .footer-grid{grid-template-columns:1fr}
+  .hero-buttons{flex-direction:column;align-items:center}
+  .footer-main{grid-template-columns:1fr 1fr;gap:20px 24px}
+  .footer-col h4{font-size:11px;letter-spacing:1px;margin-bottom:14px;padding-bottom:10px}
+  .footer-col ul li{margin-bottom:8px}
+  .footer-col ul li a{font-size:13px}
+  .footer-contact-item{font-size:12px}
+  .footer-brand .footer-logo img{height:44px}
   .play-btn{width:64px;height:64px}
   .play-btn svg{width:22px;height:22px}
 }
@@ -287,16 +385,16 @@ ul{list-style:none}
 <!-- ========== NAVBAR ========== -->
 <nav class="ts-nav" id="tsNav">
   <div class="container">
-    <a href="#hero" class="nav-logo">
+    <a href="javascript:void(0)" onclick="smoothTo('#hero')" class="nav-logo">
       <img src="/assets/tamdeensteel/img/logo.jpeg" alt="Tamdeen Steel">
     </a>
     <div class="nav-links">
-      <a href="#hero">{% if is_ar %}الرئيسية{% else %}Home{% endif %}</a>
-      <a href="#about">{% if is_ar %}عن الشركة{% else %}About{% endif %}</a>
-      <a href="#products">{% if is_ar %}المنتجات{% else %}Products{% endif %}</a>
-      <a href="#gallery">{% if is_ar %}المعرض{% else %}Gallery{% endif %}</a>
-      <a href="#factory">{% if is_ar %}المصنع{% else %}Factory{% endif %}</a>
-      <a href="#contact">{% if is_ar %}تواصل معنا{% else %}Contact{% endif %}</a>
+      <a href="javascript:void(0)" onclick="smoothTo('#hero')">{% if is_ar %}الرئيسية{% else %}Home{% endif %}</a>
+      <a href="javascript:void(0)" onclick="smoothTo('#about')">{% if is_ar %}عن الشركة{% else %}About{% endif %}</a>
+      <a href="javascript:void(0)" onclick="smoothTo('#products')">{% if is_ar %}المنتجات{% else %}Products{% endif %}</a>
+      <a href="javascript:void(0)" onclick="smoothTo('#gallery')">{% if is_ar %}المعرض{% else %}Gallery{% endif %}</a>
+      <a href="javascript:void(0)" onclick="smoothTo('#factory')">{% if is_ar %}المصنع{% else %}Factory{% endif %}</a>
+      <a href="javascript:void(0)" onclick="smoothTo('#contact')">{% if is_ar %}تواصل معنا{% else %}Contact{% endif %}</a>
     </div>
     <div class="nav-actions">
       <button class="lang-btn" onclick="switchLang()">
@@ -316,14 +414,42 @@ ul{list-style:none}
   </div>
 </nav>
 
+<script>
+(function(){
+  var n=document.getElementById("tsNav");
+  if(!n)return;
+  // Scroll: white navbar
+  function c(){if((window.pageYOffset||document.documentElement.scrollTop)>60){n.classList.add("scrolled")}else{n.classList.remove("scrolled")}}
+  window.addEventListener("scroll",c,{passive:true});
+  c();
+  // Smooth scroll for all anchor links
+  window.smoothTo=function(id){
+    var el=document.querySelector(id);
+    if(!el)return;
+    var offset=n?n.offsetHeight+10:70;
+    var y=el.getBoundingClientRect().top+window.pageYOffset-offset;
+    window.scrollTo({top:y,behavior:"smooth"});
+    if(typeof window.closeMenu==="function")window.closeMenu();
+  };
+  document.addEventListener("click",function(e){
+    var a=e.target.closest('a[href^="#"]');
+    if(!a)return;
+    var h=a.getAttribute("href");
+    if(!h||h==="#")return;
+    e.preventDefault();
+    window.smoothTo(h);
+  });
+})();
+</script>
+
 <!-- Mobile Overlay -->
 <div class="mobile-overlay" id="mobileMenu">
-  <a href="#hero" onclick="closeMenu()">{% if is_ar %}الرئيسية{% else %}Home{% endif %}</a>
-  <a href="#about" onclick="closeMenu()">{% if is_ar %}عن الشركة{% else %}About{% endif %}</a>
-  <a href="#products" onclick="closeMenu()">{% if is_ar %}المنتجات{% else %}Products{% endif %}</a>
-  <a href="#gallery" onclick="closeMenu()">{% if is_ar %}المعرض{% else %}Gallery{% endif %}</a>
-  <a href="#factory" onclick="closeMenu()">{% if is_ar %}المصنع{% else %}Factory{% endif %}</a>
-  <a href="#contact" onclick="closeMenu()">{% if is_ar %}تواصل معنا{% else %}Contact{% endif %}</a>
+  <a href="javascript:void(0)" onclick="smoothTo('#hero')">{% if is_ar %}الرئيسية{% else %}Home{% endif %}</a>
+  <a href="javascript:void(0)" onclick="smoothTo('#about')">{% if is_ar %}عن الشركة{% else %}About{% endif %}</a>
+  <a href="javascript:void(0)" onclick="smoothTo('#products')">{% if is_ar %}المنتجات{% else %}Products{% endif %}</a>
+  <a href="javascript:void(0)" onclick="smoothTo('#gallery')">{% if is_ar %}المعرض{% else %}Gallery{% endif %}</a>
+  <a href="javascript:void(0)" onclick="smoothTo('#factory')">{% if is_ar %}المصنع{% else %}Factory{% endif %}</a>
+  <a href="javascript:void(0)" onclick="smoothTo('#contact')">{% if is_ar %}تواصل معنا{% else %}Contact{% endif %}</a>
   <a href="/app/login" class="sys-btn">
     <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor"><path d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5-5-5zm9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14z"/></svg>
     {% if is_ar %}الدخول{% else %}Login{% endif %}
@@ -339,13 +465,8 @@ ul{list-style:none}
   <div class="container">
     <div class="hero-content">
       <span class="hero-badge">{% if is_ar %}المملكة العربية السعودية{% else %}Saudi Arabia{% endif %}</span>
-      <h1 class="hero-title">
-        {% if is_ar %}
-          نصنع <span class="accent">مستقبل</span> الحديد والصلب
-        {% else %}
-          Forging the <span class="accent">Future</span> of Steel
-        {% endif %}
-      </h1>
+      <h1 class="hero-title" id="hero-typed"
+          data-text="{{ 'نصنع |مستقبل| الحديد والصلب' if is_ar else 'Forging the |Future| of Steel' }}"></h1>
       <p class="hero-sub">
         {% if is_ar %}
           شركة تمدين للصلب رائدة في تصنيع منتجات الحديد والصلب عالية الجودة، نخدم قطاعات البناء والبنية التحتية في المملكة العربية السعودية.
@@ -354,7 +475,7 @@ ul{list-style:none}
         {% endif %}
       </p>
       <div class="hero-buttons">
-        <a href="#products" class="btn-primary">
+        <a href="javascript:void(0)" onclick="smoothTo('#products')" class="btn-primary">
           {% if is_ar %}استكشف المنتجات ←{% else %}Explore Products →{% endif %}
         </a>
         <button class="btn-outline" onclick="document.getElementById('factory').scrollIntoView({behavior:'smooth'})">
@@ -553,32 +674,97 @@ ul{list-style:none}
   </div>
 </section>
 
-<!-- ========== CTA ========== -->
+<!-- ========== CONTACT ========== -->
 <section class="cta section-pad reveal" id="contact">
   <div class="container">
-    <h2 class="cta-title">
-      {% if is_ar %}
-        جاهز لبدء <span class="accent">مشروعك</span>؟
-      {% else %}
-        Ready to Start Your <span class="accent">Project</span>?
-      {% endif %}
-    </h2>
-    <p class="cta-sub">
-      {% if is_ar %}
-        تواصل مع فريقنا اليوم واحصل على أفضل عروض الأسعار لمنتجات الحديد والصلب.
-      {% else %}
-        Contact our team today and get the best quotes for your iron and steel products.
-      {% endif %}
-    </p>
-    <div class="cta-buttons">
-      <a href="mailto:info@tamdeensteel.com" class="btn-primary">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        {% if is_ar %}راسلنا{% else %}Email Us{% endif %}
-      </a>
-      <a href="/app/login" class="btn-outline">
-        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5-5-5zm9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14z"/></svg>
-        {% if is_ar %}تسجيل الدخول{% else %}Client Portal{% endif %}
-      </a>
+    <div class="cta-grid">
+      <!-- Left: Info -->
+      <div class="cta-info">
+        <span class="section-tag">{% if is_ar %}تواصل معنا{% else %}Contact Us{% endif %}</span>
+        <h2 class="cta-title">
+          {% if is_ar %}
+            جاهز لبدء <span class="accent">مشروعك</span>؟
+          {% else %}
+            Ready to Start Your <span class="accent">Project</span>?
+          {% endif %}
+        </h2>
+        <p class="cta-sub">
+          {% if is_ar %}
+            تواصل مع فريقنا اليوم واحصل على أفضل عروض الأسعار لمنتجات الحديد والصلب.
+          {% else %}
+            Contact our team today and get the best quotes for your iron and steel products.
+          {% endif %}
+        </p>
+        <div class="cta-details">
+          <div class="cta-detail">
+            <div class="cta-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <span>ahmedemamhatem@gmail.com</span>
+          </div>
+          <div class="cta-detail">
+            <div class="cta-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <span>{% if is_ar %}المملكة العربية السعودية{% else %}Saudi Arabia{% endif %}</span>
+          </div>
+          <div class="cta-detail">
+            <div class="cta-icon">
+              <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+            </div>
+            <span>{% if is_ar %}الأحد - الخميس، 8 ص - 5 م{% else %}Sun - Thu, 8AM - 5PM{% endif %}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="contact-card">
+        <h3>{% if is_ar %}أرسل رسالة{% else %}Send a Message{% endif %}</h3>
+        <p class="form-sub">{% if is_ar %}املأ النموذج وسنتواصل معك قريباً{% else %}Fill out the form and we'll get back to you soon{% endif %}</p>
+
+        <form class="contact-form" id="contactForm" onsubmit="return false;">
+          <div class="contact-error" id="contactError"></div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cName">{% if is_ar %}الاسم الكامل{% else %}Full Name{% endif %}</label>
+              <input type="text" id="cName" placeholder="{% if is_ar %}أدخل اسمك{% else %}Enter your name{% endif %}" required>
+            </div>
+            <div class="form-group">
+              <label for="cPhone">{% if is_ar %}رقم الجوال{% else %}Phone{% endif %}</label>
+              <input type="tel" id="cPhone" placeholder="{% if is_ar %}05xxxxxxxx{% else %}05xxxxxxxx{% endif %}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cEmail">{% if is_ar %}البريد الإلكتروني{% else %}Email Address{% endif %}</label>
+            <input type="email" id="cEmail" placeholder="{% if is_ar %}example@email.com{% else %}example@email.com{% endif %}" required>
+          </div>
+          <div class="form-group">
+            <label for="cSubject">{% if is_ar %}الموضوع{% else %}Subject{% endif %}</label>
+            <select id="cSubject">
+              <option value="">{% if is_ar %}اختر الموضوع{% else %}Select a subject{% endif %}</option>
+              <option value="quote">{% if is_ar %}طلب عرض سعر{% else %}Request a Quote{% endif %}</option>
+              <option value="products">{% if is_ar %}استفسار عن المنتجات{% else %}Product Inquiry{% endif %}</option>
+              <option value="partnership">{% if is_ar %}شراكة تجارية{% else %}Business Partnership{% endif %}</option>
+              <option value="other">{% if is_ar %}أخرى{% else %}Other{% endif %}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cMessage">{% if is_ar %}الرسالة{% else %}Message{% endif %}</label>
+            <textarea id="cMessage" rows="4" placeholder="{% if is_ar %}اكتب رسالتك هنا...{% else %}Write your message here...{% endif %}" required></textarea>
+          </div>
+          <button type="submit" class="contact-submit" id="contactBtn" onclick="submitContact()">
+            {% if is_ar %}إرسال الرسالة{% else %}Send Message{% endif %}
+          </button>
+        </form>
+
+        <div class="contact-success" id="contactSuccess">
+          <div class="check-circle">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </div>
+          <h4>{% if is_ar %}تم الإرسال بنجاح!{% else %}Message Sent!{% endif %}</h4>
+          <p>{% if is_ar %}شكراً لتواصلك معنا، سنرد عليك في أقرب وقت.{% else %}Thank you for reaching out. We'll get back to you soon.{% endif %}</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -586,48 +772,62 @@ ul{list-style:none}
 <!-- ========== FOOTER ========== -->
 <footer class="ts-footer">
   <div class="container">
-    <div class="footer-grid">
+    <div class="footer-main">
+      <!-- Brand -->
       <div class="footer-brand">
-        <a href="#hero" class="footer-logo">
+        <a href="javascript:void(0)" onclick="smoothTo('#hero')" class="footer-logo">
           <img src="/assets/tamdeensteel/img/logo.jpeg" alt="Tamdeen Steel">
         </a>
-        <p>
-          {% if is_ar %}
-            شركة تمدين للصلب - رائدة في تصنيع منتجات الحديد والصلب عالية الجودة في المملكة العربية السعودية.
-          {% else %}
-            Tamdeen Steel - A leading manufacturer of premium iron and steel products in Saudi Arabia.
-          {% endif %}
-        </p>
       </div>
+      <!-- Products -->
       <div class="footer-col">
         <h4>{% if is_ar %}المنتجات{% else %}Products{% endif %}</h4>
         <ul>
-          <li><a href="#products">{% if is_ar %}زوايا الصلب{% else %}Steel Angles{% endif %}</a></li>
-          <li><a href="#products">{% if is_ar %}المسطحات{% else %}Flat Bars{% endif %}</a></li>
-          <li><a href="#products">{% if is_ar %}المربعات{% else %}Square Bars{% endif %}</a></li>
-          <li><a href="#products">{% if is_ar %}حديد التسليح{% else %}Steel Rebar{% endif %}</a></li>
-          <li><a href="#products">{% if is_ar %}البيليت{% else %}Steel Billets{% endif %}</a></li>
+          <li><a href="javascript:void(0)" onclick="smoothTo('#products')">{% if is_ar %}زوايا الصلب{% else %}Steel Angles{% endif %}</a></li>
+          <li><a href="javascript:void(0)" onclick="smoothTo('#products')">{% if is_ar %}المسطحات{% else %}Flat Bars{% endif %}</a></li>
+          <li><a href="javascript:void(0)" onclick="smoothTo('#products')">{% if is_ar %}المربعات{% else %}Square Bars{% endif %}</a></li>
+          <li><a href="javascript:void(0)" onclick="smoothTo('#products')">{% if is_ar %}حديد التسليح{% else %}Steel Rebar{% endif %}</a></li>
+          <li><a href="javascript:void(0)" onclick="smoothTo('#products')">{% if is_ar %}البيليت{% else %}Steel Billets{% endif %}</a></li>
         </ul>
       </div>
+      <!-- Company -->
       <div class="footer-col">
         <h4>{% if is_ar %}الشركة{% else %}Company{% endif %}</h4>
         <ul>
-          <li><a href="#about">{% if is_ar %}من نحن{% else %}About Us{% endif %}</a></li>
-          <li><a href="#gallery">{% if is_ar %}منشآتنا{% else %}Our Facility{% endif %}</a></li>
-          <li><a href="#factory">{% if is_ar %}جولة المصنع{% else %}Factory Tour{% endif %}</a></li>
-          <li><a href="#contact">{% if is_ar %}تواصل معنا{% else %}Contact{% endif %}</a></li>
+          <li><a href="javascript:void(0)" onclick="smoothTo('#about')">{% if is_ar %}من نحن{% else %}About Us{% endif %}</a></li>
+          <li><a href="javascript:void(0)" onclick="smoothTo('#gallery')">{% if is_ar %}منشآتنا{% else %}Our Facility{% endif %}</a></li>
+          <li><a href="javascript:void(0)" onclick="smoothTo('#factory')">{% if is_ar %}جولة المصنع{% else %}Factory Tour{% endif %}</a></li>
+          <li><a href="javascript:void(0)" onclick="smoothTo('#contact')">{% if is_ar %}تواصل معنا{% else %}Contact{% endif %}</a></li>
         </ul>
       </div>
+      <!-- Contact -->
       <div class="footer-col">
-        <h4>{% if is_ar %}تواصل معنا{% else %}Contact{% endif %}</h4>
-        <ul>
-          <li><a href="mailto:ahmedemamhatem@gmail.com">ahmedemamhatem@gmail.com</a></li>
-          <li><a href="/login">{% if is_ar %}بوابة العملاء{% else %}Client Portal{% endif %}</a></li>
-        </ul>
+        <h4>{% if is_ar %}تواصل معنا{% else %}Get in Touch{% endif %}</h4>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <a href="mailto:ahmedemamhatem@gmail.com">ahmedemamhatem@gmail.com</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span>{% if is_ar %}المملكة العربية السعودية{% else %}Saudi Arabia{% endif %}</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+            <span>{% if is_ar %}الأحد - الخميس، 8 ص - 5 م{% else %}Sun - Thu, 8AM - 5PM{% endif %}</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      &copy; {{ frappe.utils.now_datetime().year if frappe else '2026' }} {% if is_ar %}شركة تمدين للصلب. جميع الحقوق محفوظة.{% else %}Tamdeen Steel. All rights reserved.{% endif %}
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <span class="footer-copy">&copy; {{ frappe.utils.now_datetime().year if frappe else '2026' }} {% if is_ar %}شركة تمدين للصلب. جميع الحقوق محفوظة.{% else %}Tamdeen Steel. All rights reserved.{% endif %}</span>
+      <div class="footer-bottom-links">
+        <a href="javascript:void(0)" onclick="smoothTo('#about')">{% if is_ar %}عن الشركة{% else %}About{% endif %}</a>
+        <a href="javascript:void(0)" onclick="smoothTo('#products')">{% if is_ar %}المنتجات{% else %}Products{% endif %}</a>
+        <a href="javascript:void(0)" onclick="smoothTo('#contact')">{% if is_ar %}تواصل{% else %}Contact{% endif %}</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -645,9 +845,74 @@ ul{list-style:none}
     var sl = "{{ sl }}";
     document.cookie = "preferred_language=" + sl + ";path=/;max-age=31536000;SameSite=Lax";
     var url = new URL(window.location.href);
-    url.searchParams.set("lang", sl);
+    url.searchParams.set("_lang", sl);
     window.location.href = url.toString();
   };
+
+  /* ---------- Hero Typing Effect ---------- */
+  (function(){
+    var el = document.getElementById("hero-typed");
+    if(!el) return;
+    var raw = el.getAttribute("data-text") || "";
+    // Parse text: |word| means accent span
+    var parts = [];
+    var regex = /\|([^|]+)\|/g;
+    var last = 0, m;
+    while((m = regex.exec(raw)) !== null){
+      if(m.index > last) parts.push({text: raw.slice(last, m.index), accent: false});
+      parts.push({text: m[1], accent: true});
+      last = m.index + m[0].length;
+    }
+    if(last < raw.length) parts.push({text: raw.slice(last), accent: false});
+
+    // Build full character array with accent info
+    var chars = [];
+    parts.forEach(function(p){
+      for(var i = 0; i < p.text.length; i++){
+        chars.push({ch: p.text[i], accent: p.accent});
+      }
+    });
+
+    var cursor = document.createElement("span");
+    cursor.className = "type-cursor";
+    el.innerHTML = "";
+    el.appendChild(cursor);
+
+    var idx = 0;
+    var speed = 55;
+    var currentSpan = null;
+    var inAccent = false;
+
+    function typeNext(){
+      if(idx >= chars.length){
+        // Remove cursor after a pause
+        setTimeout(function(){ cursor.style.display = "none"; }, 1500);
+        return;
+      }
+      var c = chars[idx];
+      if(c.accent && !inAccent){
+        currentSpan = document.createElement("span");
+        currentSpan.className = "accent";
+        el.insertBefore(currentSpan, cursor);
+        inAccent = true;
+      } else if(!c.accent && inAccent){
+        currentSpan = null;
+        inAccent = false;
+      }
+
+      var textNode = document.createTextNode(c.ch);
+      if(inAccent && currentSpan){
+        currentSpan.appendChild(textNode);
+      } else {
+        el.insertBefore(textNode, cursor);
+      }
+      idx++;
+      setTimeout(typeNext, speed);
+    }
+
+    // Start typing after a short delay
+    setTimeout(typeNext, 600);
+  })();
 
   /* ---------- Navbar Scroll ---------- */
   var nav = document.getElementById("tsNav");
@@ -677,22 +942,9 @@ ul{list-style:none}
     mobileMenu.classList.remove("open");
     document.body.style.overflow = "";
   };
-
-  /* ---------- Smooth Anchor Scroll ---------- */
-  document.addEventListener("click", function(e){
-    var link = e.target.closest('a[href^="#"]');
-    if(!link) return;
-    var href = link.getAttribute("href");
-    if(!href || href === "#") return;
-    var target = document.querySelector(href);
-    if(target){
-      e.preventDefault();
-      var offset = nav ? nav.offsetHeight + 10 : 70;
-      var y = target.getBoundingClientRect().top + window.pageYOffset - offset;
-      window.scrollTo({top: y, behavior: "smooth"});
-      // close mobile menu if open
-      if(typeof closeMenu === "function") closeMenu();
-    }
+  // Close menu on click outside (on the overlay itself)
+  mobileMenu.addEventListener("click", function(e){
+    if(e.target === mobileMenu) closeMenu();
   });
 
   /* ---------- IntersectionObserver Reveal ---------- */
@@ -775,5 +1027,31 @@ ul{list-style:none}
   }
 
 })();
+
+/* ---------- Contact Form ---------- */
+window.submitContact = function(){
+  var isAr = {{ 'true' if is_ar else 'false' }};
+  var name = document.getElementById('cName').value.trim();
+  var email = document.getElementById('cEmail').value.trim();
+  var message = document.getElementById('cMessage').value.trim();
+  var errBox = document.getElementById('contactError');
+
+  errBox.classList.remove('show');
+
+  if(!name || !email || !message){
+    errBox.textContent = isAr ? 'يرجى ملء جميع الحقول المطلوبة' : 'Please fill in all required fields.';
+    errBox.classList.add('show');
+    return;
+  }
+
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    errBox.textContent = isAr ? 'يرجى إدخال بريد إلكتروني صحيح' : 'Please enter a valid email address.';
+    errBox.classList.add('show');
+    return;
+  }
+
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('contactSuccess').classList.add('show');
+};
 </script>
 {% endblock %}

@@ -2,13 +2,8 @@
    TAMDEEN STEEL - Website Interactions
    ============================================ */
 
-// Global language switcher
-function switchLang(lang) {
-	document.cookie = 'preferred_language=' + lang + ';path=/;max-age=31536000;SameSite=Lax';
-	var url = new URL(window.location.href);
-	url.searchParams.set('_lang', lang);
-	window.location.href = url.toString();
-}
+// Global language switcher — defined in index.html with page-specific logic
+// Do not override window.switchLang here
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -109,14 +104,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	// ---- Smooth scrolling ----
-	document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-		a.addEventListener('click', function (e) {
-			var id = this.getAttribute('href');
-			if (id === '#') return;
-			var target = document.querySelector(id);
-			if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-		});
-	});
+	// Handled by inline script in index.html via window.smoothTo()
+	// to avoid duplicate/conflicting handlers
 
 	// ---- Hero parallax ----
 	var heroBg = document.querySelector('.hero-video-bg');
