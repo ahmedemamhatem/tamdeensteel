@@ -1,358 +1,169 @@
-{% extends "templates/web.html" %}
+{% extends "tamdeensteel/templates/tamdeen_base.html" %}
 
 {% set is_ar = lang == "ar" %}
 {% set d = "rtl" if is_ar else "ltr" %}
 {% set switch_lang = "en" if is_ar else "ar" %}
 {% set switch_label = "English" if is_ar else "العربية" %}
+{% set font_ar = "Tajawal, Inter, sans-serif" %}
+{% set font_en = "Inter, -apple-system, BlinkMacSystemFont, sans-serif" %}
 
-{% block head_include %}
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-<style>
-	body[data-page="login"] .navbar,
-	body[data-page="login"] .web-footer,
-	body[data-page="login"] footer,
-	body[data-page="login"] .page-header,
-	body[data-page="login"] .breadcrumb-container { display: none !important; }
-</style>
-{% endblock %}
-
-{% block page_content %}
+{% block body %}
 <div class="tamdeen-login-wrapper" dir="{{ d }}" style="
-	display: flex;
-	min-height: 100vh;
-	margin: -70px -15px -80px;
-	font-family: {{ \"'Tajawal', 'Inter', sans-serif\" if is_ar else \"'Inter', -apple-system, BlinkMacSystemFont, sans-serif\" }};
-	{% if is_ar %}direction: rtl;{% endif %}
+	display: flex; min-height: 100vh; margin: 0;
+	font-family: {{ font_ar if is_ar else font_en }};
 ">
 	<!-- ===== LEFT VISUAL PANEL ===== -->
 	<div class="tamdeen-login-left" style="
-		flex: 1;
-		position: relative;
-		background: #1a1f20;
-		overflow: hidden;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		flex: 1; position: relative; background: #1a1f20;
+		overflow: hidden; display: flex; align-items: center; justify-content: center;
 	">
-		<!-- Rotating Background -->
 		<div id="login-bg-slider" style="
 			position: absolute; inset: 0;
-			background-image: url('/assets/tamdeensteel/img/furnace-interior.jpeg');
-			background-size: cover;
-			background-position: center;
-			opacity: 0.3;
-			transition: opacity 0.8s ease;
+			background-image: url(/assets/tamdeensteel/img/furnace-interior.jpeg);
+			background-size: cover; background-position: center;
+			opacity: 0.3; transition: opacity 0.8s ease;
 		"></div>
-		<!-- Gradient overlay -->
-		<div style="
-			position: absolute; inset: 0;
-			background: linear-gradient(135deg, rgba(26,31,32,0.85) 0%, rgba(45,52,54,0.5) 50%, rgba(26,31,32,0.9) 100%);
-		"></div>
-		<!-- Orange accent line -->
-		<div style="
-			position: absolute; {{ 'left' if is_ar else 'right' }}: 0; top: 15%; bottom: 15%;
-			width: 4px;
-			background: linear-gradient(180deg, transparent, #E67E22, transparent);
-		"></div>
-		<!-- Floating particles -->
-		<div style="position:absolute;width:5px;height:5px;background:#E67E22;border-radius:50%;opacity:0.25;top:18%;left:12%;animation:floatP 7s ease-in-out infinite;"></div>
-		<div style="position:absolute;width:4px;height:4px;background:#E67E22;border-radius:50%;opacity:0.2;top:55%;left:75%;animation:floatP 5s ease-in-out infinite 1s;"></div>
-		<div style="position:absolute;width:6px;height:6px;background:#E67E22;border-radius:50%;opacity:0.15;top:78%;left:28%;animation:floatP 8s ease-in-out infinite 2s;"></div>
-		<div style="position:absolute;width:3px;height:3px;background:#E67E22;border-radius:50%;opacity:0.3;top:8%;left:65%;animation:floatP 6s ease-in-out infinite 0.5s;"></div>
+		<div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(26,31,32,0.85) 0%, rgba(45,52,54,0.5) 50%, rgba(26,31,32,0.9) 100%);"></div>
+		<div style="position: absolute; {{ 'left' if is_ar else 'right' }}: 0; top: 15%; bottom: 15%; width: 4px; background: linear-gradient(180deg, transparent, #E67E22, transparent);"></div>
 
-		<!-- Content -->
+		<!-- Particles -->
+		<div class="login-particle" style="top:18%;left:12%;animation-delay:0s;"></div>
+		<div class="login-particle" style="top:55%;left:75%;animation-delay:1s;"></div>
+		<div class="login-particle" style="top:78%;left:28%;animation-delay:2s;"></div>
+		<div class="login-particle" style="top:8%;left:65%;animation-delay:0.5s;"></div>
+
 		<div style="position: relative; z-index: 2; text-align: center; padding: 50px; max-width: 480px;">
-			<img src="/assets/tamdeensteel/img/logo.jpeg" alt="Tamdeen Steel" style="
-				height: 90px;
-				margin-bottom: 30px;
-				filter: drop-shadow(0 4px 25px rgba(0,0,0,0.3));
-				animation: loginFadeDown 0.8s ease forwards;
-			">
+			<img src="/assets/tamdeensteel/img/logo.jpeg" alt="Tamdeen Steel" class="login-brand-logo">
 			{% if is_ar %}
-			<h2 style="
-				color: #fff; font-size: 34px; font-weight: 800;
-				margin-bottom: 12px; line-height: 1.4;
-				animation: loginFadeUp 0.8s ease 0.2s forwards; opacity: 0;
-				font-family: 'Tajawal', sans-serif;
-			">نصنع <span style="color: #E67E22;">مستقبل</span> الحديد والصلب</h2>
-			<p style="
-				color: rgba(255,255,255,0.55); font-size: 16px; line-height: 1.9;
-				animation: loginFadeUp 0.8s ease 0.4s forwards; opacity: 0;
-				font-family: 'Tajawal', sans-serif;
-			">مرحباً بك في بوابة تمدين للحديد والصلب. أدر طلباتك وتتبع الإنتاج ونمّي أعمالك.</p>
+			<h2 class="login-hero-title">نصنع <span>مستقبل</span> الحديد والصلب</h2>
+			<p class="login-hero-desc">مرحباً بك في بوابة تمدين للحديد والصلب. أدر طلباتك وتتبع الإنتاج ونمّي أعمالك.</p>
 			{% else %}
-			<h2 style="
-				color: #fff; font-size: 36px; font-weight: 800;
-				margin-bottom: 12px; line-height: 1.2;
-				animation: loginFadeUp 0.8s ease 0.2s forwards; opacity: 0;
-			">Forging the <span style="color: #E67E22;">Future</span> of Steel</h2>
-			<p style="
-				color: rgba(255,255,255,0.55); font-size: 16px; line-height: 1.8;
-				animation: loginFadeUp 0.8s ease 0.4s forwards; opacity: 0;
-			">Welcome to the Tamdeen Steel management portal. Access your orders, track production, and manage your steel business.</p>
+			<h2 class="login-hero-title">Forging the <span>Future</span> of Steel</h2>
+			<p class="login-hero-desc">Welcome to the Tamdeen Steel management portal. Access your orders, track production, and manage your steel business.</p>
 			{% endif %}
 
-			<!-- Stats -->
-			<div style="
-				display: flex; gap: 35px; justify-content: center;
-				margin-top: 45px;
-				animation: loginFadeUp 0.8s ease 0.6s forwards; opacity: 0;
-			">
+			<div class="login-hero-stats">
 				<div>
-					<div style="color: #E67E22; font-size: 30px; font-weight: 800; line-height: 1;">15+</div>
-					<div style="color: rgba(255,255,255,0.4); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; margin-top: 4px;">{{ "سنوات" if is_ar else "Years" }}</div>
+					<div class="stat-num">15+</div>
+					<div class="stat-label">{{ "سنوات" if is_ar else "Years" }}</div>
 				</div>
 				<div>
-					<div style="color: #E67E22; font-size: 30px; font-weight: 800; line-height: 1;">50K</div>
-					<div style="color: rgba(255,255,255,0.4); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; margin-top: 4px;">{{ "طن/سنة" if is_ar else "Tons/Year" }}</div>
+					<div class="stat-num">50K</div>
+					<div class="stat-label">{{ "طن/سنة" if is_ar else "Tons/Year" }}</div>
 				</div>
 				<div>
-					<div style="color: #E67E22; font-size: 30px; font-weight: 800; line-height: 1;">200+</div>
-					<div style="color: rgba(255,255,255,0.4); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; margin-top: 4px;">{{ "عملاء" if is_ar else "Clients" }}</div>
+					<div class="stat-num">200+</div>
+					<div class="stat-label">{{ "عملاء" if is_ar else "Clients" }}</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- ===== RIGHT LOGIN FORM ===== -->
-	<div class="tamdeen-login-right" style="
-		width: 480px; min-width: 420px;
-		background: #fff;
-		display: flex; align-items: center; justify-content: center;
-		padding: 50px 40px;
-		position: relative;
-	">
-		<!-- Top bar: Back + Lang switch -->
-		<div style="
-			position: absolute; top: 25px; {{ 'left' if is_ar else 'right' }}: 30px;
-			display: flex; align-items: center; gap: 16px;
-		">
-			<a href="?_lang={{ switch_lang }}" class="tamdeen-lang-btn" onclick="switchLang('{{ switch_lang }}'); return false;" style="
-				display: inline-flex; align-items: center; gap: 6px;
-				padding: 6px 14px; border: 2px solid #E8ECF0; border-radius: 20px;
-				color: #2D3436; text-decoration: none; font-size: 13px;
-				font-weight: 600; transition: all 0.3s ease;
-				font-family: {{ \"'Tajawal', sans-serif\" if switch_lang == 'ar' else \"'Inter', sans-serif\" }};
-			" onmouseover="this.style.borderColor='#E67E22';this.style.color='#E67E22'" onmouseout="this.style.borderColor='#E8ECF0';this.style.color='#2D3436'">
-				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+	<div class="tamdeen-login-right">
+		<!-- Top bar -->
+		<div class="login-top-bar" style="{{ 'left' if is_ar else 'right' }}: 30px;">
+			<a href="?_lang={{ switch_lang }}" class="login-lang-btn" onclick="switchLang('{{ switch_lang }}'); return false;">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
 				{{ switch_label }}
 			</a>
-			<a href="/" style="
-				color: #636E72; text-decoration: none; font-size: 13px;
-				font-weight: 500; transition: color 0.3s ease;
-			" onmouseover="this.style.color='#E67E22'" onmouseout="this.style.color='#636E72'">
+			<a href="/" class="login-back-link">
 				{{ "&#8594; العودة للموقع" if is_ar else "&#8592; Back to Website" }}
 			</a>
 		</div>
 
-		<div style="width: 100%; max-width: 360px;">
-			<!-- Header -->
+		<div class="login-form-container">
 			<div style="margin-bottom: 35px; {{ 'text-align: right;' if is_ar else '' }}">
 				{% if is_ar %}
-				<h3 style="font-size: 28px; font-weight: 800; color: #2D3436; margin-bottom: 8px; font-family: 'Tajawal', sans-serif;">مرحباً بعودتك</h3>
-				<p style="color: #636E72; font-size: 15px; margin: 0; font-family: 'Tajawal', sans-serif;">سجّل الدخول إلى بوابة تمدين للحديد والصلب</p>
+				<h3 class="login-title">مرحباً بعودتك</h3>
+				<p class="login-subtitle">سجّل الدخول إلى بوابة تمدين للحديد والصلب</p>
 				{% else %}
-				<h3 style="font-size: 28px; font-weight: 800; color: #2D3436; margin-bottom: 8px;">Welcome Back</h3>
-				<p style="color: #636E72; font-size: 15px; margin: 0;">Sign in to your Tamdeen Steel portal</p>
+				<h3 class="login-title">Welcome Back</h3>
+				<p class="login-subtitle">Sign in to your Tamdeen Steel portal</p>
 				{% endif %}
 			</div>
 
-			<!-- Login Form -->
 			<form id="tamdeen-login-form" autocomplete="on">
-				<!-- Email Field -->
-				<div style="margin-bottom: 20px;">
-					<label for="tamdeen-email" style="
-						display: block; font-size: 12px; font-weight: 700;
-						color: #2D3436; margin-bottom: 8px;
-						text-transform: uppercase; letter-spacing: 0.8px;
-					">{{ "البريد الإلكتروني" if is_ar else login_label or "Email" }}</label>
-					<input
-						type="text"
-						id="tamdeen-email"
-						name="usr"
+				<div class="login-field">
+					<label for="tamdeen-email">{{ "البريد الإلكتروني" if is_ar else (login_label or "Email") }}</label>
+					<input type="text" id="tamdeen-email" name="usr"
 						placeholder="{{ 'أدخل بريدك الإلكتروني' if is_ar else (login_name_placeholder or 'Enter your email') }}"
-						autocomplete="username"
-						required
-						autofocus
-						style="
-							width: 100%; padding: 14px 16px;
-							border: 2px solid #E8ECF0; border-radius: 10px;
-							font-size: 15px; outline: none;
-							background: #F8FAFB;
-							transition: all 0.3s ease;
-							box-sizing: border-box;
-							{{ 'text-align: right; direction: rtl; font-family: Tajawal, sans-serif;' if is_ar else '' }}
-						"
-						onfocus="this.style.borderColor='#E67E22';this.style.boxShadow='0 0 0 3px rgba(230,126,34,0.1)';this.style.background='#fff'"
-						onblur="this.style.borderColor='#E8ECF0';this.style.boxShadow='none';this.style.background='#F8FAFB'"
-					>
+						autocomplete="username" required autofocus
+						class="login-input {{ 'rtl-input' if is_ar else '' }}">
 				</div>
 
-				<!-- Password Field -->
-				<div style="margin-bottom: 16px;">
-					<label for="tamdeen-password" style="
-						display: block; font-size: 12px; font-weight: 700;
-						color: #2D3436; margin-bottom: 8px;
-						text-transform: uppercase; letter-spacing: 0.8px;
-					">{{ "كلمة المرور" if is_ar else "Password" }}</label>
+				<div class="login-field">
+					<label for="tamdeen-password">{{ "كلمة المرور" if is_ar else "Password" }}</label>
 					<div style="position: relative;">
-						<input
-							type="password"
-							id="tamdeen-password"
-							name="pwd"
+						<input type="password" id="tamdeen-password" name="pwd"
 							placeholder="{{ 'أدخل كلمة المرور' if is_ar else 'Enter your password' }}"
-							autocomplete="current-password"
-							required
-							style="
-								width: 100%; padding: 14px 16px;
-								border: 2px solid #E8ECF0; border-radius: 10px;
-								font-size: 15px; outline: none;
-								background: #F8FAFB;
-								transition: all 0.3s ease;
-								box-sizing: border-box;
-								{{ 'text-align: right; direction: rtl; font-family: Tajawal, sans-serif;' if is_ar else '' }}
-							"
-							onfocus="this.style.borderColor='#E67E22';this.style.boxShadow='0 0 0 3px rgba(230,126,34,0.1)';this.style.background='#fff'"
-							onblur="this.style.borderColor='#E8ECF0';this.style.boxShadow='none';this.style.background='#F8FAFB'"
-						>
-						<span id="toggle-pwd" style="
-							position: absolute; {{ 'left' if is_ar else 'right' }}: 14px; top: 50%;
-							transform: translateY(-50%);
-							color: #E67E22; font-size: 13px; font-weight: 600;
-							cursor: pointer; user-select: none;
-						">{{ "إظهار" if is_ar else "Show" }}</span>
+							autocomplete="current-password" required
+							class="login-input {{ 'rtl-input' if is_ar else '' }}">
+						<span id="toggle-pwd" class="login-toggle-pwd" style="{{ 'left' if is_ar else 'right' }}: 14px;">
+							{{ "إظهار" if is_ar else "Show" }}
+						</span>
 					</div>
 				</div>
 
-				<!-- Options row -->
-				<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; {{ 'flex-direction: row-reverse;' if is_ar else '' }}">
-					<label style="font-size: 13px; color: #636E72; display: flex; align-items: center; gap: 6px; cursor: pointer;">
-						<input type="checkbox" name="remember" style="accent-color: #E67E22;"> {{ "تذكرني" if is_ar else "Remember me" }}
+				<div class="login-options" style="{{ 'flex-direction: row-reverse;' if is_ar else '' }}">
+					<label class="login-remember">
+						<input type="checkbox" name="remember"> {{ "تذكرني" if is_ar else "Remember me" }}
 					</label>
-					<a href="/forgot-password" style="
-						color: #E67E22; font-size: 13px; font-weight: 600;
-						text-decoration: none;
-					">{{ "نسيت كلمة المرور؟" if is_ar else "Forgot Password?" }}</a>
+					<a href="/forgot-password" class="login-forgot">{{ "نسيت كلمة المرور؟" if is_ar else "Forgot Password?" }}</a>
 				</div>
 
-				<!-- Error message -->
-				<div id="tamdeen-login-error" style="
-					display: none;
-					background: #FFF5F5;
-					border: 1px solid #FED7D7;
-					border-radius: 8px;
-					padding: 12px 16px;
-					margin-bottom: 20px;
-					color: #C53030;
-					font-size: 14px;
-					font-weight: 500;
-					{{ 'text-align: right;' if is_ar else '' }}
-				"></div>
+				<div id="tamdeen-login-error" class="login-error" style="{{ 'text-align: right;' if is_ar else '' }}"></div>
 
-				<!-- Submit button -->
-				<button type="submit" id="tamdeen-login-btn" style="
-					width: 100%; padding: 16px;
-					background: linear-gradient(135deg, #E67E22, #D35400);
-					color: #fff; border: none; border-radius: 10px;
-					font-size: 15px; font-weight: 700;
-					cursor: pointer;
-					text-transform: uppercase;
-					letter-spacing: 1px;
-					transition: transform 0.3s ease, box-shadow 0.3s ease;
-					font-family: {{ \"'Tajawal', sans-serif\" if is_ar else \"'Inter', sans-serif\" }};
-				"
-				onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 25px rgba(230,126,34,0.35)'"
-				onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'"
-				>
+				<button type="submit" id="tamdeen-login-btn" class="login-submit-btn">
 					{{ "تسجيل الدخول" if is_ar else "Sign In" }}
 				</button>
 			</form>
 
 			{% if provider_logins %}
-			<!-- Social login divider -->
-			<div style="text-align: center; margin: 28px 0; position: relative;">
-				<div style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #E8ECF0;"></div>
-				<span style="background: #fff; padding: 0 16px; color: #636E72; font-size: 13px; position: relative;">{{ "أو سجّل عبر" if is_ar else "or continue with" }}</span>
+			<div class="login-divider-line">
+				<span>{{ "أو سجّل عبر" if is_ar else "or continue with" }}</span>
 			</div>
-
-			<!-- Social login buttons -->
 			<div style="display: flex; flex-direction: column; gap: 10px;">
 				{% for provider in provider_logins %}
-				<a href="{{ provider.auth_url }}" style="
-					display: flex; align-items: center; justify-content: center; gap: 10px;
-					padding: 13px 16px; border: 2px solid #E8ECF0; border-radius: 10px;
-					color: #2D3436; text-decoration: none; font-weight: 600; font-size: 14px;
-					transition: all 0.3s ease;
-				"
-				onmouseover="this.style.borderColor='#E67E22';this.style.color='#E67E22'"
-				onmouseout="this.style.borderColor='#E8ECF0';this.style.color='#2D3436'"
-				>
+				<a href="{{ provider.auth_url }}" class="login-social-btn">
 					{% if provider.icon %}{{ provider.icon }}{% endif %}
-					{{ "الدخول عبر " ~ provider.provider_name if is_ar else "Login with " ~ provider.provider_name }}
+					{{ ("الدخول عبر " ~ provider.provider_name) if is_ar else ("Login with " ~ provider.provider_name) }}
 				</a>
 				{% endfor %}
 			</div>
 			{% endif %}
 
 			{% if not disable_signup %}
-			<!-- Signup link -->
-			<div style="text-align: center; margin-top: 30px; font-size: 14px; color: #636E72;">
+			<div class="login-signup-link">
 				{{ "ليس لديك حساب؟" if is_ar else "Don't have an account?" }}
-				<a href="/signup" style="color: #E67E22; font-weight: 700; text-decoration: none;">{{ "سجّل الآن" if is_ar else "Sign up" }}</a>
+				<a href="/signup">{{ "سجّل الآن" if is_ar else "Sign up" }}</a>
 			</div>
 			{% endif %}
 
-			<!-- Footer -->
-			<div style="
-				text-align: center; margin-top: 40px;
-				padding-top: 20px; border-top: 1px solid #E8ECF0;
-			">
-				<p style="color: #B2BEC3; font-size: 12px; margin: 0;">&copy; 2026 {{ "تمدين للحديد والصلب. جميع الحقوق محفوظة." if is_ar else "Tamdeen Steel. All rights reserved." }}</p>
+			<div class="login-footer-copy">
+				<p>&copy; 2026 {{ "تمدين للحديد والصلب. جميع الحقوق محفوظة." if is_ar else "Tamdeen Steel. All rights reserved." }}</p>
 			</div>
 		</div>
 	</div>
 </div>
-
-<style>
-@keyframes loginFadeDown {
-	from { opacity: 0; transform: translateY(-20px); }
-	to { opacity: 1; transform: translateY(0); }
-}
-@keyframes loginFadeUp {
-	from { opacity: 0; transform: translateY(25px); }
-	to { opacity: 1; transform: translateY(0); }
-}
-@keyframes floatP {
-	0%, 100% { transform: translateY(0) scale(1); opacity: 0.2; }
-	50% { transform: translateY(-18px) scale(1.4); opacity: 0.5; }
-}
-@media (max-width: 768px) {
-	.tamdeen-login-wrapper { flex-direction: column !important; }
-	.tamdeen-login-left { min-height: 260px !important; flex: none !important; }
-	.tamdeen-login-right { width: 100% !important; min-width: auto !important; }
-}
-</style>
 {% endblock %}
 
 {% block script %}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 	var isAr = {{ 'true' if is_ar else 'false' }};
-	var showText = isAr ? 'إظهار' : 'Show';
-	var hideText = isAr ? 'إخفاء' : 'Hide';
 
-	// Toggle password visibility
+	// Toggle password
 	var togglePwd = document.getElementById('toggle-pwd');
 	var pwdField = document.getElementById('tamdeen-password');
 	if (togglePwd && pwdField) {
 		togglePwd.addEventListener('click', function() {
 			if (pwdField.type === 'password') {
 				pwdField.type = 'text';
-				togglePwd.textContent = hideText;
+				togglePwd.textContent = isAr ? 'إخفاء' : 'Hide';
 			} else {
 				pwdField.type = 'password';
-				togglePwd.textContent = showText;
+				togglePwd.textContent = isAr ? 'إظهار' : 'Show';
 			}
 		});
 	}
@@ -384,9 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				callback: function(r) {
 					if (r.message === 'Logged In') {
 						btn.textContent = isAr ? 'جارٍ التحويل...' : 'Redirecting...';
-						window.location.href = frappe.utils.sanitise_redirect(
-							frappe.utils.get_url_arg('redirect-to')
-						) || '/app';
+						window.location.href = '/app';
 					}
 				},
 				error: function(r) {
@@ -395,11 +204,9 @@ document.addEventListener('DOMContentLoaded', function() {
 					btn.style.opacity = '1';
 					var msg;
 					try {
-						msg = r && r._server_messages
-							? JSON.parse(JSON.parse(r._server_messages)[0]).message
-							: null;
-					} catch(e) { msg = null; }
-					showError(msg || (isAr ? 'بريد إلكتروني أو كلمة مرور غير صحيحة. حاول مرة أخرى.' : 'Invalid email or password. Please try again.'));
+						msg = r && r._server_messages ? JSON.parse(JSON.parse(r._server_messages)[0]).message : null;
+					} catch(ex) { msg = null; }
+					showError(msg || (isAr ? 'بريد إلكتروني أو كلمة مرور غير صحيحة.' : 'Invalid email or password.'));
 				}
 			});
 		});
@@ -410,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		errorBox.style.display = 'block';
 	}
 
-	// Background image rotation
+	// Background rotation
 	var bgSlider = document.getElementById('login-bg-slider');
 	if (bgSlider) {
 		var images = [
@@ -418,8 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			'/assets/tamdeensteel/img/furnace-pouring.jpeg',
 			'/assets/tamdeensteel/img/rolling-mill.jpeg',
 			'/assets/tamdeensteel/img/steel-angles-closeup.jpeg',
-			'/assets/tamdeensteel/img/flat-bars-warehouse.jpeg',
-			'/assets/tamdeensteel/img/square-bars.jpeg'
+			'/assets/tamdeensteel/img/flat-bars-warehouse.jpeg'
 		];
 		var idx = 0;
 		setInterval(function() {
@@ -434,5 +240,3 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 {% endblock %}
-
-{% block sidebar %}{% endblock %}

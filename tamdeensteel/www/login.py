@@ -21,6 +21,9 @@ def get_context(context):
 	context.is_rtl = lang == "ar"
 	context.dir = "rtl" if lang == "ar" else "ltr"
 
+	# Use standalone template - fully separate from Frappe frame
+	context.base_template_path = "tamdeensteel/templates/tamdeen_base.html"
+
 	context.no_header = True
 	context.no_breadcrumbs = True
 	context.no_sidebar = True

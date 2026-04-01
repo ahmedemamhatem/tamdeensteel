@@ -1,23 +1,12 @@
-{% extends "templates/web.html" %}
+{% extends "tamdeensteel/templates/tamdeen_base.html" %}
 
 {% set is_ar = lang == "ar" %}
 {% set d = "rtl" if is_ar else "ltr" %}
 {% set switch_lang = "en" if is_ar else "ar" %}
 {% set switch_label = "English" if is_ar else "العربية" %}
 
-{% block head_include %}
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-{% if is_ar %}
-<style>
-	.tamdeen-website { font-family: 'Tajawal', 'Inter', sans-serif !important; direction: rtl; text-align: right; }
-	.tamdeen-website * { font-family: inherit; }
-</style>
-{% endif %}
-{% endblock %}
-
-{% block page_content %}
-<div class="tamdeen-website" dir="{{ d }}">
+{% block body %}
+<div class="tamdeen-website" dir="{{ d }}" {% if is_ar %}style="font-family: 'Tajawal', 'Inter', sans-serif; direction: rtl; text-align: right;"{% endif %}>
 
 <!-- ============ NAVIGATION ============ -->
 <nav class="tamdeen-nav">
@@ -34,6 +23,7 @@
 			<li><a href="#contact">{{ "تواصل معنا" if is_ar else "Contact" }}</a></li>
 			<li>
 				<a href="?_lang={{ switch_lang }}" class="nav-lang-switch" onclick="switchLang('{{ switch_lang }}'); return false;">
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px;"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
 					{{ switch_label }}
 				</a>
 			</li>
@@ -57,24 +47,16 @@
 		<h1>نصنع <span>مستقبل</span> الحديد والصلب</h1>
 		<p>من المعدن المنصهر إلى منتجات الصلب عالية الدقة، تمدين تقدم التميز في كل قضيب وزاوية وبيليت نصنعه.</p>
 		<div class="hero-buttons">
-			<a href="#products" class="btn-primary-tamdeen">
-				استكشف المنتجات &#8592;
-			</a>
-			<a href="#video" class="btn-outline-tamdeen">
-				&#9654; شاهد جولة المصنع
-			</a>
+			<a href="#products" class="btn-primary-tamdeen">استكشف المنتجات &#8592;</a>
+			<a href="#video" class="btn-outline-tamdeen">&#9654; شاهد جولة المصنع</a>
 		</div>
 		{% else %}
 		<div class="hero-badge">Leading Steel Manufacturer</div>
 		<h1>Forging the <span>Future</span> of Steel</h1>
 		<p>From molten metal to precision-crafted steel products, Tamdeen delivers excellence in every bar, angle, and billet we manufacture.</p>
 		<div class="hero-buttons">
-			<a href="#products" class="btn-primary-tamdeen">
-				Explore Products &#8594;
-			</a>
-			<a href="#video" class="btn-outline-tamdeen">
-				&#9654; Watch Factory Tour
-			</a>
+			<a href="#products" class="btn-primary-tamdeen">Explore Products &#8594;</a>
+			<a href="#video" class="btn-outline-tamdeen">&#9654; Watch Factory Tour</a>
 		</div>
 		{% endif %}
 	</div>
@@ -130,44 +112,20 @@
 				<p>تمدين للحديد والصلب شركة رائدة متخصصة في إنتاج منتجات الصلب الهيكلي عالية الجودة. تضمن منشآتنا المتطورة وعمليات مراقبة الجودة الصارمة أن كل منتج يلبي المعايير الدولية.</p>
 				<p>من مصانع الدرفلة المتقدمة إلى عمليات القطع الدقيقة، نجمع بين الخبرة المعدنية التقليدية وتكنولوجيا التصنيع الحديثة لتقديم حلول الصلب التي تبني البنية التحتية للغد.</p>
 				<div class="about-features">
-					<div class="about-feature">
-						<div class="feature-icon">&#9670;</div>
-						<span>معتمد ISO</span>
-					</div>
-					<div class="about-feature">
-						<div class="feature-icon">&#9670;</div>
-						<span>جودة عالية</span>
-					</div>
-					<div class="about-feature">
-						<div class="feature-icon">&#9670;</div>
-						<span>توصيل سريع</span>
-					</div>
-					<div class="about-feature">
-						<div class="feature-icon">&#9670;</div>
-						<span>طلبات مخصصة</span>
-					</div>
+					<div class="about-feature"><div class="feature-icon">&#9670;</div><span>معتمد ISO</span></div>
+					<div class="about-feature"><div class="feature-icon">&#9670;</div><span>جودة عالية</span></div>
+					<div class="about-feature"><div class="feature-icon">&#9670;</div><span>توصيل سريع</span></div>
+					<div class="about-feature"><div class="feature-icon">&#9670;</div><span>طلبات مخصصة</span></div>
 				</div>
 				{% else %}
 				<h3>Built on Strength. Driven by Innovation.</h3>
 				<p>Tamdeen Steel is a premier steel manufacturer specializing in the production of high-grade structural steel products. Our state-of-the-art facilities and rigorous quality control processes ensure that every product meets international standards.</p>
 				<p>From our advanced rolling mills to our precision cutting operations, we combine traditional metallurgical expertise with modern manufacturing technology to deliver steel solutions that build the infrastructure of tomorrow.</p>
 				<div class="about-features">
-					<div class="about-feature">
-						<div class="feature-icon">&#9670;</div>
-						<span>ISO Certified</span>
-					</div>
-					<div class="about-feature">
-						<div class="feature-icon">&#9670;</div>
-						<span>Premium Quality</span>
-					</div>
-					<div class="about-feature">
-						<div class="feature-icon">&#9670;</div>
-						<span>Fast Delivery</span>
-					</div>
-					<div class="about-feature">
-						<div class="feature-icon">&#9670;</div>
-						<span>Custom Orders</span>
-					</div>
+					<div class="about-feature"><div class="feature-icon">&#9670;</div><span>ISO Certified</span></div>
+					<div class="about-feature"><div class="feature-icon">&#9670;</div><span>Premium Quality</span></div>
+					<div class="about-feature"><div class="feature-icon">&#9670;</div><span>Fast Delivery</span></div>
+					<div class="about-feature"><div class="feature-icon">&#9670;</div><span>Custom Orders</span></div>
 				</div>
 				{% endif %}
 			</div>
@@ -190,72 +148,39 @@
 			{% endif %}
 		</div>
 		<div class="products-grid">
+			{% set products = [
+				{"img": "angle-iron-stock.jpeg", "en": "Steel Angles", "ar": "زوايا الصلب",
+				 "desc_en": "High-strength angle iron in various sizes for structural framing, towers, and industrial construction applications.",
+				 "desc_ar": "زوايا حديد عالية القوة بأحجام مختلفة للهياكل والأبراج وتطبيقات البناء الصناعي."},
+				{"img": "flat-bars-stack.jpeg", "en": "Flat Bars", "ar": "المسطحات",
+				 "desc_en": "Precision-rolled flat bars for manufacturing, fabrication, and architectural applications with smooth finish.",
+				 "desc_ar": "مسطحات مدرفلة بدقة للتصنيع والتشكيل والتطبيقات المعمارية بتشطيب ناعم."},
+				{"img": "square-bars.jpeg", "en": "Square Bars", "ar": "المربعات",
+				 "desc_en": "Hot-rolled square bars for forging, machining, and heavy-duty structural support systems.",
+				 "desc_ar": "مربعات مدرفلة على الساخن للتشكيل والتشغيل وأنظمة الدعم الهيكلي الثقيلة."},
+				{"img": "rebar-closeup.jpeg", "en": "Steel Rebar", "ar": "حديد التسليح",
+				 "desc_en": "Reinforcement bars meeting international strength standards for concrete and foundation reinforcement.",
+				 "desc_ar": "قضبان تسليح تلبي المعايير الدولية للقوة لتعزيز الخرسانة والأساسات."},
+				{"img": "steel-billets.jpeg", "en": "Steel Billets", "ar": "البيليت",
+				 "desc_en": "Premium semi-finished billets serving as raw material for rolling mills and downstream steel products.",
+				 "desc_ar": "بيليت نصف مصنع عالي الجودة كمواد خام لمصانع الدرفلة ومنتجات الصلب النهائية."},
+				{"img": "quality-measurement.jpeg", "en": "Quality Assurance", "ar": "ضمان الجودة",
+				 "desc_en": "Every product passes rigorous dimensional and chemical analysis testing using precision instruments.",
+				 "desc_ar": "يمر كل منتج باختبارات صارمة للأبعاد والتحليل الكيميائي باستخدام أدوات دقيقة."}
+			] %}
+			{% for p in products %}
 			<div class="product-card fade-in">
 				<div class="card-image">
-					<img src="/assets/tamdeensteel/img/angle-iron-stock.jpeg" alt="{{ 'زوايا الصلب' if is_ar else 'Steel Angles' }}">
+					<img src="/assets/tamdeensteel/img/{{ p.img }}" alt="{{ p.ar if is_ar else p.en }}">
 					<div class="card-overlay"></div>
 				</div>
 				<div class="card-body">
-					<h4>{{ "زوايا الصلب" if is_ar else "Steel Angles" }}</h4>
-					<p>{{ "زوايا حديد عالية القوة بأحجام مختلفة للهياكل والأبراج وتطبيقات البناء الصناعي." if is_ar else "High-strength angle iron in various sizes for structural framing, towers, and industrial construction applications." }}</p>
+					<h4>{{ p.ar if is_ar else p.en }}</h4>
+					<p>{{ p.desc_ar if is_ar else p.desc_en }}</p>
 					<a href="#contact" class="card-link">{{ "اعرف المزيد" if is_ar else "Learn More" }} {{ "&#8592;" if is_ar else "&#8594;" }}</a>
 				</div>
 			</div>
-			<div class="product-card fade-in">
-				<div class="card-image">
-					<img src="/assets/tamdeensteel/img/flat-bars-stack.jpeg" alt="{{ 'المسطحات' if is_ar else 'Flat Bars' }}">
-					<div class="card-overlay"></div>
-				</div>
-				<div class="card-body">
-					<h4>{{ "المسطحات" if is_ar else "Flat Bars" }}</h4>
-					<p>{{ "مسطحات مدرفلة بدقة للتصنيع والتشكيل والتطبيقات المعمارية بتشطيب ناعم." if is_ar else "Precision-rolled flat bars for manufacturing, fabrication, and architectural applications with smooth finish." }}</p>
-					<a href="#contact" class="card-link">{{ "اعرف المزيد" if is_ar else "Learn More" }} {{ "&#8592;" if is_ar else "&#8594;" }}</a>
-				</div>
-			</div>
-			<div class="product-card fade-in">
-				<div class="card-image">
-					<img src="/assets/tamdeensteel/img/square-bars.jpeg" alt="{{ 'المربعات' if is_ar else 'Square Bars' }}">
-					<div class="card-overlay"></div>
-				</div>
-				<div class="card-body">
-					<h4>{{ "المربعات" if is_ar else "Square Bars" }}</h4>
-					<p>{{ "مربعات مدرفلة على الساخن للتشكيل والتشغيل وأنظمة الدعم الهيكلي الثقيلة." if is_ar else "Hot-rolled square bars for forging, machining, and heavy-duty structural support systems." }}</p>
-					<a href="#contact" class="card-link">{{ "اعرف المزيد" if is_ar else "Learn More" }} {{ "&#8592;" if is_ar else "&#8594;" }}</a>
-				</div>
-			</div>
-			<div class="product-card fade-in">
-				<div class="card-image">
-					<img src="/assets/tamdeensteel/img/rebar-closeup.jpeg" alt="{{ 'حديد التسليح' if is_ar else 'Steel Rebar' }}">
-					<div class="card-overlay"></div>
-				</div>
-				<div class="card-body">
-					<h4>{{ "حديد التسليح" if is_ar else "Steel Rebar" }}</h4>
-					<p>{{ "قضبان تسليح تلبي المعايير الدولية للقوة لتعزيز الخرسانة والأساسات." if is_ar else "Reinforcement bars meeting international strength standards for concrete and foundation reinforcement." }}</p>
-					<a href="#contact" class="card-link">{{ "اعرف المزيد" if is_ar else "Learn More" }} {{ "&#8592;" if is_ar else "&#8594;" }}</a>
-				</div>
-			</div>
-			<div class="product-card fade-in">
-				<div class="card-image">
-					<img src="/assets/tamdeensteel/img/steel-billets.jpeg" alt="{{ 'البيليت' if is_ar else 'Steel Billets' }}">
-					<div class="card-overlay"></div>
-				</div>
-				<div class="card-body">
-					<h4>{{ "البيليت" if is_ar else "Steel Billets" }}</h4>
-					<p>{{ "بيليت نصف مصنع عالي الجودة كمواد خام لمصانع الدرفلة ومنتجات الصلب النهائية." if is_ar else "Premium semi-finished billets serving as raw material for rolling mills and downstream steel products." }}</p>
-					<a href="#contact" class="card-link">{{ "اعرف المزيد" if is_ar else "Learn More" }} {{ "&#8592;" if is_ar else "&#8594;" }}</a>
-				</div>
-			</div>
-			<div class="product-card fade-in">
-				<div class="card-image">
-					<img src="/assets/tamdeensteel/img/quality-measurement.jpeg" alt="{{ 'ضمان الجودة' if is_ar else 'Quality Control' }}">
-					<div class="card-overlay"></div>
-				</div>
-				<div class="card-body">
-					<h4>{{ "ضمان الجودة" if is_ar else "Quality Assurance" }}</h4>
-					<p>{{ "يمر كل منتج باختبارات صارمة للأبعاد والتحليل الكيميائي باستخدام أدوات دقيقة." if is_ar else "Every product passes rigorous dimensional and chemical analysis testing using precision instruments." }}</p>
-					<a href="#contact" class="card-link">{{ "اعرف المزيد" if is_ar else "Learn More" }} {{ "&#8592;" if is_ar else "&#8594;" }}</a>
-				</div>
-			</div>
+			{% endfor %}
 		</div>
 	</div>
 </section>
@@ -275,30 +200,20 @@
 			{% endif %}
 		</div>
 		<div class="gallery-grid">
+			{% set gallery = [
+				{"img": "furnace-pouring.jpeg", "en": "Furnace Operations", "ar": "عمليات الأفران"},
+				{"img": "steel-angles-closeup.jpeg", "en": "Finished Products", "ar": "المنتجات النهائية"},
+				{"img": "furnace-interior.jpeg", "en": "Melting Furnace", "ar": "فرن الصهر"},
+				{"img": "flat-bars-warehouse.jpeg", "en": "Steel Warehouse", "ar": "مستودع الصلب"},
+				{"img": "rolling-mill.jpeg", "en": "Rolling Mill", "ar": "مصنع الدرفلة"},
+				{"img": "steel-angles-pattern.jpeg", "en": "Angle Iron Stock", "ar": "مخزون الزوايا"}
+			] %}
+			{% for g in gallery %}
 			<div class="gallery-item fade-in">
-				<img src="/assets/tamdeensteel/img/furnace-pouring.jpeg" alt="{{ 'صب الصلب المنصهر' if is_ar else 'Molten Steel Pouring' }}">
-				<div class="gallery-overlay"><span>{{ "عمليات الأفران" if is_ar else "Furnace Operations" }}</span></div>
+				<img src="/assets/tamdeensteel/img/{{ g.img }}" alt="{{ g.ar if is_ar else g.en }}">
+				<div class="gallery-overlay"><span>{{ g.ar if is_ar else g.en }}</span></div>
 			</div>
-			<div class="gallery-item fade-in">
-				<img src="/assets/tamdeensteel/img/steel-angles-closeup.jpeg" alt="{{ 'زوايا الصلب' if is_ar else 'Steel Angles' }}">
-				<div class="gallery-overlay"><span>{{ "المنتجات النهائية" if is_ar else "Finished Products" }}</span></div>
-			</div>
-			<div class="gallery-item fade-in">
-				<img src="/assets/tamdeensteel/img/furnace-interior.jpeg" alt="{{ 'داخل الفرن' if is_ar else 'Furnace Interior' }}">
-				<div class="gallery-overlay"><span>{{ "فرن الصهر" if is_ar else "Melting Furnace" }}</span></div>
-			</div>
-			<div class="gallery-item fade-in">
-				<img src="/assets/tamdeensteel/img/flat-bars-warehouse.jpeg" alt="{{ 'المستودع' if is_ar else 'Warehouse' }}">
-				<div class="gallery-overlay"><span>{{ "مستودع الصلب" if is_ar else "Steel Warehouse" }}</span></div>
-			</div>
-			<div class="gallery-item fade-in">
-				<img src="/assets/tamdeensteel/img/rolling-mill.jpeg" alt="{{ 'مصنع الدرفلة' if is_ar else 'Rolling Mill' }}">
-				<div class="gallery-overlay"><span>{{ "مصنع الدرفلة" if is_ar else "Rolling Mill" }}</span></div>
-			</div>
-			<div class="gallery-item fade-in">
-				<img src="/assets/tamdeensteel/img/steel-angles-pattern.jpeg" alt="{{ 'مخزون الزوايا' if is_ar else 'Steel Pattern' }}">
-				<div class="gallery-overlay"><span>{{ "مخزون الزوايا" if is_ar else "Angle Iron Stock" }}</span></div>
-			</div>
+			{% endfor %}
 		</div>
 	</div>
 </section>
@@ -333,23 +248,15 @@
 			<h2>مستعد للبناء مع تمدين؟</h2>
 			<p>تواصل مع فريق المبيعات للحصول على عروض الأسعار والطلبات المخصصة وجداول التسليم.</p>
 			<div class="hero-buttons" style="opacity: 1;">
-				<a href="mailto:ahmedemamhatem@gmail.com" class="btn-primary-tamdeen">
-					&#8592; طلب عرض سعر
-				</a>
-				<a href="/login" class="btn-outline-tamdeen">
-					&#8592; بوابة العملاء
-				</a>
+				<a href="mailto:ahmedemamhatem@gmail.com" class="btn-primary-tamdeen">&#8592; طلب عرض سعر</a>
+				<a href="/login" class="btn-outline-tamdeen">&#8592; بوابة العملاء</a>
 			</div>
 			{% else %}
 			<h2>Ready to Build with Tamdeen?</h2>
 			<p>Get in touch with our sales team for quotes, custom orders, and delivery schedules.</p>
 			<div class="hero-buttons" style="opacity: 1;">
-				<a href="mailto:ahmedemamhatem@gmail.com" class="btn-primary-tamdeen">
-					Request a Quote &#8594;
-				</a>
-				<a href="/login" class="btn-outline-tamdeen">
-					Client Portal &#8594;
-				</a>
+				<a href="mailto:ahmedemamhatem@gmail.com" class="btn-primary-tamdeen">Request a Quote &#8594;</a>
+				<a href="/login" class="btn-outline-tamdeen">Client Portal &#8594;</a>
 			</div>
 			{% endif %}
 		</div>

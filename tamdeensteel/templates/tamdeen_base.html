@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="{{ lang or 'en' }}" dir="{{ dir or 'ltr' }}">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Tamdeen Steel">
+
+	{% block meta_block %}
+	{% if metatags %}
+	<meta name="title" content="{{ metatags.title or title }}">
+	<meta name="description" content="{{ metatags.description or '' }}">
+	<meta property="og:title" content="{{ metatags.title or title }}">
+	<meta property="og:description" content="{{ metatags.description or '' }}">
+	<meta property="og:image" content="{{ metatags.image or '' }}">
+	<meta property="og:type" content="website">
+	{% endif %}
+	{% endblock %}
+
+	<title>{% block title %}{{ title | striptags }}{% endblock %}</title>
+
+	<link rel="shortcut icon" href="/assets/tamdeensteel/img/logo.jpeg" type="image/jpeg">
+
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+	<!-- Tamdeen Styles -->
+	<link rel="stylesheet" href="/assets/tamdeensteel/css/tamdeensteel.css">
+
+	{%- block head_include %}{% endblock -%}
+
+	<!-- Frappe client script (needed for frappe.call on login) -->
+	<script>
+		window.frappe = window.frappe || {};
+		frappe.ready_events = [];
+		frappe.ready = function(fn) { frappe.ready_events.push(fn); }
+		window.dev_server = {{ dev_server or 0 }};
+		window.socketio_port = {{ frappe.socketio_port or 9000 }};
+	</script>
+</head>
+<body class="tamdeen-standalone" style="margin:0; padding:0;">
+
+	{%- block body %}{% endblock -%}
+
+	<!-- Frappe core JS (for frappe.call, csrf, etc.) -->
+	{{ include_script('frappe-web.bundle.js') }}
+	<!-- Tamdeen JS -->
+	<script src="/assets/tamdeensteel/js/tamdeensteel.js"></script>
+
+	{%- block script %}{% endblock -%}
+</body>
+</html>
