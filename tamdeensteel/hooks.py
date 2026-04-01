@@ -14,8 +14,8 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of web template
-web_include_css = "/assets/tamdeensteel/css/tamdeensteel.css"
-web_include_js = "/assets/tamdeensteel/js/tamdeensteel.js"
+# web_include_css = "/assets/tamdeensteel/css/tamdeensteel.css"
+# web_include_js = "/assets/tamdeensteel/js/tamdeensteel.js"
 
 # Home Pages
 # ----------

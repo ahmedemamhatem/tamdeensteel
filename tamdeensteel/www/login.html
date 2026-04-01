@@ -1,122 +1,149 @@
-{% extends "tamdeensteel/templates/tamdeen_base.html" %}
+{% extends "templates/base.html" %}
+{% block navbar %}{% endblock %}
+{% block banner %}{% endblock %}
+{% block footer %}{% endblock %}
 
 {% set is_ar = lang == "ar" %}
 {% set d = "rtl" if is_ar else "ltr" %}
-{% set switch_lang = "en" if is_ar else "ar" %}
-{% set font_family = "Tajawal, Inter, sans-serif" if is_ar else "Inter, -apple-system, BlinkMacSystemFont, sans-serif" %}
+{% set sl = "en" if is_ar else "ar" %}
 
-{% block page_content %}
-<div class="tamdeen-login-wrapper" dir="{{ d }}" style="font-family:{{ font_family }};">
+{% block head_include %}
+{{ super() }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--or:#E67E22;--dor:#D35400;--c:#2D3436;--dk:#1a1f20;--gr:#636E72;--lt:#DFE6E9;--grd:linear-gradient(135deg,#E67E22,#D35400)}
+html{scroll-behavior:smooth}
 
-	<!-- ===== LEFT VISUAL PANEL ===== -->
-	<div class="tamdeen-login-left">
-		<div id="login-bg-slider" class="login-bg-layer"></div>
-		<div class="login-gradient-layer"></div>
-		<div class="login-accent-line" style="{{ 'left' if is_ar else 'right' }}:0;"></div>
+.login-wrap{display:flex;min-height:100vh;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif}
+[dir="rtl"] .login-wrap{font-family:'Tajawal','Inter',sans-serif}
 
-		<div class="login-particle" style="top:18%;left:12%;animation-delay:0s;"></div>
-		<div class="login-particle" style="top:55%;left:75%;animation-delay:1s;"></div>
-		<div class="login-particle" style="top:78%;left:28%;animation-delay:2s;"></div>
-		<div class="login-particle" style="top:8%;left:65%;animation-delay:0.5s;"></div>
-		<div class="login-particle" style="top:40%;left:45%;animation-delay:3s;"></div>
+/* LEFT PANEL */
+.login-left{flex:1;position:relative;background:var(--dk);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.login-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.3;transition:opacity .8s}
+.login-grad{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,31,32,.88) 0%,rgba(45,52,54,.5) 50%,rgba(26,31,32,.92) 100%)}
+.login-line{position:absolute;top:15%;bottom:15%;width:4px;background:linear-gradient(180deg,transparent,var(--or),transparent)}
+.login-ptcl{position:absolute;width:5px;height:5px;background:var(--or);border-radius:50%;opacity:.25;animation:fp 7s ease-in-out infinite}
+@keyframes fp{0%,100%{transform:translateY(0) scale(1);opacity:.2}50%{transform:translateY(-18px) scale(1.4);opacity:.5}}
+.login-vis{position:relative;z-index:2;text-align:center;padding:48px;max-width:460px}
+.login-logo{height:80px;border-radius:10px;background:rgba(255,255,255,.94);padding:8px 14px;margin-bottom:28px;filter:drop-shadow(0 4px 20px rgba(0,0,0,.25));animation:lfd .8s ease forwards}
+.login-lh{color:#fff;font-size:clamp(26px,4vw,36px);font-weight:800;margin-bottom:12px;line-height:1.25;animation:lfu .8s ease .2s forwards;opacity:0}
+.login-lh span{color:var(--or)}
+.login-ld{color:rgba(255,255,255,.52);font-size:15px;line-height:1.8;animation:lfu .8s ease .4s forwards;opacity:0}
+.login-lst{display:flex;gap:34px;justify-content:center;margin-top:40px;animation:lfu .8s ease .6s forwards;opacity:0}
+.login-lst .sn{color:var(--or);font-size:28px;font-weight:800;line-height:1}
+.login-lst .sl{color:rgba(255,255,255,.38);font-size:10px;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-top:4px}
+@keyframes lfd{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes lfu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 
-		<div class="login-visual-content">
-			<img src="/assets/tamdeensteel/img/logo.jpeg" alt="Tamdeen Steel" class="login-brand-logo">
+/* RIGHT PANEL */
+.login-right{width:480px;min-width:400px;background:#fff;display:flex;align-items:center;justify-content:center;padding:48px 40px;position:relative}
+.login-topbar{position:absolute;top:24px;display:flex;align-items:center;gap:14px}
+.login-lbtn{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:2px solid #E8ECF0;border-radius:20px;color:var(--c);text-decoration:none;font-size:13px;font-weight:600;transition:all .3s}
+.login-lbtn:hover{border-color:var(--or);color:var(--or);text-decoration:none}
+.login-lbtn .flag-i{font-size:17px;line-height:1}
+.login-back{color:var(--gr);text-decoration:none;font-size:13px;font-weight:500;transition:color .3s;display:inline-flex;align-items:center;gap:5px}
+.login-back:hover{color:var(--or);text-decoration:none}
+.login-fc{width:100%;max-width:350px}
+.login-fc h3{font-size:26px;font-weight:800;color:var(--c);margin-bottom:6px}
+.login-fc .sub{color:var(--gr);font-size:14px;margin-bottom:32px}
+.login-fld{margin-bottom:18px}
+.login-fld label{display:block;font-size:11px;font-weight:700;color:var(--c);margin-bottom:7px;text-transform:uppercase;letter-spacing:.8px}
+.login-inp{width:100%;padding:13px 15px;border:2px solid #E8ECF0;border-radius:10px;font-size:15px;outline:none;background:#F8FAFB;transition:all .3s;box-sizing:border-box}
+.login-inp:focus{border-color:var(--or);box-shadow:0 0 0 3px rgba(230,126,34,.1);background:#fff}
+.login-inp.rtl-i{text-align:right;direction:rtl;font-family:Tajawal,sans-serif}
+.login-tpwd{position:absolute;top:50%;transform:translateY(-50%);color:var(--or);font-size:12px;font-weight:600;cursor:pointer;user-select:none}
+.login-opts{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.login-rem{font-size:13px;color:var(--gr);display:flex;align-items:center;gap:6px;cursor:pointer}
+.login-rem input{accent-color:var(--or)}
+.login-fgt{color:var(--or);font-size:12px;font-weight:600;text-decoration:none}
+.login-err{display:none;background:#FFF5F5;border:1px solid #FED7D7;border-radius:8px;padding:11px 15px;margin-bottom:18px;color:#C53030;font-size:13px;font-weight:500}
+.login-submit{width:100%;padding:15px;background:var(--grd);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:transform .3s,box-shadow .3s}
+.login-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(230,126,34,.35)}
+.login-submit:active{transform:translateY(0)}
+.login-div{text-align:center;margin:26px 0;position:relative}
+.login-div::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:#E8ECF0}
+.login-div span{background:#fff;padding:0 14px;color:var(--gr);font-size:12px;position:relative}
+.login-soc{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 15px;border:2px solid #E8ECF0;border-radius:10px;color:var(--c);text-decoration:none;font-weight:600;font-size:13px;transition:all .3s}
+.login-soc:hover{border-color:var(--or);color:var(--or);text-decoration:none}
+.login-su{text-align:center;margin-top:28px;font-size:13px;color:var(--gr)}
+.login-su a{color:var(--or);font-weight:700;text-decoration:none}
+.login-copy{text-align:center;margin-top:36px;padding-top:18px;border-top:1px solid #E8ECF0}
+.login-copy p{color:#B2BEC3;font-size:11px;margin:0}
+
+@media(max-width:768px){
+	.login-wrap{flex-direction:column}
+	.login-left{min-height:260px;flex:none}
+	.login-right{width:100%;min-width:auto;padding:36px 24px}
+	.login-lst{display:none}
+	.login-topbar{position:relative;top:auto;margin-bottom:24px;justify-content:space-between;width:100%}
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="login-wrap" dir="{{ d }}">
+	<!-- LEFT -->
+	<div class="login-left">
+		<div id="login-bg-slider" class="login-bg" style="background-image:url(/assets/tamdeensteel/img/furnace-interior.jpeg)"></div>
+		<div class="login-grad"></div>
+		<div class="login-line" style="{{ 'left' if is_ar else 'right' }}:0"></div>
+		<div class="login-ptcl" style="top:18%;left:12%;animation-delay:0s"></div>
+		<div class="login-ptcl" style="top:55%;left:75%;animation-delay:1s"></div>
+		<div class="login-ptcl" style="top:78%;left:28%;animation-delay:2s"></div>
+		<div class="login-ptcl" style="top:8%;left:65%;animation-delay:.5s"></div>
+		<div class="login-vis">
+			<img src="/assets/tamdeensteel/img/logo.jpeg" alt="Tamdeen" class="login-logo">
 			{% if is_ar %}
-			<h2 class="login-hero-title">نصنع <span>مستقبل</span> الحديد والصلب</h2>
-			<p class="login-hero-desc">مرحباً بك في بوابة تمدين للحديد والصلب.<br>أدر طلباتك وتتبع الإنتاج ونمّي أعمالك.</p>
+			<h2 class="login-lh">نصنع <span>مستقبل</span> الحديد والصلب</h2>
+			<p class="login-ld">مرحباً بك في بوابة تمدين للحديد والصلب.<br>أدر طلباتك وتتبع الإنتاج ونمّي أعمالك.</p>
 			{% else %}
-			<h2 class="login-hero-title">Forging the <span>Future</span> of Steel</h2>
-			<p class="login-hero-desc">Welcome to the Tamdeen Steel management portal.<br>Access your orders, track production, and manage your business.</p>
+			<h2 class="login-lh">Forging the <span>Future</span> of Steel</h2>
+			<p class="login-ld">Welcome to the Tamdeen Steel portal.<br>Access your orders, track production, and manage your business.</p>
 			{% endif %}
-
-			<div class="login-hero-stats">
-				<div><div class="stat-num">15+</div><div class="stat-label">{{ "سنوات" if is_ar else "Years" }}</div></div>
-				<div><div class="stat-num">50K</div><div class="stat-label">{{ "طن/سنة" if is_ar else "Tons/Year" }}</div></div>
-				<div><div class="stat-num">200+</div><div class="stat-label">{{ "عملاء" if is_ar else "Clients" }}</div></div>
+			<div class="login-lst">
+				<div><div class="sn">15+</div><div class="sl">{{ "سنوات" if is_ar else "Years" }}</div></div>
+				<div><div class="sn">50K</div><div class="sl">{{ "طن/سنة" if is_ar else "Tons/Year" }}</div></div>
+				<div><div class="sn">200+</div><div class="sl">{{ "عملاء" if is_ar else "Clients" }}</div></div>
 			</div>
 		</div>
 	</div>
 
-	<!-- ===== RIGHT LOGIN FORM ===== -->
-	<div class="tamdeen-login-right">
-		<div class="login-top-bar">
-			<a href="?_lang={{ switch_lang }}" class="login-lang-btn" onclick="switchLang('{{ switch_lang }}');return false;">
-				{% if is_ar %}<span class="flag-icon">🇬🇧</span> EN{% else %}<span class="flag-icon">🇸🇦</span> عربي{% endif %}
-			</a>
-			<a href="/" class="login-back-link">
-				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
-				{{ "العودة للموقع" if is_ar else "Back to Website" }}
-			</a>
+	<!-- RIGHT -->
+	<div class="login-right">
+		<div class="login-topbar" style="{{ 'left' if is_ar else 'right' }}:30px">
+			<a href="?_lang={{ sl }}" class="login-lbtn" onclick="switchLang('{{ sl }}');return false;">{% if is_ar %}<span class="flag-i">🇬🇧</span> EN{% else %}<span class="flag-i">🇸🇦</span> عربي{% endif %}</a>
+			<a href="/" class="login-back"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg> {{ "العودة للموقع" if is_ar else "Back to Website" }}</a>
 		</div>
-
-		<div class="login-form-container">
-			<div class="login-header" style="{{ 'text-align:right;' if is_ar else '' }}">
-				{% if is_ar %}
-				<h3 class="login-title">مرحباً بعودتك</h3>
-				<p class="login-subtitle">سجّل الدخول إلى بوابة تمدين للحديد والصلب</p>
-				{% else %}
-				<h3 class="login-title">Welcome Back</h3>
-				<p class="login-subtitle">Sign in to your Tamdeen Steel portal</p>
-				{% endif %}
+		<div class="login-fc">
+			<div style="margin-bottom:32px;{{ 'text-align:right;' if is_ar else '' }}">
+				{% if is_ar %}<h3>مرحباً بعودتك</h3><p class="sub">سجّل الدخول إلى بوابة تمدين للحديد والصلب</p>
+				{% else %}<h3>Welcome Back</h3><p class="sub">Sign in to your Tamdeen Steel portal</p>{% endif %}
 			</div>
-
-			<form id="tamdeen-login-form" autocomplete="on">
-				<div class="login-field">
-					<label for="tamdeen-email">{{ "البريد الإلكتروني" if is_ar else (login_label or "Email") }}</label>
-					<input type="text" id="tamdeen-email" name="usr" class="login-input {{ 'rtl-input' if is_ar else '' }}"
-						placeholder="{{ 'أدخل بريدك الإلكتروني' if is_ar else (login_name_placeholder or 'Enter your email') }}"
-						autocomplete="username" required autofocus>
+			<form id="login-form" autocomplete="on">
+				<div class="login-fld">
+					<label for="l-email">{{ "البريد الإلكتروني" if is_ar else (login_label or "Email") }}</label>
+					<input type="text" id="l-email" name="usr" class="login-inp {{ 'rtl-i' if is_ar else '' }}" placeholder="{{ 'أدخل بريدك الإلكتروني' if is_ar else (login_name_placeholder or 'Enter your email') }}" autocomplete="username" required autofocus>
 				</div>
-
-				<div class="login-field">
-					<label for="tamdeen-password">{{ "كلمة المرور" if is_ar else "Password" }}</label>
-					<div style="position:relative;">
-						<input type="password" id="tamdeen-password" name="pwd" class="login-input {{ 'rtl-input' if is_ar else '' }}"
-							placeholder="{{ 'أدخل كلمة المرور' if is_ar else 'Enter your password' }}"
-							autocomplete="current-password" required>
-						<span id="toggle-pwd" class="login-toggle-pwd" style="{{ 'left' if is_ar else 'right' }}:14px;">
-							{{ "إظهار" if is_ar else "Show" }}
-						</span>
-					</div>
+				<div class="login-fld">
+					<label for="l-pwd">{{ "كلمة المرور" if is_ar else "Password" }}</label>
+					<div style="position:relative"><input type="password" id="l-pwd" name="pwd" class="login-inp {{ 'rtl-i' if is_ar else '' }}" placeholder="{{ 'أدخل كلمة المرور' if is_ar else 'Enter your password' }}" autocomplete="current-password" required><span id="tpwd" class="login-tpwd" style="{{ 'left' if is_ar else 'right' }}:14px">{{ "إظهار" if is_ar else "Show" }}</span></div>
 				</div>
-
-				<div class="login-options">
-					<label class="login-remember">
-						<input type="checkbox" name="remember"> {{ "تذكرني" if is_ar else "Remember me" }}
-					</label>
-					<a href="/forgot-password" class="login-forgot">{{ "نسيت كلمة المرور؟" if is_ar else "Forgot Password?" }}</a>
+				<div class="login-opts">
+					<label class="login-rem"><input type="checkbox" name="remember"> {{ "تذكرني" if is_ar else "Remember me" }}</label>
+					<a href="/forgot-password" class="login-fgt">{{ "نسيت كلمة المرور؟" if is_ar else "Forgot Password?" }}</a>
 				</div>
-
-				<div id="tamdeen-login-error" class="login-error"></div>
-
-				<button type="submit" id="tamdeen-login-btn" class="login-submit-btn">
-					{{ "تسجيل الدخول" if is_ar else "Sign In" }}
-				</button>
+				<div id="login-err" class="login-err"></div>
+				<button type="submit" id="login-btn" class="login-submit">{{ "تسجيل الدخول" if is_ar else "Sign In" }}</button>
 			</form>
-
 			{% if provider_logins %}
-			<div class="login-divider-line"><span>{{ "أو سجّل عبر" if is_ar else "or continue with" }}</span></div>
-			<div style="display:flex;flex-direction:column;gap:10px;">
-				{% for provider in provider_logins %}
-				<a href="{{ provider.auth_url }}" class="login-social-btn">
-					{% if provider.icon %}{{ provider.icon }}{% endif %}
-					{{ ("الدخول عبر " ~ provider.provider_name) if is_ar else ("Login with " ~ provider.provider_name) }}
-				</a>
-				{% endfor %}
-			</div>
+			<div class="login-div"><span>{{ "أو سجّل عبر" if is_ar else "or continue with" }}</span></div>
+			<div style="display:flex;flex-direction:column;gap:10px">{% for pr in provider_logins %}<a href="{{ pr.auth_url }}" class="login-soc">{% if pr.icon %}{{ pr.icon }}{% endif %} {{ ("الدخول عبر " ~ pr.provider_name) if is_ar else ("Login with " ~ pr.provider_name) }}</a>{% endfor %}</div>
 			{% endif %}
-
-			{% if not disable_signup %}
-			<div class="login-signup-link">
-				{{ "ليس لديك حساب؟" if is_ar else "Don't have an account?" }}
-				<a href="/signup">{{ "سجّل الآن" if is_ar else "Sign up" }}</a>
-			</div>
-			{% endif %}
-
-			<div class="login-footer-copy">
-				<p>&copy; 2026 {{ "تمدين للحديد والصلب. جميع الحقوق محفوظة." if is_ar else "Tamdeen Steel. All rights reserved." }}</p>
-			</div>
+			{% if not disable_signup %}<div class="login-su">{{ "ليس لديك حساب؟" if is_ar else "Don't have an account?" }} <a href="/signup">{{ "سجّل الآن" if is_ar else "Sign up" }}</a></div>{% endif %}
+			<div class="login-copy"><p>&copy; 2026 {{ "تمدين للحديد والصلب. جميع الحقوق محفوظة." if is_ar else "Tamdeen Steel. All rights reserved." }}</p></div>
 		</div>
 	</div>
 </div>
@@ -124,77 +151,22 @@
 
 {% block script %}
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-	var isAr = {{ 'true' if is_ar else 'false' }};
-
-	// Toggle password
-	var togglePwd = document.getElementById('toggle-pwd');
-	var pwdField = document.getElementById('tamdeen-password');
-	if (togglePwd && pwdField) {
-		togglePwd.addEventListener('click', function() {
-			var isHidden = pwdField.type === 'password';
-			pwdField.type = isHidden ? 'text' : 'password';
-			togglePwd.textContent = isHidden ? (isAr ? 'إخفاء' : 'Hide') : (isAr ? 'إظهار' : 'Show');
-		});
-	}
-
-	// Login form
-	var form = document.getElementById('tamdeen-login-form');
-	var btn = document.getElementById('tamdeen-login-btn');
-	var errorBox = document.getElementById('tamdeen-login-error');
-
-	if (form) {
-		form.addEventListener('submit', function(e) {
-			e.preventDefault();
-			var usr = document.getElementById('tamdeen-email').value;
-			var pwd = document.getElementById('tamdeen-password').value;
-			if (!usr || !pwd) { showError(isAr ? 'يرجى ملء جميع الحقول.' : 'Please fill in all fields.'); return; }
-
-			btn.textContent = isAr ? 'جارٍ تسجيل الدخول...' : 'Signing in...';
-			btn.disabled = true; btn.style.opacity = '0.7';
-			errorBox.style.display = 'none';
-
-			frappe.call({
-				method: 'login',
-				args: { usr: usr, pwd: pwd },
-				callback: function(r) {
-					if (r.message === 'Logged In') {
-						btn.textContent = isAr ? 'جارٍ التحويل...' : 'Redirecting...';
-						window.location.href = '/app';
-					}
-				},
-				error: function(r) {
-					btn.textContent = isAr ? 'تسجيل الدخول' : 'Sign In';
-					btn.disabled = false; btn.style.opacity = '1';
-					var msg; try { msg = r && r._server_messages ? JSON.parse(JSON.parse(r._server_messages)[0]).message : null; } catch(ex) { msg = null; }
-					showError(msg || (isAr ? 'بريد إلكتروني أو كلمة مرور غير صحيحة.' : 'Invalid email or password.'));
-				}
-			});
-		});
-	}
-
-	function showError(msg) { errorBox.textContent = msg; errorBox.style.display = 'block'; }
-
-	// Background rotation
-	var bgSlider = document.getElementById('login-bg-slider');
-	if (bgSlider) {
-		var images = [
-			'/assets/tamdeensteel/img/furnace-interior.jpeg',
-			'/assets/tamdeensteel/img/furnace-pouring.jpeg',
-			'/assets/tamdeensteel/img/rolling-mill.jpeg',
-			'/assets/tamdeensteel/img/steel-angles-closeup.jpeg',
-			'/assets/tamdeensteel/img/flat-bars-warehouse.jpeg'
-		];
-		var idx = 0;
-		setInterval(function() {
-			idx = (idx + 1) % images.length;
-			bgSlider.style.opacity = '0';
-			setTimeout(function() {
-				bgSlider.style.backgroundImage = 'url(' + images[idx] + ')';
-				bgSlider.style.opacity = '0.3';
-			}, 800);
-		}, 5000);
-	}
+function switchLang(l){document.cookie='preferred_language='+l+';path=/;max-age=31536000;SameSite=Lax';var u=new URL(window.location.href);u.searchParams.set('_lang',l);window.location.href=u.toString();}
+document.addEventListener('DOMContentLoaded',function(){
+	var isAr={{ 'true' if is_ar else 'false' }};
+	var tp=document.getElementById('tpwd'),pf=document.getElementById('l-pwd');
+	if(tp&&pf)tp.addEventListener('click',function(){var h=pf.type==='password';pf.type=h?'text':'password';tp.textContent=h?(isAr?'إخفاء':'Hide'):(isAr?'إظهار':'Show');});
+	var form=document.getElementById('login-form'),btn=document.getElementById('login-btn'),errBox=document.getElementById('login-err');
+	if(form)form.addEventListener('submit',function(e){
+		e.preventDefault();
+		var u=document.getElementById('l-email').value,p=document.getElementById('l-pwd').value;
+		if(!u||!p){showE(isAr?'يرجى ملء جميع الحقول.':'Please fill in all fields.');return;}
+		btn.textContent=isAr?'جارٍ تسجيل الدخول...':'Signing in...';btn.disabled=true;btn.style.opacity='.7';errBox.style.display='none';
+		frappe.call({method:'login',args:{usr:u,pwd:p},callback:function(r){if(r.message==='Logged In'){btn.textContent=isAr?'جارٍ التحويل...':'Redirecting...';window.location.href='/app';}},error:function(r){btn.textContent=isAr?'تسجيل الدخول':'Sign In';btn.disabled=false;btn.style.opacity='1';var m;try{m=r&&r._server_messages?JSON.parse(JSON.parse(r._server_messages)[0]).message:null;}catch(x){m=null;}showE(m||(isAr?'بريد إلكتروني أو كلمة مرور غير صحيحة.':'Invalid email or password.'));}});
+	});
+	function showE(m){errBox.textContent=m;errBox.style.display='block';}
+	var bg=document.getElementById('login-bg-slider');
+	if(bg){var imgs=['/assets/tamdeensteel/img/furnace-interior.jpeg','/assets/tamdeensteel/img/furnace-pouring.jpeg','/assets/tamdeensteel/img/rolling-mill.jpeg','/assets/tamdeensteel/img/steel-angles-closeup.jpeg','/assets/tamdeensteel/img/flat-bars-warehouse.jpeg'],ix=0;setInterval(function(){ix=(ix+1)%imgs.length;bg.style.opacity='0';setTimeout(function(){bg.style.backgroundImage='url('+imgs[ix]+')';bg.style.opacity='.3';},800);},5000);}
 });
 </script>
 {% endblock %}
