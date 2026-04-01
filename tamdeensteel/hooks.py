@@ -1,7 +1,7 @@
 app_name = "tamdeensteel"
 app_title = "Tamdeensteel"
 app_publisher = "Ahmed Emam"
-app_description = "Tamdeensteel"
+app_description = "Tamdeen Steel - Leading Steel Manufacturer"
 app_email = "ahmedemamhatem@gmail.com"
 app_license = "mit"
 
@@ -10,59 +10,24 @@ app_license = "mit"
 
 # required_apps = []
 
-# Each item in the list will be shown as an app in the apps page
-# add_to_apps_screen = [
-# 	{
-# 		"name": "tamdeensteel",
-# 		"logo": "/assets/tamdeensteel/logo.png",
-# 		"title": "Tamdeensteel",
-# 		"route": "/tamdeensteel",
-# 		"has_permission": "tamdeensteel.api.permission.has_app_permission"
-# 	}
-# ]
-
 # Includes in <head>
 # ------------------
 
-# include js, css files in header of desk.html
-# app_include_css = "/assets/tamdeensteel/css/tamdeensteel.css"
-# app_include_js = "/assets/tamdeensteel/js/tamdeensteel.js"
-
 # include js, css files in header of web template
-# web_include_css = "/assets/tamdeensteel/css/tamdeensteel.css"
-# web_include_js = "/assets/tamdeensteel/js/tamdeensteel.js"
-
-# include custom scss in every website theme (without file extension ".scss")
-# website_theme_scss = "tamdeensteel/public/scss/website"
-
-# include js, css files in header of web form
-# webform_include_js = {"doctype": "public/js/doctype.js"}
-# webform_include_css = {"doctype": "public/css/doctype.css"}
-
-# include js in page
-# page_js = {"page" : "public/js/file.js"}
-
-# include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
-# doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
-# doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
-# doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
-
-# Svg Icons
-# ------------------
-# include app icons in desk
-# app_include_icons = "tamdeensteel/public/icons.svg"
+web_include_css = "/assets/tamdeensteel/css/tamdeensteel.css"
+web_include_js = "/assets/tamdeensteel/js/tamdeensteel.js"
 
 # Home Pages
 # ----------
 
 # application home page (will override Website Settings)
-# home_page = "login"
+home_page = "index"
 
 # website user home page (by Role)
 # role_home_page = {
 # 	"Role": "home_page"
 # }
+
 
 # Generators
 # ----------

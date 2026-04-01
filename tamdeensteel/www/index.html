@@ -1,0 +1,401 @@
+{% extends "templates/web.html" %}
+
+{% set is_ar = lang == "ar" %}
+{% set d = "rtl" if is_ar else "ltr" %}
+{% set switch_lang = "en" if is_ar else "ar" %}
+{% set switch_label = "English" if is_ar else "العربية" %}
+
+{% block head_include %}
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+{% if is_ar %}
+<style>
+	.tamdeen-website { font-family: 'Tajawal', 'Inter', sans-serif !important; direction: rtl; text-align: right; }
+	.tamdeen-website * { font-family: inherit; }
+</style>
+{% endif %}
+{% endblock %}
+
+{% block page_content %}
+<div class="tamdeen-website" dir="{{ d }}">
+
+<!-- ============ NAVIGATION ============ -->
+<nav class="tamdeen-nav">
+	<div class="nav-container">
+		<a href="/" class="nav-logo">
+			<img src="/assets/tamdeensteel/img/logo.jpeg" alt="Tamdeen Steel">
+		</a>
+		<ul class="nav-links">
+			<li><a href="#home">{{ "الرئيسية" if is_ar else "Home" }}</a></li>
+			<li><a href="#about">{{ "من نحن" if is_ar else "About" }}</a></li>
+			<li><a href="#products">{{ "منتجاتنا" if is_ar else "Products" }}</a></li>
+			<li><a href="#gallery">{{ "معرض الصور" if is_ar else "Gallery" }}</a></li>
+			<li><a href="#video">{{ "المصنع" if is_ar else "Factory" }}</a></li>
+			<li><a href="#contact">{{ "تواصل معنا" if is_ar else "Contact" }}</a></li>
+			<li>
+				<a href="?_lang={{ switch_lang }}" class="nav-lang-switch" onclick="switchLang('{{ switch_lang }}'); return false;">
+					{{ switch_label }}
+				</a>
+			</li>
+			<li><a href="/login" class="nav-cta">{{ "الدخول للبوابة" if is_ar else "Portal Login" }}</a></li>
+		</ul>
+		<div class="nav-hamburger" aria-label="Toggle navigation">
+			<span></span><span></span><span></span>
+		</div>
+	</div>
+</nav>
+
+<!-- ============ HERO SECTION ============ -->
+<section id="home" class="tamdeen-hero">
+	<video class="hero-video-bg" autoplay muted loop playsinline>
+		<source src="/assets/tamdeensteel/img/factory-tour.mp4" type="video/mp4">
+	</video>
+	<div class="hero-overlay"></div>
+	<div class="hero-content">
+		{% if is_ar %}
+		<div class="hero-badge">الشركة الرائدة في صناعة الصلب</div>
+		<h1>نصنع <span>مستقبل</span> الحديد والصلب</h1>
+		<p>من المعدن المنصهر إلى منتجات الصلب عالية الدقة، تمدين تقدم التميز في كل قضيب وزاوية وبيليت نصنعه.</p>
+		<div class="hero-buttons">
+			<a href="#products" class="btn-primary-tamdeen">
+				استكشف المنتجات &#8592;
+			</a>
+			<a href="#video" class="btn-outline-tamdeen">
+				&#9654; شاهد جولة المصنع
+			</a>
+		</div>
+		{% else %}
+		<div class="hero-badge">Leading Steel Manufacturer</div>
+		<h1>Forging the <span>Future</span> of Steel</h1>
+		<p>From molten metal to precision-crafted steel products, Tamdeen delivers excellence in every bar, angle, and billet we manufacture.</p>
+		<div class="hero-buttons">
+			<a href="#products" class="btn-primary-tamdeen">
+				Explore Products &#8594;
+			</a>
+			<a href="#video" class="btn-outline-tamdeen">
+				&#9654; Watch Factory Tour
+			</a>
+		</div>
+		{% endif %}
+	</div>
+	<div class="hero-scroll-indicator">
+		<div class="mouse"></div>
+	</div>
+</section>
+
+<!-- ============ STATS BAR ============ -->
+<section class="tamdeen-stats">
+	<div class="stats-grid">
+		<div class="stat-item fade-in">
+			<h3><span class="stat-number" data-target="15" data-suffix="+">0</span></h3>
+			<p>{{ "سنوات من التميز" if is_ar else "Years of Excellence" }}</p>
+		</div>
+		<div class="stat-item fade-in">
+			<h3><span class="stat-number" data-target="50000" data-suffix="T">0</span></h3>
+			<p>{{ "الإنتاج السنوي" if is_ar else "Annual Production" }}</p>
+		</div>
+		<div class="stat-item fade-in">
+			<h3><span class="stat-number" data-target="200" data-suffix="+">0</span></h3>
+			<p>{{ "عملاء موثوقون" if is_ar else "Trusted Clients" }}</p>
+		</div>
+		<div class="stat-item fade-in">
+			<h3><span class="stat-number" data-target="99" data-suffix="%">0</span></h3>
+			<p>{{ "ضمان الجودة" if is_ar else "Quality Assurance" }}</p>
+		</div>
+	</div>
+</section>
+
+<!-- ============ ABOUT SECTION ============ -->
+<section id="about" class="tamdeen-about">
+	<div class="section-container">
+		<div class="section-header">
+			{% if is_ar %}
+			<div class="section-tag">من نحن</div>
+			<h2>شريكك الموثوق في صناعة الصلب</h2>
+			<p>نقدم منتجات صلب عالية الجودة بهندسة دقيقة والتزام راسخ بالتميز.</p>
+			{% else %}
+			<div class="section-tag">Who We Are</div>
+			<h2>Trusted Steel Manufacturing Partner</h2>
+			<p>Delivering high-quality steel products with precision engineering and unwavering commitment to excellence.</p>
+			{% endif %}
+		</div>
+		<div class="about-grid">
+			<div class="about-image fade-in-left">
+				<div class="image-accent"></div>
+				<img src="/assets/tamdeensteel/img/rolling-mill.jpeg" alt="{{ 'مصنع الدرفلة تمدين' if is_ar else 'Tamdeen Steel Rolling Mill' }}">
+			</div>
+			<div class="about-text fade-in-right">
+				{% if is_ar %}
+				<h3>مبنية على القوة. مدفوعة بالابتكار.</h3>
+				<p>تمدين للحديد والصلب شركة رائدة متخصصة في إنتاج منتجات الصلب الهيكلي عالية الجودة. تضمن منشآتنا المتطورة وعمليات مراقبة الجودة الصارمة أن كل منتج يلبي المعايير الدولية.</p>
+				<p>من مصانع الدرفلة المتقدمة إلى عمليات القطع الدقيقة، نجمع بين الخبرة المعدنية التقليدية وتكنولوجيا التصنيع الحديثة لتقديم حلول الصلب التي تبني البنية التحتية للغد.</p>
+				<div class="about-features">
+					<div class="about-feature">
+						<div class="feature-icon">&#9670;</div>
+						<span>معتمد ISO</span>
+					</div>
+					<div class="about-feature">
+						<div class="feature-icon">&#9670;</div>
+						<span>جودة عالية</span>
+					</div>
+					<div class="about-feature">
+						<div class="feature-icon">&#9670;</div>
+						<span>توصيل سريع</span>
+					</div>
+					<div class="about-feature">
+						<div class="feature-icon">&#9670;</div>
+						<span>طلبات مخصصة</span>
+					</div>
+				</div>
+				{% else %}
+				<h3>Built on Strength. Driven by Innovation.</h3>
+				<p>Tamdeen Steel is a premier steel manufacturer specializing in the production of high-grade structural steel products. Our state-of-the-art facilities and rigorous quality control processes ensure that every product meets international standards.</p>
+				<p>From our advanced rolling mills to our precision cutting operations, we combine traditional metallurgical expertise with modern manufacturing technology to deliver steel solutions that build the infrastructure of tomorrow.</p>
+				<div class="about-features">
+					<div class="about-feature">
+						<div class="feature-icon">&#9670;</div>
+						<span>ISO Certified</span>
+					</div>
+					<div class="about-feature">
+						<div class="feature-icon">&#9670;</div>
+						<span>Premium Quality</span>
+					</div>
+					<div class="about-feature">
+						<div class="feature-icon">&#9670;</div>
+						<span>Fast Delivery</span>
+					</div>
+					<div class="about-feature">
+						<div class="feature-icon">&#9670;</div>
+						<span>Custom Orders</span>
+					</div>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ============ PRODUCTS SECTION ============ -->
+<section id="products" class="tamdeen-products">
+	<div class="section-container">
+		<div class="section-header">
+			{% if is_ar %}
+			<div class="section-tag">منتجاتنا</div>
+			<h2>حلول الصلب لكل احتياج</h2>
+			<p>مجموعة شاملة من منتجات الصلب المصنعة وفق أعلى معايير الصناعة.</p>
+			{% else %}
+			<div class="section-tag">Our Products</div>
+			<h2>Steel Solutions for Every Need</h2>
+			<p>Comprehensive range of steel products manufactured to the highest industry standards.</p>
+			{% endif %}
+		</div>
+		<div class="products-grid">
+			<div class="product-card fade-in">
+				<div class="card-image">
+					<img src="/assets/tamdeensteel/img/angle-iron-stock.jpeg" alt="{{ 'زوايا الصلب' if is_ar else 'Steel Angles' }}">
+					<div class="card-overlay"></div>
+				</div>
+				<div class="card-body">
+					<h4>{{ "زوايا الصلب" if is_ar else "Steel Angles" }}</h4>
+					<p>{{ "زوايا حديد عالية القوة بأحجام مختلفة للهياكل والأبراج وتطبيقات البناء الصناعي." if is_ar else "High-strength angle iron in various sizes for structural framing, towers, and industrial construction applications." }}</p>
+					<a href="#contact" class="card-link">{{ "اعرف المزيد" if is_ar else "Learn More" }} {{ "&#8592;" if is_ar else "&#8594;" }}</a>
+				</div>
+			</div>
+			<div class="product-card fade-in">
+				<div class="card-image">
+					<img src="/assets/tamdeensteel/img/flat-bars-stack.jpeg" alt="{{ 'المسطحات' if is_ar else 'Flat Bars' }}">
+					<div class="card-overlay"></div>
+				</div>
+				<div class="card-body">
+					<h4>{{ "المسطحات" if is_ar else "Flat Bars" }}</h4>
+					<p>{{ "مسطحات مدرفلة بدقة للتصنيع والتشكيل والتطبيقات المعمارية بتشطيب ناعم." if is_ar else "Precision-rolled flat bars for manufacturing, fabrication, and architectural applications with smooth finish." }}</p>
+					<a href="#contact" class="card-link">{{ "اعرف المزيد" if is_ar else "Learn More" }} {{ "&#8592;" if is_ar else "&#8594;" }}</a>
+				</div>
+			</div>
+			<div class="product-card fade-in">
+				<div class="card-image">
+					<img src="/assets/tamdeensteel/img/square-bars.jpeg" alt="{{ 'المربعات' if is_ar else 'Square Bars' }}">
+					<div class="card-overlay"></div>
+				</div>
+				<div class="card-body">
+					<h4>{{ "المربعات" if is_ar else "Square Bars" }}</h4>
+					<p>{{ "مربعات مدرفلة على الساخن للتشكيل والتشغيل وأنظمة الدعم الهيكلي الثقيلة." if is_ar else "Hot-rolled square bars for forging, machining, and heavy-duty structural support systems." }}</p>
+					<a href="#contact" class="card-link">{{ "اعرف المزيد" if is_ar else "Learn More" }} {{ "&#8592;" if is_ar else "&#8594;" }}</a>
+				</div>
+			</div>
+			<div class="product-card fade-in">
+				<div class="card-image">
+					<img src="/assets/tamdeensteel/img/rebar-closeup.jpeg" alt="{{ 'حديد التسليح' if is_ar else 'Steel Rebar' }}">
+					<div class="card-overlay"></div>
+				</div>
+				<div class="card-body">
+					<h4>{{ "حديد التسليح" if is_ar else "Steel Rebar" }}</h4>
+					<p>{{ "قضبان تسليح تلبي المعايير الدولية للقوة لتعزيز الخرسانة والأساسات." if is_ar else "Reinforcement bars meeting international strength standards for concrete and foundation reinforcement." }}</p>
+					<a href="#contact" class="card-link">{{ "اعرف المزيد" if is_ar else "Learn More" }} {{ "&#8592;" if is_ar else "&#8594;" }}</a>
+				</div>
+			</div>
+			<div class="product-card fade-in">
+				<div class="card-image">
+					<img src="/assets/tamdeensteel/img/steel-billets.jpeg" alt="{{ 'البيليت' if is_ar else 'Steel Billets' }}">
+					<div class="card-overlay"></div>
+				</div>
+				<div class="card-body">
+					<h4>{{ "البيليت" if is_ar else "Steel Billets" }}</h4>
+					<p>{{ "بيليت نصف مصنع عالي الجودة كمواد خام لمصانع الدرفلة ومنتجات الصلب النهائية." if is_ar else "Premium semi-finished billets serving as raw material for rolling mills and downstream steel products." }}</p>
+					<a href="#contact" class="card-link">{{ "اعرف المزيد" if is_ar else "Learn More" }} {{ "&#8592;" if is_ar else "&#8594;" }}</a>
+				</div>
+			</div>
+			<div class="product-card fade-in">
+				<div class="card-image">
+					<img src="/assets/tamdeensteel/img/quality-measurement.jpeg" alt="{{ 'ضمان الجودة' if is_ar else 'Quality Control' }}">
+					<div class="card-overlay"></div>
+				</div>
+				<div class="card-body">
+					<h4>{{ "ضمان الجودة" if is_ar else "Quality Assurance" }}</h4>
+					<p>{{ "يمر كل منتج باختبارات صارمة للأبعاد والتحليل الكيميائي باستخدام أدوات دقيقة." if is_ar else "Every product passes rigorous dimensional and chemical analysis testing using precision instruments." }}</p>
+					<a href="#contact" class="card-link">{{ "اعرف المزيد" if is_ar else "Learn More" }} {{ "&#8592;" if is_ar else "&#8594;" }}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ============ GALLERY SECTION ============ -->
+<section id="gallery" class="tamdeen-gallery">
+	<div class="section-container">
+		<div class="section-header">
+			{% if is_ar %}
+			<div class="section-tag">منشآتنا</div>
+			<h2>داخل مصنع الإنتاج</h2>
+			<p>نظرة على منشأة إنتاج الصلب العالمية وعملياتنا.</p>
+			{% else %}
+			<div class="section-tag">Our Facility</div>
+			<h2>Inside Our Manufacturing Plant</h2>
+			<p>A glimpse into our world-class steel production facility and processes.</p>
+			{% endif %}
+		</div>
+		<div class="gallery-grid">
+			<div class="gallery-item fade-in">
+				<img src="/assets/tamdeensteel/img/furnace-pouring.jpeg" alt="{{ 'صب الصلب المنصهر' if is_ar else 'Molten Steel Pouring' }}">
+				<div class="gallery-overlay"><span>{{ "عمليات الأفران" if is_ar else "Furnace Operations" }}</span></div>
+			</div>
+			<div class="gallery-item fade-in">
+				<img src="/assets/tamdeensteel/img/steel-angles-closeup.jpeg" alt="{{ 'زوايا الصلب' if is_ar else 'Steel Angles' }}">
+				<div class="gallery-overlay"><span>{{ "المنتجات النهائية" if is_ar else "Finished Products" }}</span></div>
+			</div>
+			<div class="gallery-item fade-in">
+				<img src="/assets/tamdeensteel/img/furnace-interior.jpeg" alt="{{ 'داخل الفرن' if is_ar else 'Furnace Interior' }}">
+				<div class="gallery-overlay"><span>{{ "فرن الصهر" if is_ar else "Melting Furnace" }}</span></div>
+			</div>
+			<div class="gallery-item fade-in">
+				<img src="/assets/tamdeensteel/img/flat-bars-warehouse.jpeg" alt="{{ 'المستودع' if is_ar else 'Warehouse' }}">
+				<div class="gallery-overlay"><span>{{ "مستودع الصلب" if is_ar else "Steel Warehouse" }}</span></div>
+			</div>
+			<div class="gallery-item fade-in">
+				<img src="/assets/tamdeensteel/img/rolling-mill.jpeg" alt="{{ 'مصنع الدرفلة' if is_ar else 'Rolling Mill' }}">
+				<div class="gallery-overlay"><span>{{ "مصنع الدرفلة" if is_ar else "Rolling Mill" }}</span></div>
+			</div>
+			<div class="gallery-item fade-in">
+				<img src="/assets/tamdeensteel/img/steel-angles-pattern.jpeg" alt="{{ 'مخزون الزوايا' if is_ar else 'Steel Pattern' }}">
+				<div class="gallery-overlay"><span>{{ "مخزون الزوايا" if is_ar else "Angle Iron Stock" }}</span></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ============ VIDEO SECTION ============ -->
+<section id="video" class="tamdeen-video-section">
+	<div class="section-container">
+		<div class="section-header">
+			{% if is_ar %}
+			<div class="section-tag">جولة في المصنع</div>
+			<h2>شاهد صناعة الصلب من الداخل</h2>
+			<p>اختبر قوة ودقة عملية التصنيع لدينا.</p>
+			{% else %}
+			<div class="section-tag">Factory Tour</div>
+			<h2>See Our Steel in the Making</h2>
+			<p>Experience the power and precision of our manufacturing process.</p>
+			{% endif %}
+		</div>
+		<div class="video-wrapper fade-in">
+			<video controls playsinline poster="/assets/tamdeensteel/img/furnace-pouring.jpeg">
+				<source src="/assets/tamdeensteel/img/factory-tour.mp4" type="video/mp4">
+			</video>
+		</div>
+	</div>
+</section>
+
+<!-- ============ CTA SECTION ============ -->
+<section id="contact" class="tamdeen-cta">
+	<div class="section-container">
+		<div class="cta-content fade-in">
+			{% if is_ar %}
+			<h2>مستعد للبناء مع تمدين؟</h2>
+			<p>تواصل مع فريق المبيعات للحصول على عروض الأسعار والطلبات المخصصة وجداول التسليم.</p>
+			<div class="hero-buttons" style="opacity: 1;">
+				<a href="mailto:ahmedemamhatem@gmail.com" class="btn-primary-tamdeen">
+					&#8592; طلب عرض سعر
+				</a>
+				<a href="/login" class="btn-outline-tamdeen">
+					&#8592; بوابة العملاء
+				</a>
+			</div>
+			{% else %}
+			<h2>Ready to Build with Tamdeen?</h2>
+			<p>Get in touch with our sales team for quotes, custom orders, and delivery schedules.</p>
+			<div class="hero-buttons" style="opacity: 1;">
+				<a href="mailto:ahmedemamhatem@gmail.com" class="btn-primary-tamdeen">
+					Request a Quote &#8594;
+				</a>
+				<a href="/login" class="btn-outline-tamdeen">
+					Client Portal &#8594;
+				</a>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="tamdeen-footer">
+	<div class="footer-grid">
+		<div class="footer-brand">
+			<img src="/assets/tamdeensteel/img/logo.jpeg" alt="Tamdeen Steel">
+			<p>{{ "تمدين للحديد والصلب شركة رائدة في تصنيع منتجات الصلب الهيكلي عالية الجودة، تقدم القوة والموثوقية لمشاريع البناء في المنطقة." if is_ar else "Tamdeen Steel is a leading manufacturer of high-quality structural steel products, delivering strength and reliability to construction projects across the region." }}</p>
+		</div>
+		<div class="footer-col">
+			<h4>{{ "المنتجات" if is_ar else "Products" }}</h4>
+			<ul>
+				<li><a href="#products">{{ "زوايا الصلب" if is_ar else "Steel Angles" }}</a></li>
+				<li><a href="#products">{{ "المسطحات" if is_ar else "Flat Bars" }}</a></li>
+				<li><a href="#products">{{ "المربعات" if is_ar else "Square Bars" }}</a></li>
+				<li><a href="#products">{{ "حديد التسليح" if is_ar else "Steel Rebar" }}</a></li>
+				<li><a href="#products">{{ "البيليت" if is_ar else "Steel Billets" }}</a></li>
+			</ul>
+		</div>
+		<div class="footer-col">
+			<h4>{{ "الشركة" if is_ar else "Company" }}</h4>
+			<ul>
+				<li><a href="#about">{{ "من نحن" if is_ar else "About Us" }}</a></li>
+				<li><a href="#gallery">{{ "منشآتنا" if is_ar else "Our Facility" }}</a></li>
+				<li><a href="#video">{{ "جولة المصنع" if is_ar else "Factory Tour" }}</a></li>
+				<li><a href="#contact">{{ "تواصل معنا" if is_ar else "Contact" }}</a></li>
+			</ul>
+		</div>
+		<div class="footer-col">
+			<h4>{{ "تواصل معنا" if is_ar else "Contact" }}</h4>
+			<ul>
+				<li><a href="mailto:ahmedemamhatem@gmail.com">ahmedemamhatem@gmail.com</a></li>
+				<li><a href="#contact">{{ "طلب عرض سعر" if is_ar else "Request Quote" }}</a></li>
+				<li><a href="/login">{{ "بوابة العملاء" if is_ar else "Client Portal" }}</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="footer-bottom">
+		<p>&copy; 2026 {{ "تمدين للحديد والصلب. جميع الحقوق محفوظة." if is_ar else "Tamdeen Steel. All rights reserved." }}</p>
+		<p>{{ "بدعم من تمدين" if is_ar else "Powered by Tamdeen" }}</p>
+	</div>
+</footer>
+
+</div>
+{% endblock %}
