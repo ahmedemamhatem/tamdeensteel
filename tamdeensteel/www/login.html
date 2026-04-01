@@ -73,12 +73,20 @@ html{scroll-behavior:smooth}
 .login-copy{text-align:center;margin-top:36px;padding-top:18px;border-top:1px solid #E8ECF0}
 .login-copy p{color:#B2BEC3;font-size:11px;margin:0}
 
+@media(max-width:1024px){
+	.login-right{width:420px;min-width:360px;padding:40px 30px}
+}
 @media(max-width:768px){
 	.login-wrap{flex-direction:column}
-	.login-left{min-height:260px;flex:none}
-	.login-right{width:100%;min-width:auto;padding:36px 24px}
+	.login-left{min-height:280px;flex:none}
+	.login-left .login-vis{padding:30px 20px}
+	.login-lh{font-size:24px!important}
+	.login-ld{font-size:13px!important}
+	.login-right{width:100%;min-width:auto;padding:30px 24px}
 	.login-lst{display:none}
-	.login-topbar{position:relative;top:auto;margin-bottom:24px;justify-content:space-between;width:100%}
+	.login-topbar{position:relative!important;top:auto!important;left:auto!important;right:auto!important;margin-bottom:20px;justify-content:space-between;width:100%;display:flex}
+	.login-fc h3{font-size:22px}
+	.login-logo{height:60px;padding:6px 10px}
 }
 </style>
 {% endblock %}
@@ -162,7 +170,34 @@ document.addEventListener('DOMContentLoaded',function(){
 		var u=document.getElementById('l-email').value,p=document.getElementById('l-pwd').value;
 		if(!u||!p){showE(isAr?'يرجى ملء جميع الحقول.':'Please fill in all fields.');return;}
 		btn.textContent=isAr?'جارٍ تسجيل الدخول...':'Signing in...';btn.disabled=true;btn.style.opacity='.7';errBox.style.display='none';
-		frappe.call({method:'login',args:{usr:u,pwd:p},callback:function(r){if(r.message==='Logged In'){btn.textContent=isAr?'جارٍ التحويل...':'Redirecting...';window.location.href='/app';}},error:function(r){btn.textContent=isAr?'تسجيل الدخول':'Sign In';btn.disabled=false;btn.style.opacity='1';var m;try{m=r&&r._server_messages?JSON.parse(JSON.parse(r._server_messages)[0]).message:null;}catch(x){m=null;}showE(m||(isAr?'بريد إلكتروني أو كلمة مرور غير صحيحة.':'Invalid email or password.'));}});
+		frappe.call({
+			method:'login',
+			args:{usr:u,pwd:p},
+			callback:function(r){
+				if(r.message==='Logged In'){
+					btn.textContent=isAr?'جارٍ التحويل...':'Redirecting...';
+					window.location.href='/app';
+				}
+			},
+			error:function(r){
+				btn.textContent=isAr?'تسجيل الدخول':'Sign In';
+				btn.disabled=false;
+				btn.style.opacity='1';
+				var m=isAr?'بريد إلكتروني أو كلمة مرور غير صحيحة. يرجى المحاولة مرة أخرى.':'Invalid email or password. Please try again.';
+				try{
+					if(r&&r._server_messages){
+						var msgs=JSON.parse(r._server_messages);
+						if(msgs&&msgs.length){
+							var parsed=JSON.parse(msgs[0]);
+							if(parsed.message)m=parsed.message;
+						}
+					}else if(r&&r.message){
+						m=r.message;
+					}
+				}catch(x){}
+				showE(m);
+			}
+		});
 	});
 	function showE(m){errBox.textContent=m;errBox.style.display='block';}
 	var bg=document.getElementById('login-bg-slider');
