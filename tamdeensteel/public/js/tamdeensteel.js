@@ -97,11 +97,21 @@ document.addEventListener('DOMContentLoaded', function () {
 	if (hamburger && navLinks) {
 		hamburger.addEventListener('click', function () {
 			navLinks.classList.toggle('open');
+			hamburger.classList.toggle('active');
 		});
+		// Close menu when clicking a link
 		navLinks.querySelectorAll('a').forEach(function (link) {
 			link.addEventListener('click', function () {
 				navLinks.classList.remove('open');
+				hamburger.classList.remove('active');
 			});
+		});
+		// Close menu when clicking the X pseudo-element area (top-right)
+		navLinks.addEventListener('click', function (e) {
+			if (e.target === navLinks) {
+				navLinks.classList.remove('open');
+				hamburger.classList.remove('active');
+			}
 		});
 	}
 

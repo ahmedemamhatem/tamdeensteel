@@ -64,11 +64,15 @@
 		<!-- Top bar -->
 		<div class="login-top-bar" style="{{ 'left' if is_ar else 'right' }}: 30px;">
 			<a href="?_lang={{ switch_lang }}" class="login-lang-btn" onclick="switchLang('{{ switch_lang }}'); return false;">
-				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-				{{ switch_label }}
+				{% if is_ar %}
+				<span class="flag-icon">🇬🇧</span> EN
+				{% else %}
+				<span class="flag-icon">🇸🇦</span> عربي
+				{% endif %}
 			</a>
 			<a href="/" class="login-back-link">
-				{{ "&#8594; العودة للموقع" if is_ar else "&#8592; Back to Website" }}
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+				{{ "العودة للموقع" if is_ar else "Back to Website" }}
 			</a>
 		</div>
 
