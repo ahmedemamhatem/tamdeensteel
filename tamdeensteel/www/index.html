@@ -914,12 +914,14 @@ ul{list-style:none}
     }
     if(last < raw.length) parts.push({text: raw.slice(last), accent: false});
 
-    // Build full character array with accent info
-    var chars = [];
+    // Build word-level segments to keep Arabic letters connected
+    var segments = [];
     parts.forEach(function(p){
-      for(var i = 0; i < p.text.length; i++){
-        chars.push({ch: p.text[i], accent: p.accent});
-      }
+      // Split by spaces to keep whole words together (critical for Arabic)
+      var words = p.text.split(/(\s+)/);
+      words.forEach(function(w){
+        if(w.length > 0) segments.push({text: w, accent: p.accent});
+      });
     });
 
     var cursor = document.createElement("span");
@@ -928,38 +930,31 @@ ul{list-style:none}
     el.appendChild(cursor);
 
     var idx = 0;
-    var speed = 55;
-    var currentSpan = null;
-    var inAccent = false;
+    var speed = 120;
+    var currentAccentSpan = null;
 
     function typeNext(){
-      if(idx >= chars.length){
-        // Remove cursor after a pause
+      if(idx >= segments.length){
         setTimeout(function(){ cursor.style.display = "none"; }, 1500);
         return;
       }
-      var c = chars[idx];
-      if(c.accent && !inAccent){
-        currentSpan = document.createElement("span");
-        currentSpan.className = "accent";
-        el.insertBefore(currentSpan, cursor);
-        inAccent = true;
-      } else if(!c.accent && inAccent){
-        currentSpan = null;
-        inAccent = false;
-      }
+      var seg = segments[idx];
 
-      var textNode = document.createTextNode(c.ch);
-      if(inAccent && currentSpan){
-        currentSpan.appendChild(textNode);
+      if(seg.accent){
+        if(!currentAccentSpan){
+          currentAccentSpan = document.createElement("span");
+          currentAccentSpan.className = "accent";
+          el.insertBefore(currentAccentSpan, cursor);
+        }
+        currentAccentSpan.textContent += seg.text;
       } else {
-        el.insertBefore(textNode, cursor);
+        currentAccentSpan = null;
+        el.insertBefore(document.createTextNode(seg.text), cursor);
       }
       idx++;
       setTimeout(typeNext, speed);
     }
 
-    // Start typing after a short delay
     setTimeout(typeNext, 600);
   })();
 
